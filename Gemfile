@@ -47,6 +47,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'haml_lint'
   gem 'machinist'
+  gem 'rails-controller-testing'
 end
 
 group :development do
