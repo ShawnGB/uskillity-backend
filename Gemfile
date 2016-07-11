@@ -53,6 +53,7 @@ group :development, :test do
   gem 'machinist'
   gem 'rails-controller-testing'
   gem 'railroady'
+  gem 'factory_girl_rails'
 end
 
 group :development do
