@@ -52,6 +52,7 @@ group :development, :test do
   gem 'haml_lint'
   gem 'machinist'
   gem 'rails-controller-testing'
+  gem 'railroady'
 end
 
 group :development do
