@@ -44,7 +44,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry'
   gem 'rspec-rails'
-  gem 'shoulda'
+  gem 'shoulda-matchers', '~> 3.1'
   gem 'rails-erd'
   gem 'database_cleaner'
   gem 'json_expressions'
@@ -54,6 +54,8 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'railroady'
   gem 'factory_girl_rails'
+  gem 'simplecov'
+  gem 'faker'
 end
 
 group :development do
