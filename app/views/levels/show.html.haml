@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name translations:
+  = @level.name_translations
+%p
+  %b Value:
+  = @level.value
+%p
+  %b Is active:
+  = @level.is_active
+
+= link_to 'Edit', edit_level_path(@level)
+\|
+= link_to 'Back', levels_path
