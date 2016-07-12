@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 20160712171129) do
     t.integer  "workshop_session_id"
     t.integer  "workshop_registration_id"
     t.float    "score"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.index ["workshop_registration_id"], name: "index_participations_on_workshop_registration_id", using: :btree
     t.index ["workshop_session_id"], name: "index_participations_on_workshop_session_id", using: :btree
   end
@@ -69,18 +69,6 @@ ActiveRecord::Schema.define(version: 20160712171129) do
     t.datetime "updated_at",        null: false
     t.index ["creator_id"], name: "index_ratings_on_creator_id", using: :btree
     t.index ["rated_object_type", "rated_object_id"], name: "index_ratings_on_rated_object_type_and_rated_object_id", using: :btree
-  end
-
-  create_table "workshop_registrations", force: :cascade do |t|
-    t.integer  "workshop_id"
-    t.integer  "user_id"
-    t.integer  "booking_id"
-    t.integer  "status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["booking_id"], name: "index_workshop_registrations_on_booking_id", using: :btree
-    t.index ["user_id"], name: "index_workshop_registrations_on_user_id", using: :btree
-    t.index ["workshop_id"], name: "index_workshop_registrations_on_workshop_id", using: :btree
   end
 
   create_table "tags", force: :cascade do |t|
@@ -129,6 +117,18 @@ ActiveRecord::Schema.define(version: 20160712171129) do
     t.datetime "updated_at",       null: false
   end
 
+  create_table "workshop_registrations", force: :cascade do |t|
+    t.integer  "workshop_id"
+    t.integer  "user_id"
+    t.integer  "booking_id"
+    t.integer  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["booking_id"], name: "index_workshop_registrations_on_booking_id", using: :btree
+    t.index ["user_id"], name: "index_workshop_registrations_on_user_id", using: :btree
+    t.index ["workshop_id"], name: "index_workshop_registrations_on_workshop_id", using: :btree
+  end
+
   create_table "workshop_sessions", force: :cascade do |t|
     t.hstore   "title_translations"
     t.hstore   "subtitle_translations"
@@ -156,18 +156,18 @@ ActiveRecord::Schema.define(version: 20160712171129) do
     t.hstore   "subtitle_translations"
     t.hstore   "description_translations"
     t.integer  "category_id"
-    t.date     "offered_on",                 default: [],                 array: true
+    t.date     "offered_on",                          default: [],                 array: true
     t.float    "fees"
     t.integer  "provider_id"
     t.string   "main_image"
-    t.string   "more_images",                default: [],                 array: true
+    t.string   "more_images",                         default: [],                 array: true
     t.boolean  "is_recurring"
     t.integer  "recurrence_type"
-    t.boolean  "is_approved",                default: false
+    t.boolean  "is_approved",                         default: false
     t.integer  "minimum_workshop_registration_count", default: 0
     t.integer  "maximum_workshop_registration_count"
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
     t.index ["category_id"], name: "index_workshops_on_category_id", using: :btree
     t.index ["provider_id"], name: "index_workshops_on_provider_id", using: :btree
   end
