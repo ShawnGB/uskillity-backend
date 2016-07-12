@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :workshop_sessions
   resources :workshops
   resources :venues
   resources :comments

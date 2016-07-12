@@ -1,0 +1,1 @@
+json.extract! @workshop_session, :id, :title_translations, :subtitle_translations, :description_translations, :starts_at, :ends_at, :level_id, :main_image, :more_images, :tutor_id, :workshop_id, :venue_id, :minimum_participation_count, :maximum_participation_count, :created_at, :updated_at

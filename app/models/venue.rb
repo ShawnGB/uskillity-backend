@@ -1,4 +1,7 @@
 class Venue < ApplicationRecord
+  has_many :workshop_sessions
+  has_many :workshops, through: :workshop_sessions
+
   validates :country_alpha2, inclusion: { in: ISO3166::Country.all.map { |c| c.alpha2 } }
 
   geocoded_by :full_street_address

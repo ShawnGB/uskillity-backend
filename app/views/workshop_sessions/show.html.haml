@@ -1,0 +1,45 @@
+%p#notice= notice
+
+%p
+  %b Title translations:
+  = @workshop_session.title_translations
+%p
+  %b Subtitle translations:
+  = @workshop_session.subtitle_translations
+%p
+  %b Description translations:
+  = @workshop_session.description_translations
+%p
+  %b Starts at:
+  = @workshop_session.starts_at
+%p
+  %b Ends at:
+  = @workshop_session.ends_at
+%p
+  %b Level:
+  = @workshop_session.level
+%p
+  %b Main image:
+  = @workshop_session.main_image
+%p
+  %b More images:
+  = @workshop_session.more_images
+%p
+  %b Tutor:
+  = @workshop_session.tutor
+%p
+  %b Workshop:
+  = @workshop_session.workshop
+%p
+  %b Venue:
+  = @workshop_session.venue
+%p
+  %b Minimum participation count:
+  = @workshop_session.minimum_participation_count
+%p
+  %b Maximum participation count:
+  = @workshop_session.maximum_participation_count
+
+= link_to 'Edit', edit_workshop_session_path(@workshop_session)
+\|
+= link_to 'Back', workshop_sessions_path

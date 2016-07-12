@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712153442) do
+ActiveRecord::Schema.define(version: 20160712162458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,28 @@ ActiveRecord::Schema.define(version: 20160712153442) do
     t.datetime "updated_at",       null: false
   end
 
+  create_table "workshop_sessions", force: :cascade do |t|
+    t.hstore   "title_translations"
+    t.hstore   "subtitle_translations"
+    t.hstore   "description_translations"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.integer  "level_id"
+    t.string   "main_image"
+    t.string   "more_images",                 default: [],              array: true
+    t.integer  "tutor_id"
+    t.integer  "workshop_id"
+    t.integer  "venue_id"
+    t.integer  "minimum_participation_count", default: 0
+    t.integer  "maximum_participation_count"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.index ["level_id"], name: "index_workshop_sessions_on_level_id", using: :btree
+    t.index ["tutor_id"], name: "index_workshop_sessions_on_tutor_id", using: :btree
+    t.index ["venue_id"], name: "index_workshop_sessions_on_venue_id", using: :btree
+    t.index ["workshop_id"], name: "index_workshop_sessions_on_workshop_id", using: :btree
+  end
+
   create_table "workshops", force: :cascade do |t|
     t.hstore   "title_translations"
     t.hstore   "subtitle_translations"
@@ -124,6 +146,10 @@ ActiveRecord::Schema.define(version: 20160712153442) do
 
   add_foreign_key "comments", "users", column: "commenter_id"
   add_foreign_key "ratings", "users", column: "creator_id"
+  add_foreign_key "workshop_sessions", "levels"
+  add_foreign_key "workshop_sessions", "users", column: "tutor_id"
+  add_foreign_key "workshop_sessions", "venues"
+  add_foreign_key "workshop_sessions", "workshops"
   add_foreign_key "workshops", "categories"
   add_foreign_key "workshops", "users", column: "provider_id"
 end

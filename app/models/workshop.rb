@@ -3,6 +3,11 @@ class Workshop < ApplicationRecord
 
   belongs_to :category
   belongs_to :provider, class_name: 'User'
+  has_many :workshop_sessions
+  has_many :venues, through: :workshop_sessions
+  has_many :tutors, through: :workshop_sessions
+
+  translates :title, :subtitle, :description
 
   validates :title_en, length: { within: 8..140 }
   validates :title_de, length: { within: 8..140 }

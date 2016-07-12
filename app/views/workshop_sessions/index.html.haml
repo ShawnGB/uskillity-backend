@@ -1,0 +1,45 @@
+%h1 Listing workshop_sessions
+
+%table
+  %thead
+    %tr
+      %th Title translations
+      %th Subtitle translations
+      %th Description translations
+      %th Starts at
+      %th Ends at
+      %th Level
+      %th Main image
+      %th More images
+      %th Tutor
+      %th Workshop
+      %th Venue
+      %th Minimum participation count
+      %th Maximum participation count
+      %th
+      %th
+      %th
+
+  %tbody
+    - @workshop_sessions.each do |workshop_session|
+      %tr
+        %td= workshop_session.title_translations
+        %td= workshop_session.subtitle_translations
+        %td= workshop_session.description_translations
+        %td= workshop_session.starts_at
+        %td= workshop_session.ends_at
+        %td= workshop_session.level
+        %td= workshop_session.main_image
+        %td= workshop_session.more_images
+        %td= workshop_session.tutor
+        %td= workshop_session.workshop
+        %td= workshop_session.venue
+        %td= workshop_session.minimum_participation_count
+        %td= workshop_session.maximum_participation_count
+        %td= link_to 'Show', workshop_session
+        %td= link_to 'Edit', edit_workshop_session_path(workshop_session)
+        %td= link_to 'Destroy', workshop_session, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Workshop session', new_workshop_session_path

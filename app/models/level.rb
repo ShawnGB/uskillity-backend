@@ -1,4 +1,7 @@
 class Level < ApplicationRecord
+  has_many :workshop_sessions
+  has_many :workshops, through: :workshop_sessions
+
   translates :name
 
   validates :value, inclusion: 0..100
