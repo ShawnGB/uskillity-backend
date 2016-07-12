@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :workshops_offered, foreign_key: :provider_id, class_name: 'Workshop'
   has_many :workshop_sessions, foreign_key: :tutor_id
   has_many :workshops_tutored, through: :workshop_sessions, source: :workshop
+  has_many :workshop_registrations
+  has_many :workshops_registered, through: :workshop_registrations, source: :workshop
+  has_many :participations, through: :workshop_registrations
 
 	def self.from_omniauth_facebook(auth)
 		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

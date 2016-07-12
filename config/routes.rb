@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :participations
+  resources :workshop_registrations
   resources :bookings
   resources :workshop_sessions
   resources :workshops

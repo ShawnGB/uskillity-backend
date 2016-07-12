@@ -6,6 +6,8 @@ class Workshop < ApplicationRecord
   has_many :workshop_sessions
   has_many :venues, through: :workshop_sessions
   has_many :tutors, through: :workshop_sessions
+  has_many :workshop_registrations
+  has_many :registered_users, through: :workshop_registrations, source: :user
 
   translates :title, :subtitle, :description
 
@@ -24,7 +26,7 @@ class Workshop < ApplicationRecord
   end
 
   def is_viable
-    # registrations.count > minimum_registration_count
+    # workshop_registrations.count > minimum_workshop_registration_count
     true
   end
 end

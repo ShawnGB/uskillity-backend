@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712165447) do
+ActiveRecord::Schema.define(version: 20160712165746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,16 @@ ActiveRecord::Schema.define(version: 20160712165447) do
     t.index ["value"], name: "index_levels_on_value", unique: true, using: :btree
   end
 
+  create_table "participations", force: :cascade do |t|
+    t.integer  "workshop_session_id"
+    t.integer  "workshop_registration_id"
+    t.float    "score"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["workshop_registration_id"], name: "index_participations_on_workshop_registration_id", using: :btree
+    t.index ["workshop_session_id"], name: "index_participations_on_workshop_session_id", using: :btree
+  end
+
   create_table "ratings", force: :cascade do |t|
     t.float    "value"
     t.integer  "creator_id"
@@ -59,6 +69,18 @@ ActiveRecord::Schema.define(version: 20160712165447) do
     t.datetime "updated_at",        null: false
     t.index ["creator_id"], name: "index_ratings_on_creator_id", using: :btree
     t.index ["rated_object_type", "rated_object_id"], name: "index_ratings_on_rated_object_type_and_rated_object_id", using: :btree
+  end
+
+  create_table "workshop_registrations", force: :cascade do |t|
+    t.integer  "workshop_id"
+    t.integer  "user_id"
+    t.integer  "booking_id"
+    t.integer  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["booking_id"], name: "index_workshop_registrations_on_booking_id", using: :btree
+    t.index ["user_id"], name: "index_workshop_registrations_on_user_id", using: :btree
+    t.index ["workshop_id"], name: "index_workshop_registrations_on_workshop_id", using: :btree
   end
 
   create_table "tags", force: :cascade do |t|
@@ -142,8 +164,8 @@ ActiveRecord::Schema.define(version: 20160712165447) do
     t.boolean  "is_recurring"
     t.integer  "recurrence_type"
     t.boolean  "is_approved",                default: false
-    t.integer  "minimum_registration_count", default: 0
-    t.integer  "maximum_registration_count"
+    t.integer  "minimum_workshop_registration_count", default: 0
+    t.integer  "maximum_workshop_registration_count"
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
     t.index ["category_id"], name: "index_workshops_on_category_id", using: :btree
@@ -151,7 +173,12 @@ ActiveRecord::Schema.define(version: 20160712165447) do
   end
 
   add_foreign_key "comments", "users", column: "commenter_id"
+  add_foreign_key "participations", "workshop_registrations"
+  add_foreign_key "participations", "workshop_sessions"
   add_foreign_key "ratings", "users", column: "creator_id"
+  add_foreign_key "workshop_registrations", "bookings"
+  add_foreign_key "workshop_registrations", "users"
+  add_foreign_key "workshop_registrations", "workshops"
   add_foreign_key "workshop_sessions", "levels"
   add_foreign_key "workshop_sessions", "users", column: "tutor_id"
   add_foreign_key "workshop_sessions", "venues"

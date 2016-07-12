@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Workshop:
+  = @workshop_registration.workshop
+%p
+  %b User:
+  = @workshop_registration.user
+%p
+  %b Booking:
+  = @workshop_registration.booking
+%p
+  %b Status:
+  = @workshop_registration.status
+
+= link_to 'Edit', edit_workshop_registration_path(@workshop_registration)
+\|
+= link_to 'Back', workshop_registrations_path

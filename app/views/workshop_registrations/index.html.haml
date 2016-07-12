@@ -1,0 +1,27 @@
+%h1 Listing workshop_registrations
+
+%table
+  %thead
+    %tr
+      %th Workshop
+      %th User
+      %th Booking
+      %th Status
+      %th
+      %th
+      %th
+
+  %tbody
+    - @workshop_registrations.each do |workshop_registration|
+      %tr
+        %td= workshop_registration.workshop
+        %td= workshop_registration.user
+        %td= workshop_registration.booking
+        %td= workshop_registration.status
+        %td= link_to 'Show', workshop_registration
+        %td= link_to 'Edit', edit_workshop_registration_path(workshop_registration)
+        %td= link_to 'Destroy', workshop_registration, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New WorkshopRegistration', new_workshop_registration_path
