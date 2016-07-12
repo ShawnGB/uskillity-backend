@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712071128) do
+ActiveRecord::Schema.define(version: 20160712100342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(version: 20160712071128) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["value"], name: "index_levels_on_value", unique: true, using: :btree
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.float    "value"
+    t.integer  "creator_id"
+    t.string   "rated_object_type"
+    t.integer  "rated_object_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["creator_id"], name: "index_ratings_on_creator_id", using: :btree
+    t.index ["rated_object_type", "rated_object_id"], name: "index_ratings_on_rated_object_type_and_rated_object_id", using: :btree
   end
 
   create_table "tags", force: :cascade do |t|
@@ -63,4 +74,5 @@ ActiveRecord::Schema.define(version: 20160712071128) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "ratings", "users", column: "creator_id"
 end
