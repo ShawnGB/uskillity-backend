@@ -36,7 +36,7 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 
 # user management
-gem 'devise', git: 'git@github.com:plataformatec/devise.git', ref: 'a20cca68733c422116dabb66f28fe769e0bf303b'
+gem 'devise', github: 'plataformatec/devise', ref: 'a20cca68733c422116dabb66f28fe769e0bf303b'
 gem 'omniauth-facebook'
 
 group :development, :test do
