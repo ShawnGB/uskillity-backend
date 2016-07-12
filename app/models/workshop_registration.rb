@@ -3,4 +3,5 @@ class WorkshopRegistration < ApplicationRecord
   belongs_to :workshop
   belongs_to :user
   belongs_to :booking
+  has_many :participations
 end

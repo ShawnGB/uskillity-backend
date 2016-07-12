@@ -4,6 +4,10 @@ class WorkshopSession < ApplicationRecord
   belongs_to :workshop
   belongs_to :venue
 
+  has_many :participations
+  has_many :workshop_registrations, through: :participations
+  has_many :participants, through: :workshop_registrations, source: :user
+
   translates :title, :subtitle, :description
 
   validates :title_en, length: { within: 8..140 }

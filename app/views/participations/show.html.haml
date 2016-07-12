@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Workshop session:
+  = @participation.workshop_session
+%p
+  %b WorkshopRegistration:
+  = @participation.workshop_registration
+%p
+  %b Score:
+  = @participation.score
+
+= link_to 'Edit', edit_participation_path(@participation)
+\|
+= link_to 'Back', participations_path
