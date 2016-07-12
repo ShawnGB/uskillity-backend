@@ -73,3 +73,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Add translation for HStore fields
 gem 'hstore_translate'
 
+# We need to gecode the venues
+gem 'geocoder'
