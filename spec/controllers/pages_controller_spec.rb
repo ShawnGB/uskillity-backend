@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PagesController, type: :controller do
+  login_user
   describe 'GET index' do
     it 'returns a welcome page' do
       get :index
