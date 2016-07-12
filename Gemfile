@@ -75,3 +75,4 @@ gem 'hstore_translate'
 
 # We need to gecode the venues
 gem 'geocoder'
+gem 'countries'
