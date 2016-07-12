@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%p
+  %b Street:
+  = @venue.street
+%p
+  %b House number:
+  = @venue.house_number
+%p
+  %b City:
+  = @venue.city
+%p
+  %b State:
+  = @venue.state
+%p
+  %b Zip:
+  = @venue.zip
+%p
+  %b Country alpha2:
+  = @venue.country_alpha2
+%p
+  %b Longitude:
+  = @venue.longitude
+%p
+  %b Latitude:
+  = @venue.latitude
+%p
+  %b Room number:
+  = @venue.room_number
+%p
+  %b Extra infomation:
+  = @venue.extra_infomation
+
+= link_to 'Edit', edit_venue_path(@venue)
+\|
+= link_to 'Back', venues_path
