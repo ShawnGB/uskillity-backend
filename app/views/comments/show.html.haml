@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Text:
+  = @comment.text
+%p
+  %b Commenter:
+  = @comment.commenter
+%p
+  %b Lang:
+  = @comment.lang
+%p
+  %b Commented object:
+  = @comment.commented_object
+
+= link_to 'Edit', edit_comment_path(@comment)
+\|
+= link_to 'Back', comments_path

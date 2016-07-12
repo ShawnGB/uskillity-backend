@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :ratings, as: :creator
+  has_many :comments, as: :commenter
 
 	def self.from_omniauth_facebook(auth)
 		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
