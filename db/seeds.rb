@@ -22,3 +22,10 @@ Level.create([
   {value: 80, name_de: 'Expert', name_en: 'Expert'},
   {value: 100, name_de: 'Guru', name_en: 'Guru'}
 ])
+
+User.create([
+  {email: "adam@example.com", name: 'Eden', first_name: 'Adam', locale: "de", image: "https://upload.wikimedia.org/wikipedia/commons/7/77/Martian_face_viking_cropped.jpg", password: 'needtochange'},
+  {email: "eve@example.com", name: 'Eden', first_name: 'Eve', locale: "de", image: "https://upload.wikimedia.org/wikipedia/en/f/fb/Razorjack_collected_edition.jpg", password: 'needtochange'},
+])
+
+
