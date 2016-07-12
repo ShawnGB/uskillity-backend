@@ -1,0 +1,37 @@
+= form_for @workshop do |f|
+  - if @workshop.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@workshop.errors.count, "error")} prohibited this workshop from being saved:"
+      %ul
+        - @workshop.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :title_translations
+    = f.text_field :title_translations
+  .field
+    = f.label :subtitle_translations
+    = f.text_field :subtitle_translations
+  .field
+    = f.label :description_translations
+    = f.text_field :description_translations
+  .field
+    = f.label :category
+    = f.text_field :category
+  .field
+    = f.label :offered_on
+    = f.date_select :offered_on
+  .field
+    = f.label :fees
+    = f.text_field :fees
+  .field
+    = f.label :provider
+    = f.text_field :provider
+  .field
+    = f.label :main_image
+    = f.text_field :main_image
+  .field
+    = f.label :more_images
+    = f.text_field :more_images
+  .actions
+    = f.submit 'Save'

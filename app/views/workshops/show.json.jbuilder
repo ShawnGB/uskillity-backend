@@ -1,0 +1,1 @@
+json.extract! @workshop, :id, :title_translations, :subtitle_translations, :description_translations, :category_id, :offered_on, :fees, :provider_id, :main_image, :more_images, :created_at, :updated_at

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712142236) do
+ActiveRecord::Schema.define(version: 20160712153442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,29 @@ ActiveRecord::Schema.define(version: 20160712142236) do
     t.datetime "updated_at",       null: false
   end
 
+  create_table "workshops", force: :cascade do |t|
+    t.hstore   "title_translations"
+    t.hstore   "subtitle_translations"
+    t.hstore   "description_translations"
+    t.integer  "category_id"
+    t.date     "offered_on",                 default: [],                 array: true
+    t.float    "fees"
+    t.integer  "provider_id"
+    t.string   "main_image"
+    t.string   "more_images",                default: [],                 array: true
+    t.boolean  "is_recurring"
+    t.integer  "recurrence_type"
+    t.boolean  "is_approved",                default: false
+    t.integer  "minimum_registration_count", default: 0
+    t.integer  "maximum_registration_count"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.index ["category_id"], name: "index_workshops_on_category_id", using: :btree
+    t.index ["provider_id"], name: "index_workshops_on_provider_id", using: :btree
+  end
+
   add_foreign_key "comments", "users", column: "commenter_id"
   add_foreign_key "ratings", "users", column: "creator_id"
+  add_foreign_key "workshops", "categories"
+  add_foreign_key "workshops", "users", column: "provider_id"
 end

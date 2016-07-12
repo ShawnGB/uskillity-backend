@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :ratings, as: :creator
   has_many :comments, as: :commenter
+  has_many :workshops_offered, foreign_key: :provider_id, class_name: 'Workshop'
 
 	def self.from_omniauth_facebook(auth)
 		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
