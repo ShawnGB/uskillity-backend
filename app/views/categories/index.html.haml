@@ -5,19 +5,16 @@
     %tr
       %th Parent
       %th Name
-      %th
-      %th
-      %th
+      %th Action
 
   %tbody
     - @categories.each do |category|
       %tr
-        %td= category.parent
+        - if category.parent.nil?
+          %td= ""
+        - else 
+          %td= link_to category.parent.name, category_path(category.parent)
         %td= category.name
         %td= link_to 'Show', category
-        %td= link_to 'Edit', edit_category_path(category)
-        %td= link_to 'Destroy', category, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
-
-= link_to 'New Category', new_category_path

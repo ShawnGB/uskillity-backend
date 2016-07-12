@@ -2,11 +2,12 @@
 
 %p
   %b Parent:
-  = @category.parent
+  - if @category.parent.nil?
+    = ""
+  -else 
+    = link_to @category.parent.name, category_path(@category.parent)
 %p
   %b Name:
   = @category.name
 
-= link_to 'Edit', edit_category_path(@category)
-\|
 = link_to 'Back', categories_path
