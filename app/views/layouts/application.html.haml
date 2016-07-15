@@ -8,10 +8,16 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     %nav.navbar.navbar-inverse
-      .container
+      .container-fluid
         .navbar-header
           = link_to "BlueCarbuncle", root_path, class: "navbar-brand"
-        #navbar
+        #navbar.collapse.navbar-collapse
+          %p.navbar-text.navbar-right
+            - if current_user
+              = link_to "Signed in as #{current_user.first_name} #{current_user.name}", "#", class: "navbar-link"
+              = image_tag current_user.image, class: "img-circle"
+            - else
+              = "Sign In"
           %ul.nav.navbar-nav
 
     .container
