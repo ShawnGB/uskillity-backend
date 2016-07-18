@@ -1,3 +1,15 @@
 .col-md-4
   .panel.panel-default.workshop-panel
-    = link_to workshop.title, workshop
+    .panel-heading
+      %h3.panel-title
+        = link_to workshop.title, workshop
+    .panel-body
+      = workshop.subtitle
+      = image_tag workshop.main_image, class: "img-responsive"
+      .panel-action
+        = button_to workshop, class: "button btn btn-default btn-block", method: :get do
+          %span.glyphicon.glyphicon-calendar
+          = "Show"
+
+    .panel-footer.clearfix
+      .pull-right= "#{workshop.registered_users.count} registered users"

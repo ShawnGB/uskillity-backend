@@ -2,6 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .workshop-panel {
-  min-height: 300px;
-  padding: 20px;
+  .panel-body {
+    min-height: 300px;
+    padding: 20px;
+
+    .panel-action {
+      padding: 20px 0px 0px 0px;
+      margin: auto;
+      width: 50%;
+    }
+  }
 }
