@@ -2,3 +2,5 @@
   %h1 Welcome!
   %p Learn something new in a workshop or offer a workshop!
   = link_to "Sign in to BlueCarbuncle", new_user_session_path 
+.row
+  = render partial: 'workshops/workshop', collection: @workshops
