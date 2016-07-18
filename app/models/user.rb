@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  after_initialize :init
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -25,5 +26,9 @@ class User < ApplicationRecord
       user.gender = auth.extra.raw_info.gender
 		end
 	end
+
+  def init
+    self.image ||= "http://placehold.it/50x50"
+  end
 
 end

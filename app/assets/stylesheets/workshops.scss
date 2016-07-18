@@ -1,7 +1,37 @@
 // Place all the styles related to the Workshops controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
 .workshop-panel {
-  min-height: 300px;
-  padding: 20px;
+  .panel-body {
+    min-height: 300px;
+    padding: 20px;
+
+    .panel-action {
+      padding: 20px 0px 0px 0px;
+      margin: auto;
+      width: 50%;
+    }
+  }
+}
+
+.workshop-details-header {
+  .workshop-title {
+    padding: 20px 0px 0px 0px;
+  }
+  .workshop-subtitle {
+    font-color: $gray;
+  }
+  margin-bottom: 30px;
+}
+
+.workshop-user-profile {
+  img {
+    min-width: 150px;
+  }
+  .user-details {
+    padding-top: 20px;
+  }
 }
