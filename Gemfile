@@ -32,7 +32,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'haml'
 gem 'haml-rails'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', :git => 'https://github.com/twbs/bootstrap-sass.git', :branch => 'next'
 gem 'autoprefixer-rails'
 
 # user management

@@ -1,33 +1,54 @@
-%p#notice= notice
-
-%p
-  %b Title translations:
-  = @workshop.title_translations
-%p
-  %b Subtitle translation:
-  = @workshop.subtitle_translations
-%p
-  %b Description translations:
-  = @workshop.description_translations
-%p
-  %b Category:
-  = @workshop.category
-%p
-  %b Offered on:
-  = @workshop.offered_on
-%p
-  %b Fees:
-  = @workshop.fees
-%p
-  %b Provider:
-  = @workshop.provider
-%p
-  %b Main image:
-  = @workshop.main_image
-%p
-  %b More images:
-  = @workshop.more_images
-
-= link_to 'Edit', edit_workshop_path(@workshop)
-\|
-= link_to 'Back', workshops_path
+-# %p#notice= notice
+-# 
+-# %p
+-#   %b Title translations:
+-#   = @workshop.title_translations
+-# %p
+-#   %b Subtitle translation:
+-#   = @workshop.subtitle_translations
+-# %p
+-#   %b Description translations:
+-#   = @workshop.description_translations
+-# %p
+-#   %b Category:
+-#   = @workshop.category
+-# %p
+-#   %b Offered on:
+-#   = @workshop.offered_on
+-# %p
+-#   %b Fees:
+-#   = @workshop.fees
+-# %p
+-#   %b Provider:
+-#   = @workshop.provider
+-# %p
+-#   %b Main image:
+-#   = @workshop.main_image
+-# %p
+-#   %b More images:
+-#   = @workshop.more_images
+-# 
+-# = link_to 'Edit', edit_workshop_path(@workshop)
+-# \|
+-# = link_to 'Back', workshops_path
+.row
+  .col-md-8
+    .workshop-details-header
+      = image_tag @workshop.main_image, class: "img-responsive"
+      %h1.workshop-title= @workshop.title
+      %h2.workshop-subtitle= @workshop.subtitle
+  .col-md-4
+    .workshop-user-profile
+      .user-image
+        = image_tag @workshop.provider.image, class: "img-circle center-block"
+      .user-details
+        %h3.text-center= @workshop.provider.first_name
+.row
+  .col-md-12
+    .workshop-description
+      = @workshop.description
+.row
+  .col-md-8
+    .workshop-comments
+  .col-md-4
+    .workshop-venue

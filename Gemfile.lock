@@ -10,6 +10,15 @@ GIT
       responders
       warden (~> 1.2.3)
 
+GIT
+  remote: https://github.com/twbs/bootstrap-sass.git
+  revision: a1f368b8f50b405143bf65459a3c22c3759d5d33
+  branch: next
+  specs:
+    bootstrap-sass (3.3.6)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -55,9 +64,6 @@ GEM
     autoprefixer-rails (6.3.7)
       execjs
     bcrypt (3.1.11)
-    bootstrap-sass (3.3.6)
-      autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
     builder (3.2.2)
     byebug (9.0.5)
     choice (0.2.0)
@@ -300,7 +306,7 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
-  bootstrap-sass
+  bootstrap-sass!
   byebug
   coffee-rails (~> 4.1.0)
   countries
