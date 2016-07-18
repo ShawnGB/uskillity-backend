@@ -52,3 +52,6 @@ bower.json
 
 #Ignore vim swp files
 *.swp
+
+#Ignore .env files
+*.env
