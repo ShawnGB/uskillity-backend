@@ -17,7 +17,7 @@
               - if current_user
                 %a{href: "#", "class" => "dropdown-toggle", "data-toggle" => "dropdown", "role" => "button", "aria-haspopup" => "true", "aria-expanded" => "false"}
                   = "Signed in as #{current_user.first_name} #{current_user.name}"
-                  = image_tag current_user.image, class: "img-circle"
+                  = image_tag current_user.image, class: "img-user img-small"
                   %span.caret
                 %ul.dropdown-menu
                   %li
