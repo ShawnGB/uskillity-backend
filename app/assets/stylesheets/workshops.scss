@@ -14,6 +14,19 @@
     position: relative;
   }
 
+  .listing-overlay {
+    background-color: rgba(45,45,45,0.9);
+    bottom: 30px;
+    left: 0;
+    color: white;
+    position: absolute;
+    padding: 6px 10px;
+
+    .price-tag {
+      font-size: 20px;
+    }
+  }
+
   .listing-body {
     position: relative;
     padding: 10px;

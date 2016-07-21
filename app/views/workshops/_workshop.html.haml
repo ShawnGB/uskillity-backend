@@ -4,6 +4,8 @@
       = link_to workshop, class: "media-cover media-photo" do
         .listing-image-container.media-cover.text-center
           = image_tag workshop.main_image, class: "img-responsive"
+      .listing-overlay
+        %span.price-tag 50 €
     .listing-body
       = link_to workshop do
         %h3.listing-title= workshop.title
