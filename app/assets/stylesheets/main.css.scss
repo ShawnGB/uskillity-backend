@@ -28,3 +28,51 @@ img {
   vertical-align: middle;
   border: 0;
 }
+
+#header.mainpage {
+  height: 30em;
+  min-height: 30em;
+  margin-bottom: 4em;
+}
+
+#main-carousel {
+  .slide {
+    height: 30em;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    .overlay {
+      color: white;
+      background-color: rgba(45, 45, 45, 0.7);
+      padding: 5px 10px;
+      position: absolute;
+      top: 50%;
+      left: 60%;
+      width: 50%;
+      h1 {
+        margin: 10px;
+        font-family: 'Playfair Display', serif;
+        font-weight: 900;
+      }
+      h2 {
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        font-style: italic;
+        font-size: 1.5em;
+        margin: 10px;
+      }
+    }
+  }
+  .slide-1{
+    background-image: url("https://unsplash.it/3000/1500?image=1082");
+  }
+  .slide-2{
+    background-image: url("https://unsplash.it/3000/1500?image=904");
+  }
+  .slide-3{
+    background-image: url("https://unsplash.it/3000/1500?image=885");
+  }
+  .slide-4{
+    background-image: url("https://unsplash.it/3000/1500?image=835");
+  }
+}

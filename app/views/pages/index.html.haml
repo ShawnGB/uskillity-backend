@@ -1,6 +1,20 @@
-.jumbotron
-  %h1 Welcome!
-  %p Learn something new in a workshop or offer a workshop!
-  = link_to "Sign in to BlueCarbuncle", new_user_session_path 
+#header.mainpage
+  #main-carousel.owl-carousel
+    %div.slide.slide-1
+      .overlay
+        %h1 u/music
+        %h2 learn how to play piano
+    %div.slide.slide-2
+      .overlay
+        %h1 u/skate
+        %h2 learn new skateboarding tricks
+    %div.slide.slide-3
+      .overlay
+        %h1 u/write
+        %h2 write your first novel
+    %div.slide.slide-4
+      .overlay
+        %h1 u/bake
+        %h2 surprise your friends with tasty cookies
 .row
   = render partial: 'workshops/workshop', collection: @workshops

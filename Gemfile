@@ -30,10 +30,13 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Frontend
 gem 'haml'
 gem 'haml-rails'
 gem 'bootstrap-sass', :git => 'https://github.com/twbs/bootstrap-sass.git', :branch => 'next'
 gem 'autoprefixer-rails'
+# Carousel
+gem 'owlcarousel-rails'
 
 # user management
 gem 'devise', github: 'plataformatec/devise', ref: 'a20cca68733c422116dabb66f28fe769e0bf303b'

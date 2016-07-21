@@ -10,7 +10,7 @@ FactoryGirl.define do
     offered_on "2016-07-12"
     fees 1.5
     association :provider, factory: :user
-    main_image "http://placehold.it/350x250"
+    main_image "https://placeimg.com/380/250/nature"
     more_images "MyString"
     price 59
   end
