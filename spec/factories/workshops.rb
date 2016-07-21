@@ -12,5 +12,6 @@ FactoryGirl.define do
     association :provider, factory: :user
     main_image "http://placehold.it/350x250"
     more_images "MyString"
+    price 59
   end
 end
