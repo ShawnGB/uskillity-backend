@@ -1,15 +1,13 @@
 .col-md-4
-  .panel.panel-default.workshop-panel
-    .panel-heading
-      %h2.panel-title
-        = link_to workshop.title, workshop
-    .panel-body
-      = workshop.subtitle
-      = image_tag workshop.main_image, class: "img-responsive"
-      .panel-action
-        = button_to workshop, class: "button btn btn-default btn-block", method: :get do
-          %span.glyphicon.glyphicon-calendar
-          = "Show"
+  .workshop-listing
+    .listing-image
+      = link_to workshop, class: "media-cover media-photo" do
+        .listing-image-container.media-cover.text-center
+          = image_tag workshop.main_image, class: "img-responsive"
+    .listing-body
+      = link_to workshop do
+        %h3.listing-title= workshop.title
+      = "#{workshop.registered_users.count} registered users"
+      .listing-user.pull-right
+        = image_tag workshop.provider.image, class: "img-circle"
 
-    .panel-footer.clearfix
-      .pull-right= "#{workshop.registered_users.count} registered users"

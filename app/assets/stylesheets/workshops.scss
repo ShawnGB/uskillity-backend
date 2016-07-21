@@ -4,15 +4,32 @@
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
 
-.workshop-panel {
-  .panel-body {
-    min-height: 300px;
-    padding: 20px;
+.workshop-listing {
+  height: 250px;
+  margin-bottom: 20px;
 
-    .panel-action {
-      padding: 20px 0px 0px 0px;
-      margin: auto;
-      width: 50%;
+  .listing-image {
+    overflow: hidden;
+    height: 67%;
+    position: relative;
+  }
+
+  .listing-body {
+    position: relative;
+    padding: 10px;
+    height: 33%;
+  }
+  .listing-title {
+    font-size: 16px;
+    margin: 5px 0px 5px 0px;
+  }
+  .listing-user {
+    position: relative;
+    top: -65px;
+    margin-bottom: -40px;
+    img {
+      border: 2px solid;
+      border-color: white;
     }
   }
 }
