@@ -81,6 +81,11 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  # Use basic auth to protect page on heroku while we are in development mode
+  config.middleware.use '::Rack::Auth::Basic' do |u, p|
+    [u, p] == [ENV["AUTH_USERNAME"], ENV["AUTH_PASSWORD"]]
+  end
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
