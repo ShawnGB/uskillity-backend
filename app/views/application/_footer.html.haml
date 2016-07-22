@@ -1,0 +1,67 @@
+%footer.navbar-default
+  .container
+    .row.bottom-rule
+      .col-sm-4.footer-section
+        %strong Connect with u/skillity
+        %p get updates on the latest workshops and skills
+        %form.form-inline
+          .form-group
+            %label.sr-only{:for => "inputEmail"} Email
+            %input#inputEmail.form-control{:placeholder => "address@example.com", :type => "email"}/
+          %button.btn.btn-default{:type => "submit"} Subscribe
+ 
+      .col-sm-5.footer-section
+        %ul.list-inline
+          %li.text-uppercase Categories:
+          - @categories.each do |c|
+            %li
+              = link_to c.name, c
+        %ul.list-inline
+          %li.text-uppercase Social Media &amp; Articles:
+          %li
+            %a{:href => "#"} Instagram
+          %li
+            %a{:href => "#"} Pinterest
+          %li
+            %a{:href => "#"} Twitter
+          %li
+            %a{:href => "#"} Facebook
+          %li
+            %a{:href => "#"} The Best Journal
+        %ul.list-inline
+          %li.text-uppercase Events:
+          %li
+            %a{:href => "#"} Hangout April 30
+          %li
+            %a{:href => "#"} Makers Faire
+      .col-sm-3
+        %address
+          %strong u/skillity
+          %br/
+          1000 Some Fantastic Place
+          %br/
+          Berlin
+          %br/
+          +49 (123) 456-7890 (phone &amp; text)
+          %br/
+          %a{:href => "#"} Contact Us
+ 
+    .row.bottom-rule
+      .col-sm-12
+        %nav.navbar.navbar-default.navbar-footer
+          %ul.nav.navbar-nav
+            %li
+              %a{:href => "#"} Contact
+            %li
+              %a{:href => "#"} Imprint
+            %li
+              %a{:href => "#"} Workshops
+            %li
+              %a{:href => "#"} About Best Store
+    .row.leg-room
+      .col-md-12.text-center
+        %h1 u/skillity
+        %p.monospaced
+          ©2016 u/skillity
+          %span.text-uppercase All Rights Reserved
+    / end row
