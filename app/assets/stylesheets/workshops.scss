@@ -12,10 +12,13 @@
     overflow: hidden;
     height: 67%;
     position: relative;
+    .img-responsive {
+      max-width: initial;
+    }
   }
 
   .listing-overlay {
-    background-color: rgba(45,45,45,0.9);
+    background-color: rgba(45,45,45,0.7);
     bottom: 30px;
     left: 0;
     color: white;
