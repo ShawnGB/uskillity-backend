@@ -39,3 +39,13 @@
     %section
       %h1.section-heading How it works
       %h2 share/learn
+      .col-sm-4.col-sm-offset-4
+        #switch-slides.btn-group.btn-group-justified
+          .btn-group
+            %button#learn_click.btn.btn-default.active{"data-toggle" => "button", :type => "button"} Learn
+          .btn-group
+            %button#offer_click.btn.btn-default{:type => "button"} Offer
+      #learn-slide.col-sm-4.col-sm-offset-4
+        %p Learn a Skill
+      #offer-slide.col-sm-4.col-sm-offset-4
+        %p Share a Skill, Offer a workshop
