@@ -1,0 +1,9 @@
+.col-md-4
+  .category-listing
+    .listing-image
+      = link_to category, class: "media-cover media-photo" do
+        .listing-image-container.media-cover.text-center
+          = image_tag category.image, class: "img-responsive"
+      .listing-overlay
+        %h3.category-title= category.name
+
