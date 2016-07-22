@@ -1,13 +1,7 @@
-%p#notice= notice
-
-%p
-  %b Parent:
-  - if @category.parent.nil?
-    = ""
-  -else 
-    = link_to @category.parent.name, category_path(@category.parent)
-%p
-  %b Name:
-  = @category.name
-
-= link_to 'Back', categories_path
+#header.categories{ :style => "background-image: url(#{@category.image})" }
+  .overlay
+    %h1.section-heading= @category.name
+.container
+  %section
+    .row
+      = render partial: 'workshops/workshop', collection: @workshops
