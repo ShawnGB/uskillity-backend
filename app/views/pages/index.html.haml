@@ -19,10 +19,19 @@
           %h2 surprise your friends with tasty cookies
 .container
   %section
-    %h2.section-heading Browse our collection of workshops
+    %h1.section-heading Browse our collection of workshops
     .row
       = render partial: 'workshops/workshop', collection: @workshops
   %section
-    %h2.section-heading Browse our categories
+    %h1.section-heading Browse our categories
     .row
       = render partial: 'categories/category', collection: @categories
+  %section
+    %h1.section-heading The Product
+    %h3 This is us.
+    %h3 This is what we do.
+    %h3 This is why it is important for you to join us.
+    %h3 This is how we, together with you, are going to change the way we are learning.
+  %section
+    %h1.section-heading How it works
+    %h2 share/learn
