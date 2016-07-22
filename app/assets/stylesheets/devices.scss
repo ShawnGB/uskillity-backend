@@ -1,0 +1,40 @@
+// media sizes from: http://stackoverflow.com/questions/18424798/twitter-bootstrap-3-how-to-use-media-queries
+$tablet-width: 768px;
+$tablet-height: 992px;
+$desktop-width: 1024px;
+$phone-width: 480px;
+
+// max-width: 480
+@mixin phone{
+  @media (max-width: #{$phone-width}) {
+    @content;
+  }
+}
+
+// max-width: 767
+@mixin phone-landscape{
+  @media (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+// min-width: 768 max-width: 991
+@mixin tablet{
+  @media (min-width: #{$tablet-width}) and (max-width: #{$tablet-height - 1px}) {
+    @content;
+  }
+}
+
+// min-width: 992 max-width: 1023
+@mixin tablet-landscape{
+  @media (min-width: #{$tablet-height}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+// min-width: 1024
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
