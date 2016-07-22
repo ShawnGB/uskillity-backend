@@ -95,3 +95,12 @@ img {
   /* inline-block space fix */
   margin-right:-4px;
 }
+
+.icon-bar
+{
+  display:block;
+  width:22px;
+  height:2px;
+  border-radius:1px;
+  border:1px solid $u-primary-color;
+}

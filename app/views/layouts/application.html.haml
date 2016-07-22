@@ -11,6 +11,11 @@
       .container-fluid
         .navbar-header
           = link_to "u/skillity", root_path, class: "navbar-brand brand-text"
+          %button.navbar-toggle{"data-target" => "#navbar.collapse.navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
             %li.dropdown
