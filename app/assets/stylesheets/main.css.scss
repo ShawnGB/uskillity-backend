@@ -6,6 +6,19 @@ html, body {
 
 section {
     min-height: 100vh;
+    &.primary{
+      background-color: $u-primary-color;
+      color: $u-sec-color-black;
+    }
+    &.lightgrey {
+      background-color: $u-sec-color-lightgrey;
+    }
+    &.darkgrey {
+      background-color: $u-sec-color-darkgrey;
+    }
+    &.white{
+      background-color: $u-sec-color-white;
+    }
 }
 
 a {
@@ -96,11 +109,15 @@ img {
   margin-right:-4px;
 }
 
-.icon-bar
-{
+.icon-bar {
   display:block;
   width:22px;
   height:2px;
   border-radius:1px;
   border:1px solid $u-primary-color;
+}
+
+.row.attach-to-top{
+  position: relative;
+  top: -20px;
 }

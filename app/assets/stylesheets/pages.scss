@@ -61,3 +61,17 @@
 #offer-slide {
   display: none;
 }
+.switch-slide {
+  min-height: 80vh;
+  background-color: $u-sec-color-lightgrey;
+  margin-top: 10px;
+}
+
+#switch-slides {
+  .btn {
+    font-family: $u-font-serif;
+    color: $u-primary-color;
+    font-weight: 400;
+    font-size: 1.5em;
+  }
+}

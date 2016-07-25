@@ -28,24 +28,23 @@
       %h1.section-heading Browse our categories
       .row
         = render partial: 'categories/category', collection: @categories
-  .row
-    %section
+  .row.attach-to-top
+    %section.primary
       %h1.section-heading The Product
       %h3 This is us.
       %h3 This is what we do.
       %h3 This is why it is important for you to join us.
       %h3 This is how we, together with you, are going to change the way we are learning.
-  .row
-    %section
+  .row.attach-to-top
+    %section.darkgrey
       %h1.section-heading How it works
-      %h2 share/learn
-      .col-sm-4.col-sm-offset-4
+      .col-sm-6.col-sm-offset-3
         #switch-slides.btn-group.btn-group-justified
           .btn-group
-            %button#learn_click.btn.btn-default.active{"data-toggle" => "button", :type => "button"} Learn
+            %button#learn_click.btn.btn-default.btn-lg.btn-block.active{"data-toggle" => "button", :type => "button"} Learn
           .btn-group
-            %button#offer_click.btn.btn-default{:type => "button"} Offer
-      #learn-slide.col-sm-4.col-sm-offset-4
+            %button#offer_click.btn.btn-default.btn-lg.btn-block{:type => "button"} Offer
+      #learn-slide.col-sm-10.col-sm-offset-1.switch-slide
         %p Learn a Skill
-      #offer-slide.col-sm-4.col-sm-offset-4
+      #offer-slide.col-sm-10.col-sm-offset-1.switch-slide
         %p Share a Skill, Offer a workshop
