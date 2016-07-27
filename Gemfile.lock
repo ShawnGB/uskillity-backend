@@ -228,6 +228,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.4.0)
+      byebug (~> 9.0)
+      pry (~> 0.10)
     puma (3.4.0)
     rack (2.0.0.rc1)
       json
@@ -387,6 +390,7 @@ DEPENDENCIES
   owlcarousel-rails
   pg (~> 0.18)
   pry
+  pry-byebug
   puma (~> 3.0)
   railroady
   rails (>= 5.0.0.rc2, < 5.1)
