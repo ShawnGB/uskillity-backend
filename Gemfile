@@ -80,3 +80,6 @@ gem 'hstore_translate'
 gem 'geocoder'
 gem 'countries'
 gem 'activeadmin', github: 'activeadmin'
+
+# add AWS SDK
+gem 'aws-sdk', '~> 2'

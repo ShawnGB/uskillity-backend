@@ -1,10 +1,28 @@
 namespace :import do
   desc "Imports the workshop objects found in the given CSV file"
   task :workshops, [:url] => :environment do |t, args|
+    filename = args.url
+    raise "Cannot find the csv file" unless FileTest.exists?(filename)
+    csv_file = File.open(filename, "rb")
+    csv_contents = csv_file.read
+    create_workshops_from_csv csv_contents
+  end
+
+  task :workshops_s3, [:url] => :environment do |t, args|
+    s3 = Aws::S3::Resource.new(
+      region: ENV['AWS_REGION'],
+      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+    )
+    csv_file = s3.bucket(ENV['S3_BUCKET_NAME']).object(args.url).get
+    csv_contents = csv_file.body.string
+    raise "Cannot read from S3" unless csv_contents != nil
+    create_workshops_from_csv csv_file.body.string
+  end
+
+  def create_workshops_from_csv(csv_string)
     require 'csv'
-    csv_file = args.url
-    raise "Cannot find the csv file" unless FileTest.exists?(csv_file)
-    CSV.foreach(csv_file, headers: true, col_sep: ',') do |row|
+    CSV.parse(csv_string, headers: true, col_sep: ',') do |row|
       row_hash = row.to_hash
       given_id = row_hash.delete("id")
       if given_id.nil?
