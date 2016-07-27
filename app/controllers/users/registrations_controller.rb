@@ -1,6 +1,12 @@
+require 'securerandom'
 class Users::RegistrationsController < Devise::RegistrationsController
 # before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
+  def register
+    #require 'pry';binding.pry
+    @user = User.new
+    render
+  end
 
   # GET /resource/sign_up
   # def new
@@ -8,9 +14,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    # create a random password for users who just sign up for the mailinglist
+    # implementing the pre-signup/landingpage behaviour of creating a user without the full signup form
+    params["user"]["password"] = SecureRandom.hex
+    super
+  end
 
   # GET /resource/edit
   # def edit
