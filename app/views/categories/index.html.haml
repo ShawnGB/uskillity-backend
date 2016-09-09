@@ -1,22 +1,4 @@
 %h1 Listing categories
 
-%table
-  %thead
-    %tr
-      %th Parent
-      %th Name
-      %th Action
-
-  %tbody
-    - @categories.each do |category|
-      %tr
-        - if category.parent.nil?
-          %td= ""
-        - else 
-          %td= link_to category.parent.name, category_path(category.parent)
-        %td= category.name
-        %td= link_to 'Show', category
-
-%br
-
-= render partial: 'workshops/workshop', collection: @workshops
+.row
+  = render partial: 'categories/category', collection: @categories
