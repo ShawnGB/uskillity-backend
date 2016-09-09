@@ -1,3 +1,3 @@
 ActiveAdmin.register Category, as: "CourseCategory" do
-  actions :all, except: [:edit, :destroy, :create, :new]
+  actions :all, except: [:destroy, :create, :new]
 end
