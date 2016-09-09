@@ -5,7 +5,7 @@ html, body {
 
 
 section {
-    min-height: 100vh;
+    overflow: auto;
     &.primary{
       background-color: $u-primary-color;
       color: $u-sec-color-black;
