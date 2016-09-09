@@ -31,10 +31,10 @@ GIT
 
 GIT
   remote: https://github.com/twbs/bootstrap-sass.git
-  revision: a1f368b8f50b405143bf65459a3c22c3759d5d33
+  revision: 5d6b2ebba0c2a5885ce2f0e01e9218db3d3b5e47
   branch: next
   specs:
-    bootstrap-sass (3.3.6)
+    bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
 
@@ -80,7 +80,7 @@ GEM
       tzinfo (~> 1.1)
     arbre (1.1.1)
       activesupport (>= 3.0.0)
-    arel (7.0.0)
+    arel (7.1.1)
     ast (2.3.0)
     autoprefixer-rails (6.3.7)
       execjs
@@ -130,7 +130,7 @@ GEM
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
     geocoder (1.3.7)
-    globalid (0.3.6)
+    globalid (0.3.7)
       activesupport (>= 4.1.0)
     haml (4.0.7)
       tilt
@@ -173,7 +173,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
-    json (1.8.3)
+    json (2.0.2)
     json_expressions (0.8.3)
     jwt (1.5.1)
     kaminari (0.17.0)
@@ -232,8 +232,7 @@ GEM
       byebug (~> 9.0)
       pry (~> 0.10)
     puma (3.4.0)
-    rack (2.0.0.rc1)
-      json
+    rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
     railroady (1.5.1)
@@ -332,10 +331,10 @@ GEM
     spring-watcher-listen (2.0.0)
       listen (>= 2.7, < 4.0)
       spring (~> 1.2)
-    sprockets (3.6.2)
+    sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.0.4)
+    sprockets-rails (3.2.0)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
