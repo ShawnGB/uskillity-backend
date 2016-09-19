@@ -1,4 +1,6 @@
-%h1 Listing categories
-
-.row
-  = render partial: 'categories/category', collection: @categories
+.container 
+  .row.row-centered
+    %section 
+      %h1.section-heading Listing Categories 
+      .row 
+        = render partial: 'categories/category', collection: @categories

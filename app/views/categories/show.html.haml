@@ -1,7 +1,9 @@
-#header.categories{ :style => "background-image: url(#{image_path(@category.image)})" }
-  .overlay
-    %h1.section-heading= @category.name
+%section 
+  #header.categories{ :style => "background-image: url(#{image_path(@category.image)})" }
+    .overlay
+      %h1.section-heading= @category.name
 .container
-  %section
-    .row
-      = render partial: 'workshops/workshop', collection: @workshops
+  .row.row-centered
+    %section 
+      .row
+        = render partial: 'workshops/workshop', collection: @workshops
