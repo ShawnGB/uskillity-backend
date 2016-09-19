@@ -1,5 +1,6 @@
 class WorkshopsController < ApplicationController
   before_action :set_workshop, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show, :new]
 
   # GET /workshops
   # GET /workshops.json
@@ -69,6 +70,6 @@ class WorkshopsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def workshop_params
-      params.require(:workshop).permit(:title_translations, :subtitle_translations, :description_translations, :category_id, :offered_on, :fees, :provider_id, :main_image, :more_images)
+      params.require(:workshop).permit(:title, :subtitle, :description, :category_id, :offered_on, :fees, :provider_id, :main_image, :more_images)
     end
 end
