@@ -86,5 +86,13 @@ form {
       border-radius: 2px;
       margin-bottom: 10px;
     }
+    select {
+      height: 42px;
+      line-height: 30px;
+      padding: 5px 10px;
+      border: 1px solid #d2d7dc;
+      margin-bottom: 10px;
+      width: 100%;
+    }
   }
 }

@@ -14,5 +14,8 @@ module BlueCarbuncle
     config.action_controller.asset_host = (ENV["ASSET_HOST"] || nil )
     config.i18n.default_locale = :de
     config.i18n.available_locales = ['en-US', 'en-GB', :en, :de].map(&:to_s)
+
+
+		config.autoload_paths += Dir["#{config.root}/lib/**/"]
   end
 end

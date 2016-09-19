@@ -1,6 +1,8 @@
 class Workshop < ApplicationRecord
   enum recurrence_type: { never: 0, daily: 1, weekly: 2, monthly: 3, yearly: 4}
 
+  before_validation :set_images_if_absent
+
   belongs_to :category
   belongs_to :provider, class_name: 'User'
   has_many :workshop_sessions
@@ -21,6 +23,11 @@ class Workshop < ApplicationRecord
 
   validates :category, presence: true
   validates :provider, presence: true
+
+  def set_images_if_absent # TODO remove
+    self.main_image = RandomImage.get if self.main_image.blank?
+    self.more_images = RandomImage.get(3) if self.more_images.blank?
+  end
 
   def is_viewable
     is_approved # && workshop_session.count.nonzero?

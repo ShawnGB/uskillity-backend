@@ -21,3 +21,7 @@
 
 en:
   hello: "Hello world"
+
+  views:
+    workshops:
+      category_select: "Please choose a category"

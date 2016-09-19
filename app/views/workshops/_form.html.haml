@@ -17,19 +17,16 @@
     = f.text_field :description
   .field
     = f.label :category
-    = f.text_field :category
+    = f.select :category_id, options_for_select(Category.all.map { |c| [c.name, c.id]}), {include_blank: I18n.t('category_select', scope: [:views, :workshops])}
   .field
     = f.label :fees
-    = f.text_field :fees
-  .field
-    = f.label :provider
-    = f.text_field :provider
-  .field
-    = f.label :main_image
-    = f.text_field :main_image
-  .field
-    = f.label :more_images
-    = f.text_field :more_images
+    = f.number_field :fees, in: 0..100, step: 0.01
+  -#.field
+    -#= f.label :main_image
+    -#= f.text_field :main_image
+  -#.field
+    -#= f.label :more_images
+    -#= f.text_field :more_images
   - if current_user 
     .actions
       = f.submit 'Save'

@@ -25,7 +25,9 @@ class WorkshopsController < ApplicationController
   # POST /workshops
   # POST /workshops.json
   def create
-    @workshop = Workshop.new(workshop_params)
+    @workshop = Workshop.new()
+    update_workshop(@workshop, workshop_params)
+    @workshop.provider = current_user
 
     respond_to do |format|
       if @workshop.save
@@ -63,13 +65,22 @@ class WorkshopsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_workshop
-      @workshop = Workshop.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def workshop_params
-      params.require(:workshop).permit(:title, :subtitle, :description, :category_id, :offered_on, :fees, :provider_id, :main_image, :more_images)
-    end
+  def update_workshop(workshop, values)
+    workshop.title_en = workshop.title_de = values[:title] if values[:title]
+    workshop.subtitle_en = workshop.subtitle_de = values[:subtitle] if values[:subtitle]
+    workshop.description_en = workshop.description_de = values[:description] if values[:description]
+    workshop.fees = values[:fees] if values[:fees]
+    workshop.category_id = values[:category_id] if values[:category_id]
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_workshop
+    @workshop = Workshop.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def workshop_params
+    params.require(:workshop).permit(:title, :subtitle, :description, :category_id, :offered_on, :fees, :provider_id, :main_image, :more_images)
+  end
 end
