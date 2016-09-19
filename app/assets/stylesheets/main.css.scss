@@ -5,7 +5,8 @@ html, body {
 
 
 section {
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     &.primary{
       background-color: $u-primary-color;
       color: $u-sec-color-black;
