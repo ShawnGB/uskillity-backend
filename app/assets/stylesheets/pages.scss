@@ -58,6 +58,24 @@
   margin-bottom: 1em;
 }
 
+.important-content { 
+  color: $u-sec-color-black;
+  a { 
+    color: $u-primary-color;
+  }
+}
+
+.uskillity-logo { 
+  background-image: url("/assets/common/logo.png");
+  height: 190px;
+}
+
+.computer-image { 
+  background-image: url("/assets/common/devices.png");
+  height: 334px;
+}
+
+
 #offer-slide {
   display: none;
 }

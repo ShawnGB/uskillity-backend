@@ -19,25 +19,60 @@
           %h2 surprise your friends with tasty cookies
 .container
   .row.row-centered
+    %section 
+      %h1.important-content Would you like to <a href=""> share</a> your skill, or would you like to <a href=""> learn</a> a new one?
+  .row.row-centered
     %section
-      %h1.section-heading Browse our collection of workshops
+      %h2.section-heading Browse our collection of workshops
       .row
         = render partial: 'workshops/workshop', collection: @workshops
   .row.row-centered
     %section
-      %h1.section-heading Browse our categories
+      %h2.section-heading Browse our categories
       .row
         = render partial: 'categories/category', collection: @categories
-  .row.attach-to-top
-    %section.primary
-      %h1.section-heading The Product
-      %h3 This is us.
-      %h3 This is what we do.
-      %h3 This is why it is important for you to join us.
-      %h3 This is how we, together with you, are going to change the way we are learning.
-  .row.attach-to-top
+  .row.row-centered
+    %section
+      .row
+        .col-md-7
+          .row
+            .uskillity-logo
+          .row.text-content 
+            %p is the foundation of our community. The fully responsive Website, is the gateway to our marketplace, where you can offer or find the Skills, Knowledge and experience you’re passionate about.
+          .row.text-content.text-left 
+            %h4.important-content So what's in it for you, when...
+        .col-md-5
+          .row.computer-image 
+      .row 
+        .col-md-4
+          .row.text-content.text-left
+            %h4.important-content you're allready sharing your sklls
+            %ul 
+              %li its easy to set up
+              %li you get your Money in 24 h
+              %li you‘ll safe time
+              %li you don’t have to worry
+            %h4= link_to "Read more...", "http://www.uskillity.de"
+        .col-md-4
+          .row.text-content.text-left
+            %h4.important-content or are just looking for new ones?
+            %ul 
+              %li One Platform for all Workshops
+              %li Huge diversity of choices
+              %li Save time
+              %li Connect
+              %li Enjoy
+            %h4 Read more...
+        .col-md-4
+          .row.text-content.text-left
+            %h4.important-content or just want to connect, inspire and embrace
+            %ul
+              %li Experience matters
+              %li Everybody has unique skills
+            %h4 Read more...
+  .row.row-centered
     %section.darkgrey
-      %h1.section-heading How it works
+      %h2.section-heading How it works
       .col-sm-6.col-sm-offset-3
         #switch-slides.btn-group.btn-group-justified
           .btn-group
