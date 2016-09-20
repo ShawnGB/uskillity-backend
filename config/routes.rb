@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get 'users/register' => 'users/registrations#register', as: :new_user_mailinglist_registration
     post 'users/register' => 'users/registrations#create', as: :user_mailinglist_registration
   end
+  resources :users, only: [:show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'pages#index'
 end
