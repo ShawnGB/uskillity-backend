@@ -1,56 +1,28 @@
--# %p#notice= notice
--# 
--# %p
--#   %b Title translations:
--#   = @workshop.title_translations
--# %p
--#   %b Subtitle translation:
--#   = @workshop.subtitle_translations
--# %p
--#   %b Description translations:
--#   = @workshop.description_translations
--# %p
--#   %b Category:
--#   = @workshop.category
--# %p
--#   %b Offered on:
--#   = @workshop.offered_on
--# %p
--#   %b Fees:
--#   = @workshop.fees
--# %p
--#   %b Provider:
--#   = @workshop.provider
--# %p
--#   %b Main image:
--#   = @workshop.main_image
--# %p
--#   %b More images:
--#   = @workshop.more_images
--# 
--# = link_to 'Edit', edit_workshop_path(@workshop)
--# \|
--# = link_to 'Back', workshops_path
-.row
-  .col-md-8
-    .workshop-details-header
-      = image_tag @workshop.main_image, class: "img-responsive"
-      %h1.workshop-title= @workshop.title
-      %h2.workshop-subtitle= @workshop.subtitle
-  .col-md-4
-    .workshop-user-profile
-      .user-image
-        = image_tag @workshop.provider.image, class: "center-block img-user img-large"
-      .user-details
-        %h3.text-center= @workshop.provider.first_name
-.row
-  .col-md-12
-    .workshop-description
-      = @workshop.description
-.row
-  .col-md-8
-    .workshop-comments
-      %ul
-        = render partial: 'workshops/comment', collection: @workshop.comments
-  .col-md-4
-    .workshop-venue
+%section 
+  #header.workshops{ :style => "background-image: url(#{image_path(@workshop.main_image)})" }
+    .overlay
+      %h1.section-heading= @workshop.title 
+.container 
+  .row
+    .col-md-8
+      .row 
+        %h2.workshop-subtitle= @workshop.subtitle
+      .row.workshop-description
+        = @workshop.description
+    .col-md-4
+      .workshop-user-profile
+        .user-details
+          %h3.text-center= "Offered By"
+        .user-image
+          = image_tag @workshop.provider.image, class: "center-block img-user img-large"
+        .user-details
+          %h3.text-center=link_to @workshop.provider.first_name, user_path(@workshop.provider_id)
+    .col-md-12
+      .row
+        = render partial: 'workshop_sessions/workshop_session', collection: @workshop.workshop_sessions 
+    .col-md-8
+      .workshop-comments
+        %ul
+          = render partial: 'workshops/comment', collection: @workshop.comments
+    .col-md-4
+      .workshop-venue
