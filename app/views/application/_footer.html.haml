@@ -1,16 +1,12 @@
 %footer.navbar-default
   .container
     .row.bottom-rule
-      .col-sm-4.footer-section
+      .col-sm-3.footer-section.centered
         %strong Connect with u/skillity
-        %p get updates on the latest workshops and skills
-        %form.form-inline
-          .form-group
-            %label.sr-only{:for => "inputEmail"} Email
-            %input#inputEmail.form-control{:placeholder => "address@example.com", :type => "email"}/
-          %button.btn.btn-default{:type => "submit"} Subscribe
+        %p.centered Stay on top of the new developments 
+        = button_to "Subscribe", new_user_mailinglist_registration_path, :id => 'mailinglist_registration_button', :method => 'get'
  
-      .col-sm-5.footer-section
+      .col-sm-6.footer-section
         %ul.list-inline
           %li.text-uppercase Categories:
           - @categories.each do |c|
