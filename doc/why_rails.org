@@ -1,0 +1,50 @@
+#+SETUPFILE: /Users/sands/.emacs.d/org_mode_latex_export.org
+#+STARTUP: showall
+#+TITLE: Why Ruby On Rails 
+#+LATEX_HEADER: \hypersetup{colorlinks=true,urlcolor=blue,filecolor=green,linkcolor=red,pagebackref,pdfpagemode=None,bookmarksopen=true}
+
+We considered Rails/Django/Golang-with-frameworks to be used for our project. 
+
+And we finally chose Ruby on Rails (and HAML templating for the frontend)
+
+** Best and Mature
+
++ Ruby on rails is one of the top 5 web frameworks of the day
++ Ruby on rails is very mature (10 years on the scene)
+
+(Golang is a bit new, and the frameworks are still evolving and volatile)
+
+** Rapid Development 
+
++ One of the many virtues of Ruby on Rails is the ability to have rapid development.
+  + Within the time span of a couple of days, one can have a small app up and running
++ Scaffolding for MVC: Rails has a built in tool to create the models-views-and-controllers with a single command. (This scaffolding
+  is an especially strong feature of Rails which wins over most other frameworks)
++ As rails support web templating in multiple ways which are less cumbersome makes it possible to have the designs implemented
+  easily. 
+
+** Easy Deployment and Maintenance
+
++ One perk of using such a mature system is that the eco-system has enough tools enabling easy deployment and maintenance
++ Not only that, test driven development is a cultural thing in Rails and this usually leads to stable code early on.
+
+** Free libraries to use
+
++ Rails has ready built libraries which make the following easy
+  + Payment system
+  + Geolocaion services (x workshops within y kms from me)
+  + User/Account management
++ This cuts a lot of extra work, allowing the developers to concentrate on the actual features
+  
+** A look into the future
+
++ Keeping the business logic separate from the framework is easily achievale in Rails 
++ With our growth in future, when we want to move from a web-app to native/hybrid apps:
+  + Converting the servers to API-server will be easier
++ Our developers have built gamification modules in Rails in the past, which can be put to use in our platform to attract more
+  users. 
+
+* Heroku
+
+We chose to have the deployments done in Heroku, because it saves time and effort. Staying with Heroku is cost-effective and more
+than sufficient for the beginning. As we start to have more users, we can consider moving to AWS or even own servers.
