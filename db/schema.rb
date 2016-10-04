@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722094132) do
+ActiveRecord::Schema.define(version: 20161004090339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,9 +56,10 @@ ActiveRecord::Schema.define(version: 20160722094132) do
   create_table "categories", force: :cascade do |t|
     t.integer  "parent_id"
     t.hstore   "name_translations"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "image"
+    t.hstore   "action_word_translations"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -201,6 +202,7 @@ ActiveRecord::Schema.define(version: 20160722094132) do
     t.datetime "created_at",                                          null: false
     t.datetime "updated_at",                                          null: false
     t.float    "price"
+    t.string   "action_word"
     t.index ["category_id"], name: "index_workshops_on_category_id", using: :btree
     t.index ["provider_id"], name: "index_workshops_on_provider_id", using: :btree
   end

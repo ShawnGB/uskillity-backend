@@ -37,4 +37,8 @@ class Workshop < ApplicationRecord
     # workshop_registrations.count > minimum_workshop_registration_count
     true
   end
+
+  def action_word
+    self[:action_word] || self.category.action_word || self.title
+  end
 end
