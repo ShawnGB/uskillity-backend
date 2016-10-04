@@ -22,8 +22,8 @@
             %a{:href => "#"} Twitter
           %li
             %a{:href => "#"} Facebook
-          %li
-            %a{:href => "#"} The Best Journal
+          -#%li
+            -#%a{:href => "#"} The Best Journal
         %ul.list-inline
           %li.text-uppercase Events:
           %li
@@ -40,24 +40,22 @@
           %br/
           +49 (123) 456-7890 (phone &amp; text)
           %br/
-          %a{:href => "#"} Contact Us
+          %a{:href => "mailto:mail@uskillity.de"} Contact Us
  
     .row.bottom-rule
       .col-sm-12
         %nav.navbar.navbar-default.navbar-footer
           %ul.nav.navbar-nav
             %li
-              %a{:href => "#"} Contact
-            %li
-              %a{:href => "#"} Imprint
+              %a{:href => "mailto:mail@uskillity.de"} Contact
             %li
               %a{:href => "#"} Workshops
             %li
-              %a{:href => "#"} About Best Store
+              %a{:href => "/workshops"} Workshops
+            -#%li
+              -#%a{:href => "#"} About Best Store
     .row.leg-room
       .col-md-12.text-center
-        %h1 u/skillity
-        %p.monospaced
-          ©2016 u/skillity
-          %span.text-uppercase All Rights Reserved
+        ©2016 u/skillity
+        %span.text-uppercase All Rights Reserved
     / end row
