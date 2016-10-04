@@ -137,4 +137,6 @@ $(document).ready ->
     $modal.modal {}
     return
 
+  $('#flash').fadeOut(5000);
+
   return
