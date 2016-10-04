@@ -126,5 +126,15 @@ $(document).ready ->
       return
     return
 
+  $('#imprint_modal_viewer').click (event) ->
+    event.preventDefault()
+    $frag = document.createDocumentFragment()
+    $modal = $($('#modal-template')[0].outerHTML, $frag)
+    $modal.find('.modal-body').append "<strong>u/skillity</strong> <br> 1000 Some Fantastic Place <br> Berlin <br> +49 (123) 456-7890 (phone &amp; text) <br> <a href=\"mailto:mail@uskillity.de\">Contact Us</a>"
+    $modal.find('.modal-title').text 'Impressum'
+    $('body').append $modal
+    # Open the modal
+    $modal.modal {}
+    return
 
   return
