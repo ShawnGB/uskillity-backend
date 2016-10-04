@@ -17,7 +17,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     # create a random password for users who just sign up for the mailinglist
     # implementing the pre-signup/landingpage behaviour of creating a user without the full signup form
-    params["user"]["password"] = SecureRandom.hex
+    random_password = SecureRandom.hex(20)
+    params["user"]["password"] = random_password
+    params["user"]["password_confirmation"] = random_password
     super
   end
 
