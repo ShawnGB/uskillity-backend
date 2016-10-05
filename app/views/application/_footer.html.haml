@@ -43,17 +43,13 @@
           %a{:href => "mailto:mail@uskillity.de"} Contact Us
  
     .row.bottom-rule
-      .col-sm-12
-        %nav.navbar.navbar-default.navbar-footer
-          %ul.nav.navbar-nav
-            %li
-              %a{:href => "mailto:mail@uskillity.de"} Contact
-            %li
-              = link_to "Imprint", "", :id => 'imprint_modal_viewer'
-            %li
-              %a{:href => "/workshops"} Workshops
-            -#%li
-              -#%a{:href => "#"} About Best Store
+      .col-sm-12.navbar-footer
+        .col-xs-4
+          %a{:href => "mailto:mail@uskillity.de"} Contact
+        .col-xs-4
+          = link_to "Imprint", "", :id => 'imprint_modal_viewer'
+        .col-xs-4
+          %a{:href => "/workshops"} Workshops
     .row.leg-room
       .col-md-12.text-center
         ©2016 u/skillity

@@ -39,4 +39,13 @@ footer .list-inline li:not(:first-child):not(:last-child) {
   background-color: inherit;
   border-radius: 0;
   border: none;
+  margin-top: 12px;
+  margin-bottom: 36px;
+  text-transform: uppercase;
+  border-top: 1px solid lightgrey;
+  padding-top: 12px;
+  a { 
+    color: darkgray ;
+    font-weight: bold;
+  }
 }
