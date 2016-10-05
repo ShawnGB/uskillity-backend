@@ -32,7 +32,7 @@
               %li you get your Money in 24 h
               %li you‘ll safe time
               %li you don’t have to worry
-            %h4= link_to "Read more...", "http://www.uskillity.de"
+            %h4= link_to "Read more...", "", :id => 'share_details_link'
         .col-md-4
           .row.text-content.text-left
             %h4.important-content or are just looking for new ones?
@@ -42,14 +42,14 @@
               %li Save time
               %li Connect
               %li Enjoy
-            %h4 Read more...
+            %h4= link_to "Read more...", "", :id => 'looking_around_link'
         .col-md-4
           .row.text-content.text-left
             %h4.important-content or just want to connect, inspire and embrace
             %ul
               %li Experience matters
               %li Everybody has unique skills
-            %h4 Read more...
+            %h4= link_to "Read more...", "", :id => 'inspiration_link'
   .row.row-centered
     %section.darkgrey
       %h2.section-heading How it works

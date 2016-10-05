@@ -23,4 +23,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'pages#index'
+
+  get 'pages/share_details' => 'pages#share_details'
+  get 'pages/looking_around' => 'pages#looking_around'
+  get 'pages/inspiration' => 'pages#inspiration'
 end

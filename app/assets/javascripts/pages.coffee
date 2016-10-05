@@ -137,6 +137,45 @@ $(document).ready ->
     $modal.modal {}
     return
 
+  createpopupmodal = (endpoint, modalid) -> 
+    promise = $.get(endpoint)
+    # When the ajax request has finished
+    promise.success (data) ->
+      $frag = document.createDocumentFragment()
+      $modal = $($('#modal-template')[0].outerHTML, $frag)
+      $head = $($(data).find('#popup-header')[0].innerHTML)
+      $form = $($(data).find('#popup-content')[0].outerHTML)
+      $modal.attr 'id', modalid
+      # Add the inputs from the form inside the body
+      $modal.find('.modal-title').text $head[0].innerHTML
+      $modal.find('.modal-body').append $form
+      # Attach the modal to document
+      $('body').append $modal
+      # Open the modal
+      $modal.modal {}
+      return
+    promise.fail (jqXHR, textStatus, errorThrown) ->
+      console.error 'Failed to fetch content', endpoint, textStatus, jqXHR, errorThrown
+      return
+    return
+
+  $('#share_details_link').click (event) ->
+    event.preventDefault()
+    createpopupmodal('/pages/share_details', 'share-details-modal')
+    return 
+
+  $('#looking_around_link').click (event) ->
+    event.preventDefault()
+    createpopupmodal('/pages/looking_around', 'looking-around-modal')
+    return 
+
+  $('#inspiration_link').click (event) ->
+    event.preventDefault()
+    createpopupmodal('/pages/inspiration', 'inspiration-modal')
+    return 
+
   $('#flash').fadeOut(5000);
+
+
 
   return
