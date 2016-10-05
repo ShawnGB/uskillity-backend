@@ -153,3 +153,23 @@ img {
   background-color: #bdb76b;
   margin-bottom: 0px;
 }
+
+.red-box { 
+  border: 2px solid red;
+  height: 38px;
+  padding: 8px;
+  margin: 5px;
+  a { 
+    color: black;
+  }
+}
+
+.register { }
+
+.float-right { 
+  float: right;
+}
+
+.float-left { 
+  float: left;
+}
