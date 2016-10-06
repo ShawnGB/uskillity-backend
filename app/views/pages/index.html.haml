@@ -33,7 +33,7 @@
         .col-md-4
           .row.text-content.text-left
             %h4.important-content Share your skill!
-            %ul 
+            %ul.small-left-padding 
               %li Easily offer a workshop, course or tutoring session
               %li Reach new customers
               %li Save time
@@ -41,28 +41,28 @@
         .col-md-4
           .row.text-content.text-left
             %h4.important-content Learn a new skill !
-            %ul 
+            %ul.small-left-padding 
               %li One place for workshop, courses or tutoring sessions
               %li Pick from a variety of choices, prices and locations
             %h4= link_to "Read more...", "", :id => 'looking_around_link'
         .col-md-4
           .row.text-content.text-left
             %h4.important-content Connect:
-            %ul
+            %ul.small-left-padding
               %li Connect to people that share your passions 
               %li Share tips and advice 
               %li Join the celebration
             %h4= link_to "Read more...", "", :id => 'inspiration_link'
   .row.row-centered
     %section.no-bottom
-      %h2.section-heading How it works
+      %h3.section-heading.important-content And this is how it works
       .col-sm-6.col-sm-offset-3
         #switch-slides.btn-group.btn-group-justified
           .btn-group
-            %button#learn_click.btn.btn-default.btn-lg.btn-block.active{:type => "button", :style => "float: right" } Learn
+            %button#learn_click.btn.btn-default.btn-lg.btn-block.active{:type => "button", :style => "float: right" } Share
           .btn-group
-            %button#offer_click.btn.btn-default.btn-lg.btn-block{:type => "button"} Offer
+            %button#offer_click.btn.btn-default.btn-lg.btn-block{:type => "button"} Learn
       #learn-slide.col-sm-12.switch-slide
-        = render partial: 'pages/learn_skill_content'
-      #offer-slide.col-sm-12.switch-slide
         = render partial: 'pages/share_skill_content'
+      #offer-slide.col-sm-12.switch-slide
+        = render partial: 'pages/learn_skill_content'
