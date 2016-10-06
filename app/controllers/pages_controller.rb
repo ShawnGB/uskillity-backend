@@ -13,4 +13,9 @@ class PagesController < ApplicationController
   def inspiration
   end
 
+  def impressum
+  end
+
+  def contact
+  end
 end

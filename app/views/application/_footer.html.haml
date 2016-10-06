@@ -1,12 +1,12 @@
 %footer.navbar-default
   .container
     .row.bottom-rule
-      .col-sm-3.footer-section.centered
+      .col-sm-4.footer-section.centered
         %strong Connect with u/skillity
         %p.centered Stay on top of the new developments 
         = button_to "Subscribe", new_user_mailinglist_registration_path, :id => 'mailinglist_registration_button', :method => 'get'
  
-      .col-sm-6.footer-section
+      .col-sm-8.footer-section
         %ul.list-inline
           %li.text-uppercase Categories:
           - @categories.each do |c|
@@ -30,26 +30,15 @@
             %a{:href => "#"} Hangout April 30
           %li
             %a{:href => "#"} Makers Faire
-      .col-sm-3
-        %address
-          %strong u/skillity
-          %br/
-          1000 Some Fantastic Place
-          %br/
-          Berlin
-          %br/
-          +49 (123) 456-7890 (phone &amp; text)
-          %br/
-          %a{:href => "mailto:mail@uskillity.de"} Contact Us
  
     .row.bottom-rule
       .col-sm-12.navbar-footer
         .col-xs-4
-          %a{:href => "mailto:mail@uskillity.de"} Contact
+          = link_to "Contact", "", :id => 'contact_modal_viewer'
         .col-xs-4
           = link_to "Imprint", "", :id => 'imprint_modal_viewer'
         .col-xs-4
-          %a{:href => "/workshops"} Workshops
+          %a{:href => ""} Workshops
     .row.leg-room
       .col-md-12.text-center
         ©2016 u/skillity

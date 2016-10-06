@@ -79,17 +79,6 @@ $(document).ready ->
     createregisterpopupmodal('learn_a_skill')
     return 
 
-  $('#imprint_modal_viewer').click (event) ->
-    event.preventDefault()
-    $frag = document.createDocumentFragment()
-    $modal = $($('#modal-template')[0].outerHTML, $frag)
-    $modal.find('.modal-body').append "<strong>u/skillity</strong> <br> 1000 Some Fantastic Place <br> Berlin <br> +49 (123) 456-7890 (phone &amp; text) <br> <a href=\"mailto:mail@uskillity.de\">Contact Us</a>"
-    $modal.find('.modal-title').text 'Impressum'
-    $('body').append $modal
-    # Open the modal
-    $modal.modal {}
-    return
-
   createpopupmodal = (endpoint, modalid) -> 
     promise = $.get(endpoint)
     # When the ajax request has finished
@@ -111,6 +100,16 @@ $(document).ready ->
       console.error 'Failed to fetch content', endpoint, textStatus, jqXHR, errorThrown
       return
     return
+
+  $('#contact_modal_viewer').click (event) ->
+    event.preventDefault()
+    createpopupmodal('/pages/contact', 'contact-modal')
+    return 
+
+  $('#imprint_modal_viewer').click (event) ->
+    event.preventDefault()
+    createpopupmodal('/pages/impressum', 'impressum-modal')
+    return 
 
   $('#share_details_link').click (event) ->
     event.preventDefault()
