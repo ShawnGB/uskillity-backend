@@ -154,22 +154,9 @@ img {
   margin-bottom: 0px;
 }
 
-.red-box { 
-  border: 2px solid red;
-  height: 38px;
-  padding: 8px;
-  margin: 5px;
-  a { 
-    color: black;
-  }
+.navbar-logo { 
+  background: url("/assets/uskillity-logo.png");
+  width: 136px;
+  background-size: contain;
 }
 
-.register { }
-
-.float-right { 
-  float: right;
-}
-
-.float-left { 
-  float: left;
-}

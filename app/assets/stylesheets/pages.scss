@@ -92,3 +92,27 @@
   color: black;
   font-size: 18px;
 }
+
+li { 
+  .red-box { 
+    border: 2px solid red;
+    height: 38px;
+    padding: 6px 12px;
+    margin: 5px;
+    a { 
+      color: black;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+}
+
+.register { }
+
+.float-right { 
+  float: right;
+}
+
+.float-left { 
+  float: left;
+}
