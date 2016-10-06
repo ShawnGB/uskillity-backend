@@ -14,7 +14,8 @@
     }
   }
   .listing-overlay {
-    background-color: rgba(45,45,45,0.7);
+    height: 100%;
+    background-color: rgba(45,45,45,0.3);
     bottom: 0px;
     left: 0;
     color: white;
@@ -24,8 +25,18 @@
     padding: 6px 10px;
     .category-title {
       color: inherit;
-      font-size: 20px;
-      margin: 10px 0px 10px 0px;
+      margin: 0 auto;
+      font-size: 57px;
+      font-weight: bold;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      max-width: 100%;
+      overflow-y: hidden;
+      overflow-x: hidden;
+      width: 100%;
+      line-height: 1.4em;
+      font-family: "Didot Bold";
     }
   }
 }
