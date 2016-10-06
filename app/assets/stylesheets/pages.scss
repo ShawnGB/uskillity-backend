@@ -90,20 +90,20 @@
 
 #switch-slides {
   .btn {
-    font-family: $u-font-serif;
     color: $u-primary-color;
     font-weight: 400;
-    font-size: 1.5em;
+    font-size: 1.4em;
     width: 111px;
     margin: 10px;
     border-radius: 0px;
-    border: 2px solid red;
+    border: 2px solid $u-primary-color;
+    padding: 1px 14px;
   }
 
   .btn-default.active, .btn-default.active:hover, .btn-default.active:focus { 
-    background-color: red;
-    color: white;
-    border: 2px solid red;
+    background-color: $u-primary-color;
+    color: $u-sec-color-white;
+    border: 2px solid $u-primary-color;
   }
 }
 
