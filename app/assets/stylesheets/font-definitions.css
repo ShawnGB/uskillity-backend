@@ -1,0 +1,11 @@
+//@import "compass/css3/font-face"
+//@include font-face("CalibreWeb Medium", '/assets/CalibreWeb-Medium')
+
+@font-face {
+  font-family: "CalibreWeb Medium";
+  src: url("/assets/CalibreWeb-Medium.eot?") format("eot"),
+  url("/assets/CalibreWeb-Medium.woff2") format("woff2"),
+  url("/assets/CalibreWeb-Medium.woff") format("woff"),
+  url("/assets/CalibreWeb-Medium.ttf") format("truetype"),
+  url("/assets/CalibreWeb-Medium.svg#CalibreWeb-Medium") format("svg");
+}
