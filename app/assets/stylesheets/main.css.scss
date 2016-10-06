@@ -98,6 +98,15 @@ img {
   }
 }
 
+.navbar-fixed { 
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: $u-sec-color-white;
+  border-bottom: 1px solid $u-primary-color;
+  z-index: 1001;
+}
+
 .overlay {
   h1, h2, h3 {
     color: inherit;
@@ -161,8 +170,9 @@ img {
 }
 
 .navbar-logo { 
-  background: url("/assets/uskillity-logo.png");
+  background: url("/assets/uskillity-logo.png") no-repeat center;
   width: 136px;
+  height: 50px;
   background-size: contain;
 }
 

@@ -109,21 +109,19 @@
 }
 
 .red-box { 
-  border: 1px solid red;
+  border: 1px solid $u-primary-color;
   margin: 15px;
   padding-top: 18px;
 }
 
 li { 
   .red-box { 
-    border: 2px solid red;
+    border: 2px solid $u-primary-color;
     height: 38px;
-    padding: 6px 12px;
-    margin: 5px;
+    padding: 4px 12px;
+    margin: 6px;
     a { 
       color: black;
-      font-size: 18px;
-      font-weight: bold;
     }
   }
 }
