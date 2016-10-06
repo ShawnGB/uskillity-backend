@@ -19,40 +19,40 @@
           .col-sm-8.col-sm-offset-2
             .row.row-centered
               = render partial: 'pages/join_us'
-        .row.row-centered
+    %section
+      .row 
+        .row.row-centered.wired-background 
           .col-md-7
-            .row
+            .row.row-centered 
               .uskillity-logo
-            .row.text-content 
+            .row.text-content
               %p is the foundation of our community. The fully responsive Website, is the gateway to our marketplace, where you can offer or find the Skills, Knowledge and experience you’re passionate about.
-            .row.text-content.text-left 
-              %h4.important-content So what's in it for you, when...
           .col-md-5
-            .row.computer-image 
+            .computer-image 
       .row 
         .col-md-4
           .row.text-content.text-left
-            %h3.important-content Share your skill!
+            %h2.important-content Share your skill!
             %ul.small-left-padding 
               %li Easily offer a workshop, course or tutoring session
               %li Reach new customers
               %li Save time
-            %h4= link_to "Read more...", "", :id => 'share_details_link'
+            %p= link_to "Read more...", "", :id => 'share_details_link'
         .col-md-4
           .row.text-content.text-left
-            %h3.important-content Learn a new skill !
+            %h2.important-content Learn a new skill !
             %ul.small-left-padding 
               %li One place for workshop, courses or tutoring sessions
               %li Pick from a variety of choices, prices and locations
-            %h4= link_to "Read more...", "", :id => 'looking_around_link'
+            %p= link_to "Read more...", "", :id => 'looking_around_link'
         .col-md-4
           .row.text-content.text-left
-            %h3.important-content Connect:
+            %h2.important-content Connect:
             %ul.small-left-padding
               %li Connect to people that share your passions 
               %li Share tips and advice 
               %li Join the celebration
-            %h4= link_to "Read more...", "", :id => 'inspiration_link'
+            %p= link_to "Read more...", "", :id => 'inspiration_link'
   .row.row-centered
     %section.no-bottom
       %h3.section-heading.important-content And this is how it works

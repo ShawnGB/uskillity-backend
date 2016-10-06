@@ -53,14 +53,19 @@
   }
 }
 
+.wired-background{ 
+  background: url("/assets/common/Background.png") no-repeat bottom;
+}
+
 .uskillity-logo { 
-  background-image: url("/assets/common/logo.png");
+  background: url("/assets/common/logo.png") no-repeat center;
   height: 190px;
 }
 
 .computer-image { 
-  background-image: url("/assets/common/devices.png");
-  height: 334px;
+  background: url("/assets/common/devices.png")  no-repeat center;
+  height: 431px;
+  background-size: contain;
 }
 
 
