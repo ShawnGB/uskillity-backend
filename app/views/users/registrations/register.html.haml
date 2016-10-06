@@ -1,7 +1,8 @@
 .container 
   .row.row-centered
-    %h2 Register for our email newsletter
-    #new_user
+    #popup-header
+      %h1 Register for our email newsletter
+    #popup-content
       = form_for(@user, url: user_mailinglist_registration_path(@user)) do |f|
         = devise_error_messages!
         .field
