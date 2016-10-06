@@ -5,28 +5,33 @@ html, body {
 
 
 section {
-    overflow-y: auto;
-    overflow-x: hidden;
-    margin-bottom: 3em;
-    &.primary{
-      background-color: $u-primary-color;
-      color: $u-sec-color-black;
-    }
-    &.lightgrey {
-      background-color: $u-sec-color-lightgrey;
-    }
-    &.darkgrey {
-      background-color: $u-sec-color-darkgrey;
-    }
-    &.white{
-      background-color: $u-sec-color-white;
-    }
+  font-size: 18px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 3em;
+  &.primary{
+    background-color: $u-primary-color;
+    color: $u-sec-color-black;
+  }
+  &.lightgrey {
+    background-color: $u-sec-color-lightgrey;
+  }
+  &.darkgrey {
+    background-color: $u-sec-color-darkgrey;
+  }
+  &.white{
+    background-color: $u-sec-color-white;
+  }
 }
 
 a {
   h1, h2, h3 {
     font-family: $font-family-sans-serif;
   }
+}
+
+h1, h2, h3, h4 {
+  font-family: $font-family-sans-serif;
 }
 
 P { 
@@ -49,7 +54,7 @@ P {
 }
 
 .brand-text {
-  font-family: $font-family-serif;
+  font-family: $font-family-sans-serif;
   font-weight: 900;
   font-size: 24px;
 }
