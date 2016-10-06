@@ -5,15 +5,19 @@
 .container
   .row.row-centered
     %section 
-      %h1.important-content Would you like to <a href=""> share</a> your skill, or would you like to <a href=""> learn</a> a new one?
+      %h1 Let's celebrate our skills!
+  .row.row-centered
+    %section.no-bottom 
+      %h2.important-content Would you like to <a href=""> share</a> your skill, or would you like to <a href=""> learn</a> a new one?
+      .row
+        .row.red-box 
+          = render partial: 'categories/category', collection: @categories
   .row.row-centered
     %section
-      %h2.section-heading Browse our categories
       .row
-        = render partial: 'categories/category', collection: @categories
-  .row.row-centered
-    %section
-      .row
+        .col-sm-8.col-sm-offset-2
+          .row.row-centered
+            = render partial: 'pages/join_us'
         .col-md-7
           .row
             .uskillity-logo

@@ -93,6 +93,12 @@
   font-size: 18px;
 }
 
+.red-box { 
+  border: 1px solid red;
+  margin: 15px;
+  padding-top: 18px;
+}
+
 li { 
   .red-box { 
     border: 2px solid red;
@@ -115,4 +121,8 @@ li {
 
 .float-left { 
   float: left;
+}
+
+.no-bottom { 
+  margin-bottom: 0px;
 }
