@@ -1,6 +1,8 @@
-%h1 Listing workshops
-
-.row
-  = render partial: 'workshops/workshop', collection: @workshops
+.container 
+  .row.row-centered
+    %section 
+      %h1.section-heading= "Listing All #{Workshop.count} Workshops"
+      .row
+        = render partial: 'workshops/workshop', collection: @workshops
 
 

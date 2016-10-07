@@ -36,7 +36,6 @@
     height: 33%;
   }
   .listing-title {
-    font-size: 16px;
     margin: 5px 0px 5px 0px;
   }
   .listing-user {
@@ -98,32 +97,11 @@ form {
 }
 
 #header.workshops {
-  height: 100%;
-  min-height: 40em;
+  height: 66vh;
   margin-bottom: 4em;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-
-  .overlay {
-    color: white;
-    background-color: rgba(45, 45, 45, 0.7);
-    padding: 5px 10px;
-    position: absolute;
-    top: 50%;
-    left: 60%;
-    width: 50%;
-    h1 {
-      margin: 10px;
-      font-weight: 900;
-    }
-    h2 {
-      font-weight: 700;
-      font-style: italic;
-      font-size: 1.5em;
-      margin: 10px;
-    }
-  }
 }
 
 .workshop-user-profile { 

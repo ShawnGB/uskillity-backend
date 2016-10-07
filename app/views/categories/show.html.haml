@@ -1,7 +1,10 @@
 %section 
   #header.categories{ :style => "background-image: url(#{image_path(@category.image)})" }
     .overlay
-      %h1.section-heading= @category.name
+      .overlay-details 
+        .uSlash 
+          %h1= @category.name 
+        %h2= "#{@category.workshops.count} workshops available"
 .container
   .row.row-centered
     %section 
