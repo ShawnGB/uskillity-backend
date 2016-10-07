@@ -2,8 +2,8 @@
   .category-listing
     .listing-image
       = link_to category, class: "media-cover media-photo" do
-        .listing-image-container.media-cover.text-center
-          = image_tag category.image, class: "img-responsive"
+        .listing-image-container.media-cover.text-center{:style => "background: url(#{category.image}) no-repeat center; background-size: cover;"}
         .listing-overlay
-          %h3.category-title= "u/" + category.name
-
+          .overlay-details 
+            .uSlash 
+              %h1= category.name 

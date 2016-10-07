@@ -22,30 +22,30 @@
   height: 100%;
   display: flex;
   align-items: center;
+}
 
-  .overlay-details { 
-    margin: 0 auto;
-    color: rgba(255,255,255,0.7);
+.overlay-details { 
+  margin: 0 auto;
+  color: rgba(255,255,255,0.7);
 
-    .uSlash { 
-      background: url(/assets/common/uSlash.png) no-repeat left;
-      display: inline-block;
-      background-size: 150px;
-      h1 {
-        margin: 10px;
-        font-size: 136px;
-        margin-left: 150px;
-        padding-bottom: 24px;
-      }
-    }
-
-
-    h2 {
+  .uSlash { 
+    background: url(/assets/common/uSlash.png) no-repeat left;
+    display: inline-block;
+    background-size: 150px;
+    h1 {
       margin: 10px;
-      font-weight: 700;
-      font-size: 60px;
-      margin-left: 132px;
+      font-size: 136px;
+      margin-left: 150px;
+      padding-bottom: 24px;
     }
+  }
+
+
+  h2 {
+    margin: 10px;
+    font-weight: 700;
+    font-size: 60px;
+    margin-left: 132px;
   }
 }
 
