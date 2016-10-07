@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :load_categories
   before_action :set_locale
 
-  protect_from_forgery with: :exception, prepend: true
+  #protect_from_forgery with: :exception, prepend: true
 
 
   def load_categories

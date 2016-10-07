@@ -1,5 +1,9 @@
 class Users::SessionsController < Devise::SessionsController
 # before_action :configure_sign_in_params, only: [:create]
+  after_filter :clear_session
+  def clear_session
+    session.clear
+  end
 
   # GET /resource/sign_in
   # def new

@@ -2,6 +2,9 @@ require 'securerandom'
 class Users::RegistrationsController < Devise::RegistrationsController
 # before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
+
+  after_filter :clear_session
+
   def register
     @user = User.new
     render
@@ -25,6 +28,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       params["user"]["password_confirmation"] = random_password
       super
     end
+  end
+
+  def after_sign_up_path_for(user)
+    root_path
   end
 
   # GET /resource/edit
@@ -72,4 +79,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def clear_session
+    session.clear
+  end
 end
