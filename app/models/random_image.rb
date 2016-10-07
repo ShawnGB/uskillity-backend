@@ -7,10 +7,8 @@ class RandomImage
 
     def images
       [
-        "camera.png", "coffee.png", "colors.png", "dand.png", "fumes.png",
-        "green1.png", "green2.png", "leaves.png", "pepper.png", "pollen1.png",
-        "pollen2.png", "shoe.png", "sky.png", "sunflower.png", "tomatoes.png",
-        "vegetables.png"
+        "colors.png", "dand.png", "fumes.png", "green1.png", "leaves.png",
+        "pollen2.png"
       ]
     end
 
