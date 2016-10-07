@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def index
-    @workshops = Workshop.last(6)
+    @workshops = Workshop.last(20).sample(6)
     @categories = Category.all
   end
 
