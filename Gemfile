@@ -59,7 +59,6 @@ group :development, :test do
   gem 'railroady'
   gem 'factory_girl_rails'
   gem 'simplecov'
-  gem 'faker'
 end
 
 group :development do
@@ -70,6 +69,9 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+# We need for seeding
+gem 'faker'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
