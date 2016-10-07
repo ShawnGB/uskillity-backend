@@ -14,12 +14,12 @@ class Workshop < ApplicationRecord
 
   translates :title, :subtitle, :description
 
-  validates :title_en, length: { within: 8..140 }
-  validates :title_de, length: { within: 8..140 }
+  validates :title_en, length: { within: 4..140 }
+  validates :title_de, length: { within: 4..140 }
   validates :subtitle_en, length: { within: 8..140 }
   validates :subtitle_de, length: { within: 8..140 }
-  validates :description_en, length: { within: 140..1024 }
-  validates :description_de, length: { within: 140..1024 }
+  validates :description_en, length: { within: 32..1024 }
+  validates :description_de, length: { within: 32..1024 }
 
   validates :category, presence: true
   validates :provider, presence: true
