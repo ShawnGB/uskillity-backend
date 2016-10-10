@@ -86,3 +86,6 @@ gem 'activeadmin', github: 'activeadmin'
 
 # add AWS SDK
 gem 'aws-sdk', '~> 2'
+
+gem 'postmark-rails', '~> 0.13.0'
+
