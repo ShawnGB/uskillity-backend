@@ -92,6 +92,8 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.action_mailer.default_url_options = { :host => ENV["SERVERHOSTDOMAIN"] }
+
   # Use Postmarkapp to send emails
   # API TOKEN is read from env
   # has been set in heroku via CLI: heroku config:set POSTMARK_API_TOKEN=...
