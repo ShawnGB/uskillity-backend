@@ -91,12 +91,16 @@ img {
   margin-bottom: 0px;
   border: none;
   border-radius: 0;
+  height: 60px;
 
   li {
     color: #000;
     a { 
       color: $u-sec-color-black;
-      font-size: 18px;
+      font-size: 19.7px;
+    }
+    a:hover {
+      text-decoration: none;
     }
   }
 }
