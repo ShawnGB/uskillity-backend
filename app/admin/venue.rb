@@ -1,2 +1,2 @@
-ActiveAdmin.register Venue do
-end
+#ActiveAdmin.register Venue do
+#end

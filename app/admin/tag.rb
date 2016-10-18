@@ -1,2 +1,2 @@
-ActiveAdmin.register Tag do
-end
+#ActiveAdmin.register Tag do
+#end

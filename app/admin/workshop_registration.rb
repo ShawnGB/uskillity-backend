@@ -1,2 +1,2 @@
-ActiveAdmin.register WorkshopRegistration do
-end
+#ActiveAdmin.register WorkshopRegistration do
+#end

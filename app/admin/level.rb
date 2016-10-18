@@ -1,2 +1,2 @@
-ActiveAdmin.register Level do
-end
+#ActiveAdmin.register Level do
+#end
