@@ -24,11 +24,11 @@
   align-items: center;
 }
 
-.overlay-details { 
+.overlay-details {
   margin: 0 auto;
   color: rgba(255,255,255,0.7);
 
-  .uSlash { 
+  .uSlash {
     background: url(/assets/common/uSlash.png) no-repeat left;
     display: inline-block;
     background-size: 150px;
@@ -54,23 +54,23 @@
   margin-bottom: 1em;
 }
 
-.important-content { 
+.important-content {
   color: $u-sec-color-black;
-  a { 
+  a {
     color: $u-primary-color;
   }
 }
 
-.wired-background{ 
+.wired-background{
   background: url("/assets/common/Background.png") no-repeat bottom;
 }
 
-.uskillity-logo { 
+.uskillity-logo {
   background: url("/assets/common/logo.png") no-repeat center;
   height: 190px;
 }
 
-.computer-image { 
+.computer-image {
   background: url("/assets/common/devices.png")  no-repeat center;
   height: 431px;
   background-size: contain;
@@ -86,12 +86,12 @@
   padding: 16px;
   text-align: justify;
 
-  p { 
+  p {
     text-align: inherit;
   }
 }
 
-.center-align { 
+.center-align {
   width: initial;
   margin: 0 auto;
 }
@@ -108,50 +108,56 @@
     padding: 1px 14px;
   }
 
-  .btn-default.active, .btn-default.active:hover, .btn-default.active:focus { 
+  .btn-default.active, .btn-default.active:hover, .btn-default.active:focus {
     background-color: $u-primary-color;
     color: $u-sec-color-white;
     border: 2px solid $u-primary-color;
   }
 }
 
-#mailinglist_registration_button { 
+#mailinglist_registration_button {
   width: 100%;
   color: black;
   font-size: 18px;
 }
 
-.red-box { 
+.red-box {
   border: 1px solid $u-primary-color;
   margin: 15px;
   padding-top: 18px;
 }
 
-li { 
-  .red-box { 
+li {
+  .red-box {
     height: 30px;
     padding: 0px 12px 4px 12px;
-    margin: 11px 6px 6px 6px;
-    a { 
+    margin: 15px 6px 6px 6px;
+    a {
       color: black;
+      line-height: 28px;
     }
+    cursor: pointer;
+  }
+
+  .red-box:hover{
+    background: $u-sec-color-lightgrey;
   }
 }
 
 .register { }
 
-.float-right { 
+.float-right {
   float: right;
 }
 
-.float-left { 
+.float-left {
   float: left;
 }
 
-.no-bottom { 
+.no-bottom {
   margin-bottom: 0px;
 }
 
-.small-left-padding { 
+.small-left-padding {
   padding-left: 16px;
 }

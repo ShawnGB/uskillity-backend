@@ -1,16 +1,16 @@
-%section
+%section.no-bottom
   #header.mainpage
     #main-carousel.owl-carousel
       = render partial: 'workshops/workshop_slide', collection: @workshops
 .container
   .row.row-centered
-    %section 
+    %section
       %h1 Let's celebrate our skills!
   .row.row-centered
-    %section.no-bottom 
+    %section.no-bottom
       %h2.important-content Would you like to <a href=""> share</a> your skill, or would you like to <a href=""> learn</a> a new one?
       .row
-        .row.red-box 
+        .row.red-box
           = render partial: 'categories/category', collection: @categories
   .row.row-centered
     %section
@@ -20,20 +20,20 @@
             .row.row-centered
               = render partial: 'pages/join_us'
     %section
-      .row 
-        .row.row-centered.wired-background 
+      .row
+        .row.row-centered.wired-background
           .col-md-7
-            .row.row-centered 
+            .row.row-centered
               .uskillity-logo
             .row.text-content
               %p is the foundation of our community. The fully responsive Website, is the gateway to our marketplace, where you can offer or find the Skills, Knowledge and experience you’re passionate about.
           .col-md-5
-            .computer-image 
-      .row 
+            .computer-image
+      .row
         .col-md-4
           .row.text-content.text-left
             %h2.important-content Share your skill!
-            %ul.small-left-padding 
+            %ul.small-left-padding
               %li Easily offer a workshop, course or tutoring session
               %li Reach new customers
               %li Save time
@@ -41,7 +41,7 @@
         .col-md-4
           .row.text-content.text-left
             %h2.important-content Learn a new skill!
-            %ul.small-left-padding 
+            %ul.small-left-padding
               %li One place for workshop, courses or tutoring sessions
               %li Pick from a variety of choices, prices and locations
             %p= link_to "Read more...", "", :id => 'looking_around_link'
@@ -49,8 +49,8 @@
           .row.text-content.text-left
             %h2.important-content Connect:
             %ul.small-left-padding
-              %li Connect to people that share your passions 
-              %li Share tips and advice 
+              %li Connect to people that share your passions
+              %li Share tips and advice
               %li Join the celebration
             %p= link_to "Read more...", "", :id => 'inspiration_link'
   .row.row-centered
