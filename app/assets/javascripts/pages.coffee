@@ -21,7 +21,7 @@ $(document).ready ->
 $(document).ready ->
   # Only fire this on the home page.
   # Replace this with a regular click handler if you do not want a "splash"
-  createregisterpopupmodal = (modalid) -> 
+  createregisterpopupmodal = (modalid) ->
     promise = $.get('/users/register')
     # When the ajax request has finished
     promise.success (data) ->
@@ -57,29 +57,29 @@ $(document).ready ->
   $('#mailinglist_registration_link').click (event) ->
     event.preventDefault()
     createregisterpopupmodal('registration-link')
-    return 
+    return
 
   $('#mailinglist_registration_button').click (event) ->
     event.preventDefault()
     createregisterpopupmodal('registration-button')
-    return 
+    return
 
   $('#login_link').click (event) ->
     event.preventDefault()
     createregisterpopupmodal('login_link')
-    return 
+    return
 
   $('#offer_a_skill_link').click (event) ->
     event.preventDefault()
     createregisterpopupmodal('offer_a_skill')
-    return 
+    return
 
   $('#learn_a_skill_link').click (event) ->
     event.preventDefault()
     createregisterpopupmodal('learn_a_skill')
-    return 
+    return
 
-  createpopupmodal = (endpoint, modalid) -> 
+  createpopupmodal = (endpoint, modalid) ->
     promise = $.get(endpoint)
     # When the ajax request has finished
     promise.success (data) ->
@@ -104,22 +104,22 @@ $(document).ready ->
   $('#contact_modal_viewer').click (event) ->
     event.preventDefault()
     createpopupmodal('/pages/contact', 'contact-modal')
-    return 
+    return
 
   $('#imprint_modal_viewer').click (event) ->
     event.preventDefault()
     createpopupmodal('/pages/impressum', 'impressum-modal')
-    return 
+    return
 
   $('#share_details_link').click (event) ->
     event.preventDefault()
     createpopupmodal('/pages/share_details', 'share-details-modal')
-    return 
+    return
 
   $('#looking_around_link').click (event) ->
     event.preventDefault()
     createpopupmodal('/pages/looking_around', 'looking-around-modal')
-    return 
+    return
 
   $('#inspiration_link').click (event) ->
     event.preventDefault()
