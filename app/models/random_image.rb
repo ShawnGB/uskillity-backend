@@ -2,7 +2,7 @@ class RandomImage
   class << self
 
     def asset_base
-      '/assets/unsplash.com/'
+      'unsplash.com/'
     end
 
     def images

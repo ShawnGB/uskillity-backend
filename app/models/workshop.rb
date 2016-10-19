@@ -1,4 +1,6 @@
 class Workshop < ApplicationRecord
+  include UskillityBaseModel
+
   enum recurrence_type: { never: 0, daily: 1, weekly: 2, monthly: 3, yearly: 4}
 
   before_validation :set_images_if_absent
