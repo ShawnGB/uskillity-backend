@@ -123,13 +123,13 @@
 }
 
 .red-box {
-  border: 1px solid $u-primary-color;
   margin: 15px;
   padding-top: 18px;
 }
 
 li {
   .red-box {
+    border: 1px solid $u-primary-color;
     height: 30px;
     padding: 0px 12px 4px 12px;
     margin: 15px 6px 6px 6px;
