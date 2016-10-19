@@ -8,8 +8,8 @@
     -#%title= title
     = favicon_link_tag 'favicon.ico'
     = csrf_meta_tags
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    <link rel="stylesheet" media="all" href="/assets/application.css" data-turbolinks-track="reload">
+    <script src="/assets/application.js" data-turbolinks-track="reload"></script>
   %body{"data-action" => action_name, "data-controller" => controller_name}
     %nav.navbar.navbar-fixed
       .container-fluid
