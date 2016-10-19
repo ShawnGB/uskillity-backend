@@ -8,37 +8,37 @@
 
 biz = Category.create!(name_en: 'business',
                        name_de: 'business',
-                       image: '/categories/business-1012761_1920.png',
+                       image: 'categories/business-1012761_1920.png',
                        action_word_en: 'grow',
                        action_word_de: 'wachsen'
                       )
 sci = Category.create!(name_en: 'tech & science',
                        name_de: 'technologie & wissenschaft',
-                       image: '/categories/robot-507811_1920.png',
+                       image: 'categories/robot-507811_1920.png',
                        action_word_en: 'discover',
                        action_word_de: 'entdecken'
                       )
 arts = Category.create!(name_en: 'arts & creative',
                         name_de: 'kunst & kreatives ',
-                        image: '/categories/brush-1683134_1920.png',
+                        image: 'categories/brush-1683134_1920.png',
                         action_word_en: 'create',
                         action_word_de: 'basteln'
                        )
 life = Category.create!(name_en: 'lifestyle',
                         name_de: 'lifestyle',
-                        image: '/categories/legs-434918_1280.png',
+                        image: 'categories/legs-434918_1280.png',
                         action_word_en: 'enjoy',
                         action_word_de: 'genießen'
                        )
 Category.create!(name_en: 'kids',
                  name_de: 'kids',
-                 image: '/categories/kids.png',
+                 image: 'categories/kids.png',
                  action_word_en: 'play',
                  action_word_de: 'spielen'
                 )
 Category.create!(name_en: 'tutor',
                  name_de: 'tutor',
-                 image: '/categories/children-286239_1920.png',
+                 image: 'categories/children-286239_1920.png',
                  action_word_en: 'nurture',
                  action_word_de: 'fördern'
                 )
@@ -53,13 +53,13 @@ Level.create!([
 ])
 
 User.create!([
-  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "/profile/200x200_boy_face.png", password: Faker::Internet.password(10, 20)},
-  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "/profile/200x200_grandma_hat.png", password: Faker::Internet.password(10, 20)},
-  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "/profile/200x200_lady_close_up.png", password: Faker::Internet.password(10, 20)},
-  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "/profile/200x200_old_man.png", password: Faker::Internet.password(10, 20)},
-  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "/profile/200x200_pyramid_hair_man.png", password: Faker::Internet.password(10, 20)},
-  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "/profile/200x200_shy_lady.png", password: Faker::Internet.password(10, 20)},
-  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "/profile/200x200_soph_lady.png", password: Faker::Internet.password(10, 20)}
+  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_boy_face.png", password: Faker::Internet.password(10, 20)},
+  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_grandma_hat.png", password: Faker::Internet.password(10, 20)},
+  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_lady_close_up.png", password: Faker::Internet.password(10, 20)},
+  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_old_man.png", password: Faker::Internet.password(10, 20)},
+  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_pyramid_hair_man.png", password: Faker::Internet.password(10, 20)},
+  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_shy_lady.png", password: Faker::Internet.password(10, 20)},
+  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_soph_lady.png", password: Faker::Internet.password(10, 20)}
 ])
 
 Workshop.create!(title_en: 'Communication and HR',
@@ -71,7 +71,7 @@ Workshop.create!(title_en: 'Communication and HR',
   category: biz,
   action_word: 'communicate',
   provider: User.all.sample,
-  main_image: '/workshops/workplace.png')
+  main_image: 'workshops/workplace.png')
 Workshop.create!(title_en: 'Digital Marketing',
   title_de: 'Digital Marketing',
   subtitle_en: 'Marketing with heart',
@@ -81,7 +81,7 @@ Workshop.create!(title_en: 'Digital Marketing',
   category: biz,
   action_word: 'marketing',
   provider: User.all.sample,
-  main_image: '/workshops/business.png')
+  main_image: 'workshops/business.png')
 Workshop.create!(title_en: 'Entrepreneurship ',
   title_de: 'Entrepreneurship ',
   subtitle_en: 'Make Ideas Happen',
@@ -91,7 +91,7 @@ Workshop.create!(title_en: 'Entrepreneurship ',
   category: biz,
   action_word: 'entrepreneur ',
   provider: User.all.sample,
-  main_image: '/workshops/work-management.png')
+  main_image: 'workshops/work-management.png')
 Workshop.create!(title_en: 'Business Planning',
   title_de: 'Business Planung',
   subtitle_en: 'Your Business, your Plan!',
@@ -101,7 +101,7 @@ Workshop.create!(title_en: 'Business Planning',
   category: biz,
   action_word: 'business planning ',
   provider: User.all.sample,
-  main_image: '/workshops/hand.png')
+  main_image: 'workshops/hand.png')
 Workshop.create!(title_en: 'Strategic Management',
   title_de: 'Strategisches Management',
   subtitle_en: 'Plan Business Strategies',
@@ -111,7 +111,7 @@ Workshop.create!(title_en: 'Strategic Management',
   category: biz,
   action_word: 'strategise ',
   provider: User.all.sample,
-  main_image: '/workshops/the-strategy.png')
+  main_image: 'workshops/the-strategy.png')
 Workshop.create!(title_en: 'WebDesign ',
   title_de: 'WebDesign',
   subtitle_en: 'Design your website to look awesome',
@@ -121,7 +121,7 @@ Workshop.create!(title_en: 'WebDesign ',
   category: sci,
   action_word: 'WebDesign',
   provider: User.all.sample,
-  main_image: '/workshops/tablet.png')
+  main_image: 'workshops/tablet.png')
 Workshop.create!(title_en: 'Adobe Photoshop',
   title_de: 'Adobe Photoshop',
   subtitle_en: 'Master the craft of Adobe Photoshop',
@@ -131,7 +131,7 @@ Workshop.create!(title_en: 'Adobe Photoshop',
   category: sci,
   action_word: 'photoshop',
   provider: User.all.sample,
-  main_image: '/workshops/adobe.png')
+  main_image: 'workshops/adobe.png')
 Workshop.create!(title_en: 'Daily Chemistry',
   title_de: 'Alltags Chemie',
   subtitle_en: 'Chemical creations for daily usage',
@@ -141,7 +141,7 @@ Workshop.create!(title_en: 'Daily Chemistry',
   category: sci,
   action_word: 'chemistry ',
   provider: User.all.sample,
-  main_image: '/workshops/chemistry.png')
+  main_image: 'workshops/chemistry.png')
 Workshop.create!(title_en: 'Winterproof your car',
   title_de: 'Mach dein Auto Winterfit',
   subtitle_en: 'Easy tricks for hobby mechanics',
@@ -151,7 +151,7 @@ Workshop.create!(title_en: 'Winterproof your car',
   category: sci,
   action_word: 'auto mechanics ',
   provider: User.all.sample,
-  main_image: '/workshops/car.png')
+  main_image: 'workshops/car.png')
 Workshop.create!(title_en: 'Pottery',
   title_de: 'Töpfern',
   subtitle_en: 'Learn the art of pottery',
@@ -161,7 +161,7 @@ Workshop.create!(title_en: 'Pottery',
   category: arts,
   action_word: 'potter',
   provider: User.all.sample,
-  main_image: '/workshops/clay.png')
+  main_image: 'workshops/clay.png')
 Workshop.create!(title_en: 'Knit Hats and Scarfs',
   title_de: 'Mützen und Schals Stricken',
   subtitle_en: 'Winter is coming ',
@@ -171,7 +171,7 @@ Workshop.create!(title_en: 'Knit Hats and Scarfs',
   category: arts,
   action_word: 'knit',
   provider: User.all.sample,
-  main_image: '/workshops/wool.png')
+  main_image: 'workshops/wool.png')
 Workshop.create!(title_en: 'Creative Writing',
   title_de: 'Kreatives Schreiben',
   subtitle_en: 'Release your Imagination ',
@@ -181,7 +181,7 @@ Workshop.create!(title_en: 'Creative Writing',
   category: arts,
   action_word: 'story',
   provider: User.all.sample,
-  main_image: '/workshops/home-office.png')
+  main_image: 'workshops/home-office.png')
 Workshop.create!(title_en: 'Balcony Gardening ',
   title_de: 'Grundlagen für Hobbygärtner',
   subtitle_en: 'Gardening',
@@ -191,7 +191,7 @@ Workshop.create!(title_en: 'Balcony Gardening ',
   category: life,
   action_word: 'gardening ',
   provider: User.all.sample,
-  main_image: '/workshops/dahlia.png')
+  main_image: 'workshops/dahlia.png')
 Workshop.create!(title_en: 'Programming for Beginners',
   title_de: 'Programmieren für Anfänger',
   subtitle_en: 'Create your first App',
@@ -201,7 +201,7 @@ Workshop.create!(title_en: 'Programming for Beginners',
   category: sci,
   action_word: 'code',
   provider: User.all.sample,
-  main_image: '/workshops/laptop.png')
+  main_image: 'workshops/laptop.png')
 Workshop.create!(title_en: 'Mathematics for Beginners',
   title_de: 'Mathematik für Einsteiger',
   subtitle_en: 'Numbers made easy',
@@ -211,7 +211,7 @@ Workshop.create!(title_en: 'Mathematics for Beginners',
   category: sci,
   action_word: 'calculate',
   provider: User.all.sample,
-  main_image: '/workshops/math.png')
+  main_image: 'workshops/math.png')
 Workshop.create!(title_en: 'Music',
   title_de: 'Musik',
   subtitle_en: 'Learn to play the cello  ',
@@ -221,7 +221,7 @@ Workshop.create!(title_en: 'Music',
   category: arts,
   action_word: 'cello',
   provider: User.all.sample,
-  main_image: '/workshops/country.png')
+  main_image: 'workshops/country.png')
 Workshop.create!(title_en: 'Design your own Fashion',
   title_de: 'Design deine eigene Mode',
   subtitle_en: 'Upcycling Attire ',
@@ -231,7 +231,7 @@ Workshop.create!(title_en: 'Design your own Fashion',
   category: life,
   action_word: 'style ',
   provider: User.all.sample,
-  main_image: '/workshops/fashion.png')
+  main_image: 'workshops/fashion.png')
 Workshop.create!(title_en: 'Run Training',
   title_de: 'Lauftraining',
   subtitle_en: 'Become a stronger and faster runner ',
@@ -241,7 +241,7 @@ Workshop.create!(title_en: 'Run Training',
   category: life,
   action_word: 'workout',
   provider: User.all.sample,
-  main_image: '/workshops/yoga.png')
+  main_image: 'workshops/yoga.png')
 Workshop.create!(title_en: 'After Effects',
   title_de: 'After Effects',
   subtitle_en: 'Create amazing video effects',
@@ -251,4 +251,4 @@ Workshop.create!(title_en: 'After Effects',
   category: sci,
   action_word: 'after effects',
   provider: User.all.sample,
-  main_image: '/workshops/monitor.png')
+  main_image: 'workshops/monitor.png')
