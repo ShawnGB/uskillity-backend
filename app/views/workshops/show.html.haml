@@ -19,10 +19,10 @@
         .user-image
           = image_tag @workshop.provider.image, class: "center-block img-user img-large"
         .user-details
-          %h3.text-center=link_to @workshop.provider.first_name, user_path(@workshop.provider_id)
+          %h3.text-center=link_to @workshop.provider.first_name, "#"
     .col-md-12
       .row
-        = render partial: 'workshop_sessions/workshop_session', collection: @workshop.workshop_sessions 
+        = render partial: 'workshop_sessions/workshop_session', collection: @workshop.workshop_sessions
     .col-md-8
       .workshop-comments
         %ul
