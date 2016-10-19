@@ -1,14 +1,14 @@
-%section 
+%section
   #header.workshops{ :style => "background-image: url(#{image_path(@workshop.main_image)})" }
     .overlay
-      .overlay-details 
-        .uSlash 
-          %h1.section-heading= @workshop.title 
+      .overlay-details
+        .uSlash
+          %h1.section-heading= @workshop.title
         %h2= @workshop.subtitle
-.container 
+.container
   .row
     .col-md-8
-      .row 
+      .row
         %h2.workshop-subtitle= @workshop.subtitle
       .row.workshop-description
         = @workshop.description

@@ -20,7 +20,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # create a random password for users who just sign up for the mailinglist
     # implementing the pre-signup/landingpage behaviour of creating a user without the full signup form
     if User.find_by_email(params["user"]["email"])
-      flash[:success] = "You have already signed up for the news letter"
+      flash[:success] = "This email address is already registered"
       redirect_to root_path
     else
       random_password = SecureRandom.hex(20)
