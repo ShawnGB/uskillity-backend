@@ -85,8 +85,10 @@ Rails.application.configure do
   end
 
   # Use basic auth to protect page on heroku while we are in development mode
-  config.middleware.use '::Rack::Auth::Basic' do |u, p|
-    [u, p] == [ENV["AUTH_USERNAME"], ENV["AUTH_PASSWORD"]]
+  if ENV["NEED_MIDDLEWARE_AUTH"].present?
+    config.middleware.use '::Rack::Auth::Basic' do |u, p|
+      [u, p] == [ENV["AUTH_USERNAME"], ENV["AUTH_PASSWORD"]]
+    end
   end
 
   # Do not dump schema after migrations.
