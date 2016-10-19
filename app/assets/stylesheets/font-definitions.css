@@ -1,5 +1,5 @@
-//@import "compass/css3/font-face"
-//@include font-face("CalibreWeb Medium", '/assets/CalibreWeb-Medium')
+//@import "compass/css3/font-face";
+//@include font-face("CalibreWeb Medium", '/assets/CalibreWeb-Medium');
 
 @font-face {
   font-family: "CalibreWeb Medium";
@@ -8,4 +8,12 @@
   url("/assets/CalibreWeb-Medium.woff") format("woff"),
   url("/assets/CalibreWeb-Medium.ttf") format("truetype"),
   url("/assets/CalibreWeb-Medium.svg#CalibreWeb-Medium") format("svg");
+}
+
+@font-face {
+  font-family: "Didot Bold";
+  src: url("/assets/didot.eot?") format("eot"),
+  url("/assets/didot.woff2") format("woff2"),
+  url("/assets/didot.woff") format("woff"),
+  url("/assets/didot.ttf") format("truetype");
 }
