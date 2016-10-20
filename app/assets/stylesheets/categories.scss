@@ -27,6 +27,15 @@
 
       .uSlash {
         background-size: 70px;
+        @include old-phone {
+          background-size: 45px;
+        }
+        @include phone {
+          background-size: 50px;
+        }
+        @include tablet {
+          background-size: 60px;
+        }
         h1 {
           font-family: "Didot Bold";
           color: rgba(255,255,255,0.7);
@@ -34,6 +43,11 @@
           margin-left: 72px;
           padding-bottom: 0px;
           font-weight: bold;
+          @include old-phone {
+            font-size: 38px;
+            margin-left: 50px;
+            padding-bottom: 6px;
+          }
         }
       }
     }

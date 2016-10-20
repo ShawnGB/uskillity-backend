@@ -30,12 +30,36 @@
     background: url(/assets/common/uSlash.png) no-repeat left;
     display: inline-block;
     background-size: 150px;
+    @include old-phone {
+      background-size: 45px;
+    }
+    @include phone {
+      background-size: 50px;
+    }
+    @include tablet {
+      background-size: 100px;
+    }
     h1 {
       font-family: "Didot Bold";
       margin: 10px;
       font-size: 136px;
       margin-left: 150px;
       padding-bottom: 24px;
+      @include old-phone {
+        font-size: 40px;
+        margin-left: 45px;
+        padding-bottom: 6px;
+      }
+      @include phone {
+        font-size: 45px;
+        margin-left: 50px;
+        padding-bottom: 8px;
+      }
+      @include tablet {
+        font-size: 90px;
+        margin-left: 100px;
+        padding-bottom: 16px;
+      }
     }
   }
 
@@ -45,6 +69,21 @@
     font-weight: 700;
     font-size: 60px;
     margin-left: 132px;
+    @include old-phone {
+      font-weight: 300;
+      font-size: 16px;
+      margin-left: 36px;
+    }
+    @include phone {
+      font-weight: 400;
+      font-size: 20px;
+      margin-left: 43px;
+    }
+    @include tablet {
+      font-weight: 550;
+      font-size: 40px;
+      margin-left: 86px;
+    }
   }
 }
 

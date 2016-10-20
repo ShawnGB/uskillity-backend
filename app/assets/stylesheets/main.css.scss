@@ -196,9 +196,19 @@ img {
   width: 136px;
   height: 60px;
   background-size: contain;
+  @include old-phone {
+    width: 100px;
+  }
 }
 
 .navbar-toggle {
   height: 44px;
   width: 50px;
+}
+
+.container-fluid {
+  @include old-phone {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 }

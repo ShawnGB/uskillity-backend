@@ -3,6 +3,14 @@ $tablet-width: 768px;
 $tablet-height: 992px;
 $desktop-width: 1024px;
 $phone-width: 480px;
+$old-phone-width: 340px;
+
+// max-width: 340
+@mixin old-phone{
+  @media (max-width: #{$old-phone-width - 1px}) {
+    @content;
+  }
+}
 
 // max-width: 480
 @mixin phone{
