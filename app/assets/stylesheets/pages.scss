@@ -1,6 +1,4 @@
 #header.mainpage {
-  height: 100%;
-  min-height: 30em;
   margin-bottom: 4em;
 }
 
@@ -69,6 +67,7 @@
 .uskillity-logo {
   background: url("/assets/common/logo.png") no-repeat center;
   height: 190px;
+  background-size: contain;
 }
 
 .computer-image {
@@ -159,6 +158,11 @@ li {
 
 .no-bottom {
   margin-bottom: 0px;
+}
+
+.no-expand-right-left {
+  margin-right: 0px;
+  margin-left: 0px;
 }
 
 .small-left-padding {
