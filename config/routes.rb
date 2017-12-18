@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount_devise_token_auth_for 'User', at: 'auth'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :workshops do
@@ -12,15 +13,10 @@ Rails.application.routes.draw do
   end
   resources :categories, only: [:index, :show]
   resources :venues, only: [:index, :create]
-  devise_for :users, :controllers => {
-    :omniauth_callbacks => "users/omniauth_callbacks",
-    :registrations      => "users/registrations"
-  }
-  devise_scope :user do
-    get 'users/register' => 'users/registrations#register', as: :new_user_mailinglist_registration
-    post 'users/register' => 'users/registrations#create', as: :user_mailinglist_registration
-  end
-  resources :users, only: [:show]
+  #devise_for :users, :controllers => {
+    #:omniauth_callbacks => "users/omniauth_callbacks",
+    #:registrations      => "users/registrations"
+  #}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'pages#index'
 
