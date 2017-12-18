@@ -11,45 +11,44 @@
     <link rel="stylesheet" media="all" href="/assets/application.css" data-turbolinks-track="reload">
     <script src="/assets/application.js" data-turbolinks-track="reload"></script>
   %body{"data-action" => action_name, "data-controller" => controller_name}
-    .simple-image-header
-    -#%nav.navbar.navbar-fixed
-      -#.container-fluid
-        -##navbar.collapse.navbar-collapse.float-left
-          -#%ul.nav.navbar-nav.navbar-right
+    %nav.navbar.navbar-fixed
+      .container-fluid
+        #navbar.collapse.navbar-collapse.float-left
+          %ul.nav.navbar-nav.navbar-right
+            %li.dropdown
+              .red-box
+                = link_to "Register Now", new_user_mailinglist_registration_path, :id => 'mailinglist_registration_link'
+            %li.dropdown
+              = link_to "Log In", "", :id => 'login_link'
+            %li.dropdown
+              = link_to "Offer a Skill", "", :id => 'offer_a_skill_link'
+            %li.dropdown
+              = link_to "Learn a Skill", "", :id => 'learn_a_skill_link'
             -#%li.dropdown
-              -#.red-box
-                -#= link_to "Register Now", new_user_mailinglist_registration_path, :id => 'mailinglist_registration_link'
-            -#%li.dropdown
-              -#= link_to "Log In", "", :id => 'login_link'
-            -#%li.dropdown
-              -#= link_to "Offer a Skill", "", :id => 'offer_a_skill_link'
-            -#%li.dropdown
-              -#= link_to "Learn a Skill", "", :id => 'learn_a_skill_link'
-            -#-#%li.dropdown
-              -#-#- if current_user
-                -#-#%a{href: "#", "class" => "dropdown-toggle", "data-toggle" => "dropdown", "role" => "button", "aria-haspopup" => "true", "aria-expanded" => "false"}
-                  -#-#= "Signed in as #{current_user.first_name} #{current_user.name}"
-                  -#-#= image_tag current_user.image, class: "img-user img-small"
-                  -#-#%span.caret
-                -#-#%ul.dropdown-menu
-                  -#-#%li
-                    -#-#= link_to "Sign Out", destroy_user_session_path, :method => :delete
-              -#-#- else
-                -#-#= link_to "Sign In", new_user_session_path, :id => 'sign_up_link'
-        -#.navbar-header.float-right
-          -#= link_to "", root_path, class: "navbar-brand brand-text navbar-logo"
-          -#%button.navbar-toggle{"data-target" => "#navbar.collapse.navbar-collapse", "data-toggle" => "collapse", :type => "button"}
-            -#%span.sr-only Toggle navigation
-            -#%span.icon-bar
-            -#%span.icon-bar
-            -#%span.icon-bar
+              -#- if current_user
+                -#%a{href: "#", "class" => "dropdown-toggle", "data-toggle" => "dropdown", "role" => "button", "aria-haspopup" => "true", "aria-expanded" => "false"}
+                  -#= "Signed in as #{current_user.first_name} #{current_user.name}"
+                  -#= image_tag current_user.image, class: "img-user img-small"
+                  -#%span.caret
+                -#%ul.dropdown-menu
+                  -#%li
+                    -#= link_to "Sign Out", destroy_user_session_path, :method => :delete
+              -#- else
+                -#= link_to "Sign In", new_user_session_path, :id => 'sign_up_link'
+        .navbar-header.float-right
+          = link_to "", root_path, class: "navbar-brand brand-text navbar-logo"
+          %button.navbar-toggle{"data-target" => "#navbar.collapse.navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
 
-    -#.main-content
-      -##flash
-        -#- flash.each do |key, value|
-          -#%div{ class: "alert alert-#{key}" }
-            -#= value
+    .main-content
+      #flash
+        - flash.each do |key, value|
+          %div{ class: "alert alert-#{key}" }
+            = value
 
-      -#= yield
-    -#= render partial: "footer"
-    -#= render partial: "layouts/modal"
+      = yield
+    = render partial: "footer"
+    = render partial: "layouts/modal"
