@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
   end
   resources :categories, only: [:index, :show]
-  resources :levels, only: [:index]
+  resources :levels, only: [:index, :show]
   #resources :venues, only: [:index, :create]
   #devise_for :users, :controllers => {
     #:omniauth_callbacks => "users/omniauth_callbacks",
