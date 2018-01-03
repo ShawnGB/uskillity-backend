@@ -3,7 +3,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
 
-  after_filter :clear_session
+  after_action :clear_session
 
   def register
     @user = User.new
