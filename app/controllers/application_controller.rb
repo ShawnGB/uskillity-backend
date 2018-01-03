@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include DeviseTokenAuth::Concerns::SetUserByToken
 
-  before_filter :load_categories
+  before_action :load_categories
   before_action :set_locale
 
   #protect_from_forgery with: :exception, prepend: true
