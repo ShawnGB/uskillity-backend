@@ -30,6 +30,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# CORS
+gem 'rack-cors', :require => 'rack/cors'
+
 # Frontend
 gem 'haml'
 gem 'haml-rails'

@@ -15,6 +15,13 @@ module BlueCarbuncle
     config.i18n.default_locale = :en
     config.i18n.available_locales = ['en-US', 'en-GB', :en, :de].map(&:to_s)
 
+    # enable CORS (https://github.com/cyu/rack-cors)
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => :any
+      end
+    end
 
 		config.autoload_paths += Dir["#{config.root}/lib/**/"]
   end
