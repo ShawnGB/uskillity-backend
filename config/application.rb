@@ -21,7 +21,7 @@ module BlueCarbuncle
         origins '*'
         resource '*',
           :headers => :any,
-          :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+          :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client', 'Access-Token', 'Expiry', 'Token-Type', 'Uid', 'Client'],
           :methods => :any
       end
     end
