@@ -3,12 +3,19 @@ class ApplicationController < ActionController::Base
 
   before_action :load_categories
   before_action :set_locale
+  before_action :configure_sign_up_params, if: :devise_controller?
 
   #protect_from_forgery with: :exception, prepend: true
 
-
   def load_categories
     @categories = Category.all
+  end
+
+  protected
+
+  def configure_sign_up_params
+    require 'pry'; binding.pry
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :name, :first_name, :locale, :gender, :nickname ])
   end
 
   private
