@@ -53,13 +53,13 @@ Level.create!([
 ])
 
 User.create!([
-  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_boy_face.png", password: Faker::Internet.password(10, 20)},
-  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_grandma_hat.png", password: Faker::Internet.password(10, 20)},
-  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_lady_close_up.png", password: Faker::Internet.password(10, 20)},
-  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_old_man.png", password: Faker::Internet.password(10, 20)},
-  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_pyramid_hair_man.png", password: Faker::Internet.password(10, 20)},
-  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_shy_lady.png", password: Faker::Internet.password(10, 20)},
-  {email: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_soph_lady.png", password: Faker::Internet.password(10, 20)}
+  {email: Faker::Name.last_name + '@example.com', uid: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_boy_face.png", password: Faker::Internet.password(10, 20)},
+  {email: Faker::Name.last_name + '@example.com', uid: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_grandma_hat.png", password: Faker::Internet.password(10, 20)},
+  {email: Faker::Name.last_name + '@example.com', uid: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_lady_close_up.png", password: Faker::Internet.password(10, 20)},
+  {email: Faker::Name.last_name + '@example.com', uid: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_old_man.png", password: Faker::Internet.password(10, 20)},
+  {email: Faker::Name.last_name + '@example.com', uid: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_pyramid_hair_man.png", password: Faker::Internet.password(10, 20)},
+  {email: Faker::Name.last_name + '@example.com', uid: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_shy_lady.png", password: Faker::Internet.password(10, 20)},
+  {email: Faker::Name.last_name + '@example.com', uid: Faker::Name.last_name + '@example.com', name: Faker::Name.last_name, first_name: Faker::Name.first_name, locale: "de", image: "profile/200x200_soph_lady.png", password: Faker::Internet.password(10, 20)}
 ])
 
 Workshop.create!(title_en: 'Communication and HR',
