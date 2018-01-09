@@ -11,7 +11,9 @@ Rails.application.routes.draw do
       resources :ratings, only: [:create]
     end
   end
-  resources :categories, only: [:index, :show]
+  resources :categories, only: [:index, :show] do
+    resources :workshops, only: [:index, :show]
+  end
   resources :levels, only: [:index, :show]
   #resources :venues, only: [:index, :create]
   #devise_for :users, :controllers => {

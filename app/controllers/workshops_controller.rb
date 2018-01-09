@@ -2,10 +2,11 @@ class WorkshopsController < ApplicationController
   before_action :set_workshop, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show, :new]
 
+  before_action :load_workshops, only: [:index]
+
   # GET /workshops
   # GET /workshops.json
   def index
-    @workshops = Workshop.all
   end
 
   # GET /workshops/1
@@ -83,5 +84,10 @@ class WorkshopsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def workshop_params
     params.require(:workshop).permit(:title, :subtitle, :description, :category_id, :offered_on, :fees, :provider_id, :main_image, :more_images, :level_id, :min_age, :max_age, :full_address)
+  end
+
+  def load_workshops
+    @category = Category.find_by_id(params[:category_id]) if params[:category_id]
+    @workshops = @category ? @category.workshops : Workshop.all
   end
 end
