@@ -1,8 +1,18 @@
 class WorkshopsController < ApplicationController
   before_action :set_workshop, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show, :new]
+  before_action :authenticate_user!, except: [:random, :index, :show, :new]
 
   before_action :load_workshops, only: [:index]
+
+  # GET /workshops/random
+  # GET /workshops/random.json
+  def random
+    @workshops = Workshop.take(6)
+    respond_to do |format|
+      format.html { redirect_to @workshops, notice: 'Half a dozen random workshops were selected' }
+      format.json { render json: @workshops, status: :ok}
+    end
+  end
 
   # GET /workshops
   # GET /workshops.json

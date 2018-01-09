@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create]
       resources :ratings, only: [:create]
     end
+    get 'random', on: :collection
   end
   resources :categories, only: [:index, :show] do
     resources :workshops, only: [:index, :show]
