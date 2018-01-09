@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_sign_up_params
-    require 'pry'; binding.pry
     devise_parameter_sanitizer.permit(:sign_up, keys: [ :name, :first_name, :locale, :gender, :nickname ])
   end
 
