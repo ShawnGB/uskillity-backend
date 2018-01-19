@@ -23,8 +23,6 @@ class Workshop < ApplicationRecord
 
   validates :title_en, length: { within: 4..140 }
   validates :title_de, length: { within: 4..140 }
-  validates :subtitle_en, length: { within: 8..140 }
-  validates :subtitle_de, length: { within: 8..140 }
   validates :description_en, length: { within: 32..1024 }
   validates :description_de, length: { within: 32..1024 }
 
