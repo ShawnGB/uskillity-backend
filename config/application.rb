@@ -18,7 +18,7 @@ module BlueCarbuncle
     # enable CORS (https://github.com/cyu/rack-cors)
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'localhost:3000', '127.0.0.1:3000', 'http://d3afqfzdd8lb1l.cloudfront.net/'
+        origins 'localhost:3000', '127.0.0.1:3000', 'http://d3afqfzdd8lb1l.cloudfront.net/', 'https://d3afqfzdd8lb1l.cloudfront.net'
         resource '*',
           :headers => :any,
           :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client', 'Access-Token', 'Expiry', 'Token-Type', 'Uid', 'Client'],
