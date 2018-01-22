@@ -17,6 +17,7 @@ class Workshop < ApplicationRecord
   has_many :workshop_registrations
   has_many :registered_users, through: :workshop_registrations, source: :user
 
+  has_many :ratings, as: :rated
   has_many :comments, as: :commented_object
 
   translates :title, :subtitle, :description
