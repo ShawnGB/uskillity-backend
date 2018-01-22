@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     resources :bookings, except: :delete
     resources :workshop_sessions do
       resources :comments, only: [:create]
-      resources :ratings, only: [:create]
     end
     get 'random', on: :collection
   end

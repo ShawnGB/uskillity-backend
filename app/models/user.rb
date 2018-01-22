@@ -8,7 +8,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  has_many :ratings, as: :creator
   has_many :comments, as: :commenter
   has_many :workshops_offered, foreign_key: :provider_id, class_name: 'Workshop'
   has_many :workshop_sessions, foreign_key: :tutor_id
