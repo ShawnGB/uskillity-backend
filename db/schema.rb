@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180122151445) do
+ActiveRecord::Schema.define(version: 20180122155851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,17 +91,6 @@ ActiveRecord::Schema.define(version: 20180122151445) do
     t.datetime "updated_at", null: false
     t.index ["workshop_registration_id"], name: "index_participations_on_workshop_registration_id"
     t.index ["workshop_session_id"], name: "index_participations_on_workshop_session_id"
-  end
-
-  create_table "ratings", id: :serial, force: :cascade do |t|
-    t.float "value"
-    t.integer "creator_id"
-    t.string "rated_object_type"
-    t.integer "rated_object_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["creator_id"], name: "index_ratings_on_creator_id"
-    t.index ["rated_object_type", "rated_object_id"], name: "index_ratings_on_rated_object_type_and_rated_object_id"
   end
 
   create_table "tags", id: :serial, force: :cascade do |t|
@@ -226,7 +215,6 @@ ActiveRecord::Schema.define(version: 20180122151445) do
   add_foreign_key "comments", "users", column: "commenter_id"
   add_foreign_key "participations", "workshop_registrations"
   add_foreign_key "participations", "workshop_sessions"
-  add_foreign_key "ratings", "users", column: "creator_id"
   add_foreign_key "workshop_registrations", "bookings"
   add_foreign_key "workshop_registrations", "users"
   add_foreign_key "workshop_registrations", "workshops"
