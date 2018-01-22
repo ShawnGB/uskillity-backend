@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :participations
     resources :workshop_registrations, except: :delete
     resources :bookings, except: :delete
+    resources :ratings, except: [:new, :edit], controller: 'workshop_ratings'
     resources :workshop_sessions do
       resources :comments, only: [:create]
     end
