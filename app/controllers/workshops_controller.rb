@@ -1,27 +1,30 @@
 class WorkshopsController < ApplicationController
-  before_action :set_workshop, only: [:show, :edit, :update, :destroy]
+  before_action :set_workshop, only: [:update, :destroy]
   before_action :authenticate_user!, except: [:random, :index, :show, :new]
 
   before_action :load_workshops, only: [:index]
 
-  # GET /workshops/random
-  # GET /workshops/random.json
   def random
-    @workshops = Workshop.take(6)
-    respond_to do |format|
-      format.html { redirect_to @workshops, notice: 'Half a dozen random workshops were selected' }
-      format.json { render json: @workshops, status: :ok}
-    end
+    @workshops = Workshop.includes(:provider).take(6)
+    render json: @workshops, status: :ok
   end
 
-  # GET /workshops
-  # GET /workshops.json
   def index
+    @category = Category.find_by_id(params[:category_id]) if params[:category_id]
+    # TODO -- send only ready items.
+    @workshops = @category ?
+      @category.workshops.includes(:provider) : # .where(is_approved: true).where.not(published_at: nil)
+      Workshop.includes(:provider) # .where(is_approved: true).where.not(published_at: nil)
+    render json: @workshops, status: :ok
   end
 
-  # GET /workshops/1
-  # GET /workshops/1.json
   def show
+    workshop = Workshop.includes(:provider).find_by(id: params[:id])
+    if workshop.nil?
+      return render json: nil, status: :not_found
+    end
+    # TODO for not yet ready workshops
+    render json: workshop, status: :ok
   end
 
   # GET /workshops/new
@@ -33,46 +36,35 @@ class WorkshopsController < ApplicationController
   def edit
   end
 
-  # POST /workshops
-  # POST /workshops.json
   def create
     @workshop = Workshop.new()
     update_workshop(@workshop, workshop_params)
     @workshop.provider = current_user
 
-    respond_to do |format|
-      if @workshop.save
-        format.html { redirect_to @workshop, notice: 'Workshop was successfully created.' }
-        format.json { render :show, status: :created, location: @workshop }
-      else
-        format.html { render :new }
-        format.json { render json: @workshop.errors, status: :unprocessable_entity }
-      end
+    if @workshop.save
+      render json: @workshop, status: :created
+    else
+      render json: @workshop.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /workshops/1
-  # PATCH/PUT /workshops/1.json
   def update
-    respond_to do |format|
-      if @workshop.update(workshop_params)
-        format.html { redirect_to @workshop, notice: 'Workshop was successfully updated.' }
-        format.json { render :show, status: :ok, location: @workshop }
-      else
-        format.html { render :edit }
-        format.json { render json: @workshop.errors, status: :unprocessable_entity }
-      end
+    if @workshop.nil?
+      return render json: nil, status: :not_found
+    end
+    if @workshop.update(workshop_params)
+      render json: nil, status: :no_content
+    else
+      render json: @workshop.errors, status: :unprocessable_entity
     end
   end
 
-  # DELETE /workshops/1
-  # DELETE /workshops/1.json
   def destroy
-    @workshop.destroy
-    respond_to do |format|
-      format.html { redirect_to workshops_url, notice: 'Workshop was successfully destroyed.' }
-      format.json { head :no_content }
+    if @workshop.nil?
+      return render json: nil, status: :not_found
     end
+    @workshop.destroy
+    render json: nil, status: :no_content
   end
 
   private
@@ -88,7 +80,7 @@ class WorkshopsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_workshop
-    @workshop = Workshop.find(params[:id])
+    @workshop = Workshop.find_by(id: params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -97,7 +89,5 @@ class WorkshopsController < ApplicationController
   end
 
   def load_workshops
-    @category = Category.find_by_id(params[:category_id]) if params[:category_id]
-    @workshops = @category ? @category.workshops : Workshop.all
   end
 end

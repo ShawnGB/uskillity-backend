@@ -60,6 +60,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_model_serializers (0.10.7)
+      actionpack (>= 4.1, < 6)
+      activemodel (>= 4.1, < 6)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     activejob (5.1.4)
       activesupport (= 5.1.4)
       globalid (>= 0.3.6)
@@ -96,6 +101,8 @@ GEM
     bindex (0.5.0)
     builder (3.2.3)
     byebug (9.1.0)
+    case_transform (0.2)
+      activesupport
     choice (0.2.0)
     coderay (1.1.2)
     coffee-rails (4.2.2)
@@ -182,6 +189,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (2.1.0)
     json_expressions (0.9.0)
+    jsonapi-renderer (0.2.0)
     jwt (1.5.6)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
@@ -402,6 +410,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers (~> 0.10.0)
   activeadmin!
   autoprefixer-rails
   aws-sdk (~> 2)
