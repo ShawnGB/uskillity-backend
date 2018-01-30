@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     resources :workshops, only: [:index, :show]
   end
   resources :levels, only: [:index, :show]
-  resources :users, except: [:index, :new, :edit, :create]
+  resources :users, except: [:index, :new, :edit, :create] do
+    resources :workshops, only: [:index], controller: 'user_workshops'
+  end
   #resources :venues, only: [:index, :create]
   #devise_for :users, :controllers => {
     #:omniauth_callbacks => "users/omniauth_callbacks",
