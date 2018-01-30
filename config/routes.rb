@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :workshop_registrations, except: :delete
     resources :bookings, except: :delete
     resources :ratings, except: [:new, :edit], controller: 'workshop_ratings'
+    resources :images, only: [:create], controller: 'workshop_images'
     resources :workshop_sessions do
       resources :comments, only: [:create]
     end
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
   resources :levels, only: [:index, :show]
   resources :users, except: [:index, :new, :edit, :create] do
     resources :workshops, only: [:index], controller: 'user_workshops'
+    resources :images, only: [:create], controller: 'user_images'
   end
   #resources :venues, only: [:index, :create]
   #devise_for :users, :controllers => {

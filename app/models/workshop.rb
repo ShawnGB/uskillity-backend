@@ -30,6 +30,8 @@ class Workshop < ApplicationRecord
   validates :category, presence: true
   validates :provider, presence: true
 
+  has_many :images, as: :of
+
   def set_images_if_absent # TODO remove
     self.main_image = RandomImage.get if self.main_image.blank?
     self.more_images = RandomImage.get(3) if self.more_images.blank?

@@ -18,6 +18,9 @@ class User < ApplicationRecord
   has_many :ratings, as: :rated
   has_many :created_ratings, foreign_key: :creator_id, class_name: 'Rating'
 
+  has_many :images, as: :of
+  has_many :pictures, foreign_key: :user_id, class_name: 'Image'
+
 	def self.from_omniauth_facebook(auth)
 		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
 			user.email = auth.info.email

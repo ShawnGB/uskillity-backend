@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180122171931) do
+ActiveRecord::Schema.define(version: 20180130210558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,17 @@ ActiveRecord::Schema.define(version: 20180122171931) do
     t.datetime "updated_at", null: false
     t.index ["commented_object_type", "commented_object_id"], name: "index_comments_on_commented_object_type_and_commented_object_id"
     t.index ["commenter_id"], name: "index_comments_on_commenter_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.text "url"
+    t.string "of_type"
+    t.bigint "of_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["of_type", "of_id"], name: "index_images_on_of_type_and_of_id"
+    t.index ["user_id"], name: "index_images_on_user_id"
   end
 
   create_table "levels", id: :serial, force: :cascade do |t|
@@ -224,6 +235,7 @@ ActiveRecord::Schema.define(version: 20180122171931) do
   end
 
   add_foreign_key "comments", "users", column: "commenter_id"
+  add_foreign_key "images", "users"
   add_foreign_key "participations", "workshop_registrations"
   add_foreign_key "participations", "workshop_sessions"
   add_foreign_key "ratings", "users", column: "creator_id"
