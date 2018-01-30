@@ -1,6 +1,6 @@
 class WorkshopRatingsController < ApplicationController
   before_action :set_rating, only: [:show, :edit, :update, :destroy]
-  #before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /workshops/:workshop_id/ratings
   # GET /workshops/:workshop_id/ratings.json
