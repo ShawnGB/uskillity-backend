@@ -10,8 +10,8 @@ capybara-*.html
 /spec/tmp
 /app/helpers
 /spec/helpers
-/spec/views 
-/app/helper 
+/spec/views
+/app/helper
 **.orig
 rerun.txt
 pickle-email-*.html
@@ -56,4 +56,6 @@ bower.json
 #Ignore .env files
 *.env
 
-/public 
+/public
+/app/assets/javascripts/
+/app/assets/stylesheets/
