@@ -2,8 +2,6 @@ class WorkshopRatingsController < ApplicationController
   before_action :set_rating, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
-  # GET /workshops/:workshop_id/ratings
-  # GET /workshops/:workshop_id/ratings.json
   def index
     workshop = Workshop.find_by(id: params[:workshop_id])
     if workshop
@@ -11,13 +9,9 @@ class WorkshopRatingsController < ApplicationController
     end
   end
 
-  # GET /workshops/:workshop_id/ratings/1
-  # GET /workshops/:workshop_id/ratings/1.json
   def show
   end
 
-  # POST /workshops/:workshop_id/ratings
-  # POST /workshops/:workshop_id/ratings.json
   def create
     @rating = Rating.new(rating_params)
 
@@ -28,8 +22,6 @@ class WorkshopRatingsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /workshops/:workshop_id/ratings/1
-  # PATCH/PUT /workshops/:workshop_id/ratings/1.json
   def update
     if @rating.update(rating_params)
       render json: nil, status: :no_content
@@ -38,8 +30,6 @@ class WorkshopRatingsController < ApplicationController
     end
   end
 
-  # DELETE /workshops/:workshop_id/ratings/1
-  # DELETE /workshops/:workshop_id/ratings/1.json
   def destroy
     if @rating
       @rating.destroy
