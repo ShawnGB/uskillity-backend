@@ -96,3 +96,7 @@ gem 'postmark-rails', '~> 0.15.0'
 gem 'rails-i18n', '~> 5.0.0'
 
 gem 'active_model_serializers', '~> 0.10.0'
+
+# Upload images
+gem 'carrierwave'
+gem 'fog'
