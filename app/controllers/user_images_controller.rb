@@ -2,7 +2,7 @@ class UserImagesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    if current_user.id != user_id
+    if current_user.id != user_id.to_i
       return render json: {error: 'permission denied'}, status: :forbidden
     end
 
@@ -18,7 +18,7 @@ class UserImagesController < ApplicationController
   private
 
   def user_image_params
-    params.require(:image).permit(:url).merge(:of_id => user_id(), :of_type => 'User', :user_id => user_id())
+    params.permit(:url).merge(:of_id => user_id(), :of_type => 'User', :user_id => user_id())
   end
 
   def user_id

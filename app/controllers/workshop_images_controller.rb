@@ -24,7 +24,7 @@ class WorkshopImagesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def workshop_image_params
-    params.require(:image).permit(:url).merge(:of_id => workshop_id(), :of_type => 'Workshop')
+    params.permit(:url).merge(:of_id => workshop_id(), :of_type => 'Workshop')
   end
 
   def workshop_id()
