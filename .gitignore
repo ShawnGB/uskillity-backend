@@ -59,3 +59,5 @@ bower.json
 /public
 /app/assets/javascripts/
 /app/assets/stylesheets/
+
+.aws_env
