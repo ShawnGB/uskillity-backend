@@ -2,8 +2,6 @@ class WorkshopsController < ApplicationController
   before_action :set_workshop, only: [:update, :destroy]
   before_action :authenticate_user!, except: [:random, :index, :show]
 
-  before_action :load_workshops, only: [:index]
-
   def random
     render json: WorkshopRepository.random(), status: :ok
   end
@@ -21,13 +19,12 @@ class WorkshopsController < ApplicationController
     if workshop.nil?
       return render json: nil, status: :not_found
     end
-    # TODO for not yet ready workshops
     render json: workshop, status: :ok
   end
 
   def create
     @workshop = Workshop.new()
-    update_workshop(@workshop, workshop_params)
+    update_workshop(@workshop, create_workshop_params)
     @workshop.provider = current_user
 
     if @workshop.save
@@ -41,7 +38,8 @@ class WorkshopsController < ApplicationController
     if @workshop.nil?
       return render json: nil, status: :not_found
     end
-    if @workshop.update(workshop_params)
+    update_workshop(@workshop, update_workshop_params)
+    if @workshop.save
       render json: nil, status: :no_content
     else
       render json: @workshop.errors, status: :unprocessable_entity
@@ -65,6 +63,12 @@ class WorkshopsController < ApplicationController
     workshop.fees           = values[:fees] if values[:fees]
     workshop.category_id    = values[:category_id] if values[:category_id]
     workshop.level_id       = values[:level_id] if values[:level_id]
+    unless values[:terms_accepted].nil?
+      workshop.terms_accepted = values[:terms_accepted]
+      if workshop.terms_accepted and workshop.published_at.nil?
+        workshop.published_at = Time.zone.now
+      end
+    end
   end
 
   # Use callbacks to share common setup or constraints between actions.
@@ -73,10 +77,12 @@ class WorkshopsController < ApplicationController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def workshop_params
-    params.require(:workshop).permit(:title, :subtitle, :description, :category_id, :offered_on, :fees, :provider_id, :main_image, :more_images, :level_id, :min_age, :max_age, :full_address)
+  def create_workshop_params
+    params.require(:workshop).permit(:title, :subtitle, :description, :category_id, :fees, :level_id, :min_age, :max_age, :full_address)
   end
 
-  def load_workshops
+  def update_workshop_params
+    params.require(:workshop).permit(:title, :subtitle, :description, :category_id, :fees, :level_id, :min_age, :max_age, :full_address, :terms_accepted)
   end
+
 end

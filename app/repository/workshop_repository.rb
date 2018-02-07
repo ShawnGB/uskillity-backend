@@ -14,6 +14,6 @@ class WorkshopRepository
 
   def self.workshops
     # TODO -- send only ready items.
-    Workshop.includes({provider: :images}, :images, :workshop_sessions) # .where(is_approved: true).where.not(published_at: nil)
+    Workshop.includes({provider: :images}, :images, :workshop_sessions) # .where(is_approved: true)..where(terms_accepted: true)
   end
 end
