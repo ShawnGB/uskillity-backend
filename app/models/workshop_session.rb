@@ -8,15 +8,21 @@ class WorkshopSession < ApplicationRecord
   has_many :workshop_registrations, through: :participations
   has_many :participants, through: :workshop_registrations, source: :user
 
-  translates :title, :subtitle, :description
+  #translates :title, :subtitle, :description
 
-  #validates :title_en, length: { within: 8..140 }
-  #validates :title_de, length: { within: 8..140 }
-  #validates :subtitle_en, length: { within: 8..140 }
-  #validates :subtitle_de, length: { within: 8..140 }
-  #validates :description_en, length: { within: 140..1024 }
-  #validates :description_de, length: { within: 140..1024 }
-
-  #validates :level, presence: true
-  #validates :tutor, presence: true
+  validates :starts_at, presence: true
+  validates :ends_at, {
+    presence: true,
+    date: {
+      after: :starts_at,
+      message: "a session cannot end before it starts"
+    }
+  }
+  validates :ends_at, {
+    presence: true,
+    date: {
+      before_or_equal_to: Proc.new { |obj| obj.starts_at.end_of_day },
+      message: ": a session should start and end on the same day"
+    }
+  }
 end

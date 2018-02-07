@@ -100,3 +100,4 @@ gem 'active_model_serializers', '~> 0.10.0'
 # Upload images
 gem 'carrierwave'
 gem 'fog'
+gem 'date_validator'
