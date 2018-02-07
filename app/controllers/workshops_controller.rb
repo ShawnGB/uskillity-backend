@@ -5,7 +5,7 @@ class WorkshopsController < ApplicationController
   before_action :load_workshops, only: [:index]
 
   def random
-    @workshops = Workshop.includes(:provider).take(6)
+    @workshops = Workshop.includes({provider: :images}, :images).take(6)
     render json: @workshops, status: :ok
   end
 
@@ -13,13 +13,13 @@ class WorkshopsController < ApplicationController
     @category = Category.find_by_id(params[:category_id]) if params[:category_id]
     # TODO -- send only ready items.
     @workshops = @category ?
-      @category.workshops.includes(:provider) : # .where(is_approved: true).where.not(published_at: nil)
-      Workshop.includes(:provider) # .where(is_approved: true).where.not(published_at: nil)
+      @category.workshops.includes({provider: :images}, :images) : # .where(is_approved: true).where.not(published_at: nil)
+      Workshop.includes({provider: :images}, :images) # .where(is_approved: true).where.not(published_at: nil)
     render json: @workshops, status: :ok
   end
 
   def show
-    workshop = Workshop.includes(:provider).find_by(id: params[:id])
+    workshop = Workshop.includes({provider: :images}, :images).find_by(id: params[:id])
     if workshop.nil?
       return render json: nil, status: :not_found
     end
