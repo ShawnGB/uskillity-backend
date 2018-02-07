@@ -1,39 +1,28 @@
 class WorkshopsController < ApplicationController
   before_action :set_workshop, only: [:update, :destroy]
-  before_action :authenticate_user!, except: [:random, :index, :show, :new]
+  before_action :authenticate_user!, except: [:random, :index, :show]
 
   before_action :load_workshops, only: [:index]
 
   def random
-    @workshops = Workshop.includes({provider: :images}, :images).take(6)
-    render json: @workshops, status: :ok
+    render json: WorkshopRepository.random(), status: :ok
   end
 
   def index
     @category = Category.find_by_id(params[:category_id]) if params[:category_id]
-    # TODO -- send only ready items.
     @workshops = @category ?
-      @category.workshops.includes({provider: :images}, :images) : # .where(is_approved: true).where.not(published_at: nil)
-      Workshop.includes({provider: :images}, :images) # .where(is_approved: true).where.not(published_at: nil)
+      WorkshopRepository.categorised_workshops(@category) :
+      WorkshopRepository.workshops
     render json: @workshops, status: :ok
   end
 
   def show
-    workshop = Workshop.includes({provider: :images}, :images).find_by(id: params[:id])
+    workshop = WorkshopRepository.workshop_with_id(params[:id])
     if workshop.nil?
       return render json: nil, status: :not_found
     end
     # TODO for not yet ready workshops
     render json: workshop, status: :ok
-  end
-
-  # GET /workshops/new
-  def new
-    @workshop = Workshop.new
-  end
-
-  # GET /workshops/1/edit
-  def edit
   end
 
   def create
