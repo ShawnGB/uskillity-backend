@@ -42,4 +42,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   def filename
     "#{SecureRandom.uuid}_#{original_filename[0..200]}" if original_filename
   end
+
+  # Configure fog to serve using public URL
+  def fog_public
+    true
+  end
 end
