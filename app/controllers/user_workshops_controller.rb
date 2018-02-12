@@ -5,7 +5,7 @@ class UserWorkshopsController < ApplicationController
     if user == nil
       return render json: nil, status: :not_found
     end
-    render json: user.workshops_offered.includes(:provider), status: :ok
+    render json: WorkshopRepository.workshops_by_user(user), status: :ok
   end
 
 end

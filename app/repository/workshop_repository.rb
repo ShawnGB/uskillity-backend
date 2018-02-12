@@ -12,6 +12,10 @@ class WorkshopRepository
     workshops.find_by(id: id)
   end
 
+  def self.workshops_by_user(user)
+    workshops.where(provider: user)
+  end
+
   def self.workshops
     # TODO -- send only ready items.
     Workshop.includes({provider: :images}, :images, :workshop_sessions) # .where(is_approved: true)..where(terms_accepted: true)
