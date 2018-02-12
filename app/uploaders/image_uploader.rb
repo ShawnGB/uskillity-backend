@@ -1,4 +1,10 @@
 class ImageUploader < CarrierWave::Uploader::Base
+  before :cache, :save_original_filename
+
+  def save_original_filename(file)
+    model.original_filename ||= file.original_filename if file.respond_to?(:original_filename)
+  end
+
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -11,6 +17,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.of_type.underscore}-#{model.of_id}/#{model.class.to_s.underscore}/#{model.id}"
+  end
+
+  # Configure fog to serve using public URL
+  def fog_public
+    true
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -40,11 +51,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{SecureRandom.uuid}_#{original_filename[0..200]}" if original_filename
+    "#{secure_token}.#{file.extension}" if original_filename.present?
   end
 
-  # Configure fog to serve using public URL
-  def fog_public
-    true
+  protected
+  def secure_token
+    var = :"@#{mounted_as}_secure_token"
+    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
   end
 end
