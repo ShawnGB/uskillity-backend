@@ -2,7 +2,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   before :cache, :save_original_filename
 
   def save_original_filename(file)
-    model.original_filename ||= file.original_filename if file.respond_to?(:original_filename)
+    if original_filename.present?
+      model.original_filename = original_filename
+    end
   end
 
   # Include RMagick or MiniMagick support:
@@ -51,7 +53,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{secure_token}.#{file.extension}" if original_filename.present?
+    "#{secure_token}_#{original_filename[0..196]}.#{file.extension}" if original_filename.present?
   end
 
   protected
