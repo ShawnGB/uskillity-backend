@@ -13,6 +13,14 @@ class WorkshopSerializer < ActiveModel::Serializer
     return (object.images.map{|image| image.url.url } + past_images).uniq
   end
 
+  def min_age
+    object.min_age || 18
+  end
+
+  def max_age
+    object.max_age || 144
+  end
+
   def rating
     rand(11) / 2.0
   end
