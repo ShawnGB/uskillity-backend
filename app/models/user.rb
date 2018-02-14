@@ -25,17 +25,17 @@ class User < ApplicationRecord
 
   has_many :pictures, foreign_key: :user_id, class_name: 'Image'
 
-	def self.from_omniauth_facebook(auth)
-		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-			user.email = auth.info.email
-			user.password = Devise.friendly_token[0,20]
-			user.name = auth.info.last_name
-      user.first_name = auth.info.first_name
-      user.image = auth.info.image
-      user.locale = auth.extra.raw_info.locale
-      user.gender = auth.extra.raw_info.gender
-		end
-	end
+#	def self.from_omniauth_facebook(auth)
+#		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+#			user.email = auth.info.email
+#			user.password = Devise.friendly_token[0,20]
+#			user.name = auth.info.last_name
+#      user.first_name = auth.info.first_name
+#      user.image = auth.info.image
+#      user.locale = auth.extra.raw_info.locale
+#      user.gender = auth.extra.raw_info.gender
+#		end
+# end
 
   def init
     # Set default image -- currently not in use
