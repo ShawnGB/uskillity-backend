@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth', controllers: {
-        sessions:  'overrides/sessions',
-        registrations:  'overrides/registrations',
-        omniauth_callbacks:  'overrides/omniauth_callbacks'
+    omniauth_callbacks:  'overrides/omniauth_callbacks'
   }
   #devise_for :admin_users, ActiveAdmin::Devise.config, skip: :omniauth_callbacks
   #ActiveAdmin.routes(self)
