@@ -21,6 +21,8 @@ class User < ApplicationRecord
   has_many :created_ratings, foreign_key: :creator_id, class_name: 'Rating'
 
   has_many :images, as: :of
+  default_scope { includes(:images) }
+
   has_many :pictures, foreign_key: :user_id, class_name: 'Image'
 
 	def self.from_omniauth_facebook(auth)
