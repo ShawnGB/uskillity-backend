@@ -1,7 +1,9 @@
 class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
   include UskillityBaseModel
-  after_initialize :init
+
+  #after_initialize :init
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -34,6 +36,7 @@ class User < ApplicationRecord
 	end
 
   def init
+    # Set default image -- currently not in use
     self.image ||= "http://placehold.it/50x50"
   end
 
