@@ -42,4 +42,7 @@ class User < ApplicationRecord
     self.image ||= "http://placehold.it/50x50"
   end
 
+  def token_validation_response
+    UserSerializer.new(self, root: false)
+  end
 end
