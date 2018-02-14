@@ -1,9 +1,5 @@
 module Overrides
   class OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksController
-    def create
-      require 'pry'; binding.pry
-    end
-
 #   def omniauth_success
 #     require 'pry'; binding.pry
 #     super
@@ -18,13 +14,5 @@ module Overrides
 #        redirect_to new_user_registration_url
 #      end
 #   end
-
-    def omniauth_failure
-      require 'pry'; binding.pry
-    end
-
-    def redirect_callbacks
-      require 'pry'; binding.pry
-    end
   end
 end
