@@ -63,6 +63,9 @@ class WorkshopsController < ApplicationController
     workshop.fees           = values[:fees] if values[:fees]
     workshop.category_id    = values[:category_id] if values[:category_id]
     workshop.level_id       = values[:level_id] if values[:level_id]
+
+    workshop.additional_requirements_en = workshop.additional_requirements_de = values[:additional_requirements] if values[:additional_requirements]
+
     unless values[:terms_accepted].nil?
       workshop.terms_accepted = values[:terms_accepted]
       if workshop.terms_accepted and workshop.published_at.nil?
@@ -78,11 +81,11 @@ class WorkshopsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def create_workshop_params
-    params.require(:workshop).permit(:title, :subtitle, :description, :category_id, :fees, :level_id, :min_age, :max_age, :full_address)
+    params.require(:workshop).permit(:title, :subtitle, :description, :category_id, :fees, :level_id, :min_age, :max_age, :full_address, :additional_requirements)
   end
 
   def update_workshop_params
-    params.require(:workshop).permit(:title, :subtitle, :description, :category_id, :fees, :level_id, :min_age, :max_age, :full_address, :terms_accepted)
+    params.require(:workshop).permit(:title, :subtitle, :description, :category_id, :fees, :level_id, :min_age, :max_age, :full_address, :terms_accepted, :additional_requirements)
   end
 
 end

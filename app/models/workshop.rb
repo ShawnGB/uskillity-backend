@@ -18,7 +18,7 @@ class Workshop < ApplicationRecord
   has_many :ratings, as: :rated
   has_many :comments, as: :commented_object
 
-  translates :title, :subtitle, :description
+  translates :title, :subtitle, :description, :additional_requirements
 
   validates :title_en, length: { within: 4..140 }
   validates :title_de, length: { within: 4..140 }

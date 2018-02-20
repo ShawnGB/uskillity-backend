@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180212160440) do
+ActiveRecord::Schema.define(version: 20180220132734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -234,6 +234,7 @@ ActiveRecord::Schema.define(version: 20180212160440) do
     t.integer "max_age"
     t.datetime "published_at"
     t.boolean "terms_accepted"
+    t.hstore "additional_requirements_translations"
     t.index ["category_id"], name: "index_workshops_on_category_id"
     t.index ["level_id"], name: "index_workshops_on_level_id"
     t.index ["provider_id"], name: "index_workshops_on_provider_id"
