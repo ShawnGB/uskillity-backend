@@ -69,6 +69,8 @@ class WorkshopsController < ApplicationController
     w.max_age      = values[:max_age].to_i     unless values[:max_age].blank?
     w.full_address = values[:full_address]     unless values[:full_address].blank?
 
+    w.maximum_workshop_registration_count = values[:maximum_workshop_registration_count].to_i unless values[:maximum_workshop_registration_count].blank?
+
     unless values[:terms_accepted].nil?
       w.terms_accepted = values[:terms_accepted]
       if w.terms_accepted and w.published_at.nil?
@@ -84,11 +86,11 @@ class WorkshopsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def create_workshop_params
-    params.require(:workshop).permit(:title, :subtitle, :description, :category_id, :fees, :level_id, :min_age, :max_age, :full_address, :additional_requirements)
+    params.require(:workshop).permit(:title, :subtitle, :description, :category_id, :fees, :level_id, :min_age, :max_age, :full_address, :additional_requirements, :maximum_workshop_registration_count)
   end
 
   def update_workshop_params
-    params.require(:workshop).permit(:title, :subtitle, :description, :category_id, :fees, :level_id, :min_age, :max_age, :full_address, :terms_accepted, :additional_requirements)
+    params.require(:workshop).permit(:title, :subtitle, :description, :category_id, :fees, :level_id, :min_age, :max_age, :full_address, :terms_accepted, :additional_requirements, :maximum_workshop_registration_count)
   end
 
 end
