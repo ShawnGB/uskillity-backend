@@ -56,20 +56,24 @@ class WorkshopsController < ApplicationController
 
   private
 
-  def update_workshop(workshop, values)
-    workshop.title_en       = workshop.title_de       = values[:title] if values[:title]
-    workshop.subtitle_en    = workshop.subtitle_de    = values[:subtitle] if values[:subtitle]
-    workshop.description_en = workshop.description_de = values[:description] if values[:description]
-    workshop.fees           = values[:fees] if values[:fees]
-    workshop.category_id    = values[:category_id] if values[:category_id]
-    workshop.level_id       = values[:level_id] if values[:level_id]
+  def update_workshop(w, values)
+    w.title_en                   = w.title_de                   = values[:title]                   if values[:title]
+    w.subtitle_en                = w.subtitle_de                = values[:subtitle]                if values[:subtitle]
+    w.description_en             = w.description_de             = values[:description]             if values[:description]
+    w.additional_requirements_en = w.additional_requirements_de = values[:additional_requirements] if values[:additional_requirements]
 
-    workshop.additional_requirements_en = workshop.additional_requirements_de = values[:additional_requirements] if values[:additional_requirements]
+    w.category_id    = values[:category_id]    if values[:category_id]
+    w.fees           = values[:fees]           if values[:fees]
+    w.level_id       = values[:level_id]       if values[:level_id]
+    w.min_age        = values[:min_age]        if values[:min_age]
+    w.max_age        = values[:max_age]        if values[:max_age]
+    w.full_address   = values[:full_address]   if values[:full_address]
+
 
     unless values[:terms_accepted].nil?
-      workshop.terms_accepted = values[:terms_accepted]
-      if workshop.terms_accepted and workshop.published_at.nil?
-        workshop.published_at = Time.zone.now
+      w.terms_accepted = values[:terms_accepted]
+      if w.terms_accepted and w.published_at.nil?
+        w.published_at = Time.zone.now
       end
     end
   end
