@@ -57,18 +57,17 @@ class WorkshopsController < ApplicationController
   private
 
   def update_workshop(w, values)
-    w.title_en                   = w.title_de                   = values[:title]                   if values[:title]
-    w.subtitle_en                = w.subtitle_de                = values[:subtitle]                if values[:subtitle]
-    w.description_en             = w.description_de             = values[:description]             if values[:description]
-    w.additional_requirements_en = w.additional_requirements_de = values[:additional_requirements] if values[:additional_requirements]
+    w.title_en                   = w.title_de                   = values[:title]                   unless values[:title].blank?
+    w.subtitle_en                = w.subtitle_de                = values[:subtitle]                unless values[:subtitle].blank?
+    w.description_en             = w.description_de             = values[:description]             unless values[:description].blank?
+    w.additional_requirements_en = w.additional_requirements_de = values[:additional_requirements] unless values[:additional_requirements].blank?
 
-    w.category_id    = values[:category_id]    if values[:category_id]
-    w.fees           = values[:fees]           if values[:fees]
-    w.level_id       = values[:level_id]       if values[:level_id]
-    w.min_age        = values[:min_age]        if values[:min_age]
-    w.max_age        = values[:max_age]        if values[:max_age]
-    w.full_address   = values[:full_address]   if values[:full_address]
-
+    w.category_id  = values[:category_id].to_i unless values[:category_id].blank?
+    w.fees         = values[:fees].to_i        unless values[:fees].blank?
+    w.level_id     = values[:level_id].to_i    unless values[:level_id].blank?
+    w.min_age      = values[:min_age].to_i     unless values[:min_age].blank?
+    w.max_age      = values[:max_age].to_i     unless values[:max_age].blank?
+    w.full_address = values[:full_address]     unless values[:full_address].blank?
 
     unless values[:terms_accepted].nil?
       w.terms_accepted = values[:terms_accepted]
