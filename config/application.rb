@@ -28,11 +28,12 @@ module BlueCarbuncle
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'
+        origins 'localhost', 'd3afqfzdd8lb1l.cloudfront.net', 'facebook.com', 'facebook.*', '127.0.0.1'
         resource '*',
           :headers => :any,
           :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client', 'Access-Token', 'Expiry', 'Token-Type', 'Uid', 'Client'],
-          :methods => [:get, :post, :options]
+          :methods => :any,
+          :credentials => true
       end
     end
 
