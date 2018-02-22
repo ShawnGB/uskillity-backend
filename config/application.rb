@@ -15,18 +15,28 @@ module BlueCarbuncle
     config.i18n.default_locale = :en
     config.i18n.available_locales = ['en-US', 'en-GB', :en, :de].map(&:to_s)
 
-    # enable CORS (https://github.com/cyu/rack-cors)
+    ## enable CORS (https://github.com/cyu/rack-cors)
+    #config.middleware.insert_before 0, Rack::Cors do
+      #allow do
+        #origins 'localhost:3001', 'localhost:3000', '127.0.0.1:3000', 'http://d3afqfzdd8lb1l.cloudfront.net/', 'https://d3afqfzdd8lb1l.cloudfront.net'
+        #resource '*',
+          #:headers => :any,
+          #:methods => :any,
+          #:credentials => true
+      #end
+    #end
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'localhost:3001', 'localhost:3000', '127.0.0.1:3000', 'http://d3afqfzdd8lb1l.cloudfront.net/', 'https://d3afqfzdd8lb1l.cloudfront.net'
+        origins '*'
         resource '*',
           :headers => :any,
           :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client', 'Access-Token', 'Expiry', 'Token-Type', 'Uid', 'Client'],
-          :methods => :any,
-          :credentials => true
+          :methods => [:get, :post, :options]
       end
     end
 
-		config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
   end
 end
