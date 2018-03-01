@@ -2,7 +2,7 @@ class WorkshopRepository
 
   def self.random(count=6)
     imaged_ws_ids = Workshop.includes(:images).where.not(images: { of_id: nil }).pluck(:id)
-    workshops.where(id: imaged_ws_ids)
+    workshops.where(id: imaged_ws_ids).take(count)
   end
 
   def self.categorised_workshops(category)
