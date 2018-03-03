@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  mount_devise_token_auth_for 'User', at: 'auth', controllers: {
-    omniauth_callbacks:  'overrides/omniauth_callbacks'
-  }
-  #devise_for :admin_users, ActiveAdmin::Devise.config, skip: :omniauth_callbacks
+  mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
+  #devise_for :admin_users, ActiveAdmin::Devise.config, skip: [:omniauth_callbacks]
   #ActiveAdmin.routes(self)
   resources :workshops do
     resources :participations
@@ -23,9 +21,4 @@ Rails.application.routes.draw do
     resources :workshops, only: [:index], controller: 'user_workshops'
     resources :images, only: [:create], controller: 'user_images'
   end
-  #resources :venues, only: [:index, :create]
-  #devise_for :users, :controllers => {
-    #:omniauth_callbacks => "users/omniauth_callbacks",
-    #:registrations      => "users/registrations"
-  #}
 end

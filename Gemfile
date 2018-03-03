@@ -43,7 +43,6 @@ gem 'owlcarousel-rails'
 
 # user management
 gem 'devise'
-gem 'omniauth-facebook'
 gem 'devise_token_auth'
 
 group :development, :test do
