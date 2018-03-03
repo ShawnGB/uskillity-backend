@@ -28,12 +28,4 @@ Rails.application.routes.draw do
     #:omniauth_callbacks => "users/omniauth_callbacks",
     #:registrations      => "users/registrations"
   #}
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: 'pages#index'
-
-  get 'pages/share_details' => 'pages#share_details'
-  get 'pages/looking_around' => 'pages#looking_around'
-  get 'pages/inspiration' => 'pages#inspiration'
-  get 'pages/impressum' => 'pages#impressum'
-  get 'pages/contact' => 'pages#contact'
 end
