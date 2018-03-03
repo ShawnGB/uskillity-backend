@@ -48,4 +48,9 @@ class User < ApplicationRecord
   def fallback_image
     self.image || (ENV['AWS_ASSET_HOST_BASEURL'] +'/fallbacks/profile.png')
   end
+
+  def full_name
+    [first_name, name].reject(&:blank?).join(' ')
+  end
+
 end
