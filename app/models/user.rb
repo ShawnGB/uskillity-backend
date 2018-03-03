@@ -45,4 +45,8 @@ class User < ApplicationRecord
   def token_validation_response
     UserSerializer.new(self, root: false)
   end
+
+  def fallback_image
+    self.image || (ENV['AWS_ASSET_HOST_BASEURL'] +'/fallbacks/profile.png')
+  end
 end
