@@ -2,28 +2,29 @@ require 'securerandom'
 class FacebookUserAuthenticator
   class << self
 
-    def authenticate_from_web_cookies(cookies, token)
+    def authenticate_from_web_cookies(cookies, received_token)
       # get APPID and APP_SECRET from ENV
       fb_secret = Rails.configuration.fb_secret
       @oauth = Koala::Facebook::OAuth.new(Rails.configuration.fb_app_id, fb_secret)
 
       # first get the user info from the cookie which was set by the JS SDK
-      auth = @oauth.get_user_info_from_cookies(cookies)
-      access_token = auth['access_token'] unless auth.nil?
-      access_token = token if access_token.blank?
+      # auth = @oauth.get_user_info_from_cookies(cookies)
+      # access_token = auth['access_token'] unless auth.nil?
+
+      access_token = received_token # if access_token.blank?
 
       # then exchange the short lived token for a long lived token
-      new_auth = @oauth.exchange_access_token_info(access_token)
-      auth['access_token'] = new_auth['access_token']
+      new_auth = @oauth.exchange_access_token_info(received_token)
+      access_token = new_auth['access_token']
 
       # access the graph API using the received access token to get the user profile data
-      @graph = Koala::Facebook::API.new(auth["access_token"], fb_secret)
+      @graph = Koala::Facebook::API.new(access_token, fb_secret)
 
       profile = @graph.get_object("me", {:fields => 'picture, email, first_name, last_name, birthday'})
       #friends = @graph.get_connections("me", "friends")
 
       # add the access_token to the profile as the token is used by our existing authenticate function
-      data = profile.merge({"fb_token" => auth["access_token"]})
+      data = profile.merge({"fb_token" => access_token})
       # set the name field to only be the last name, a thing that is done in the apps, so we have to repeat the same thign here
       data["name"] = data["last_name"]
       # make all fields in the hash accessible by symbols to not change the existing code
