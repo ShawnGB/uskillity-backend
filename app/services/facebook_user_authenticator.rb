@@ -2,16 +2,18 @@ require 'securerandom'
 class FacebookUserAuthenticator
   class << self
 
-    def authenticate_from_web_cookies(cookies)
+    def authenticate_from_web_cookies(cookies, token)
       # get APPID and APP_SECRET from ENV
       fb_secret = Rails.configuration.fb_secret
       @oauth = Koala::Facebook::OAuth.new(Rails.configuration.fb_app_id, fb_secret)
 
       # first get the user info from the cookie which was set by the JS SDK
       auth = @oauth.get_user_info_from_cookies(cookies)
+      access_token = auth['access_token'] unless auth.nil?
+      access_token = token if access_token.blank?
 
       # then exchange the short lived token for a long lived token
-      new_auth = @oauth.exchange_access_token_info(auth['access_token'])
+      new_auth = @oauth.exchange_access_token_info(access_token)
       auth['access_token'] = new_auth['access_token']
 
       # access the graph API using the received access token to get the user profile data

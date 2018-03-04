@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   end
 
   def authenticate_with_facebook
-    status, user = FacebookUserAuthenticator.authenticate_from_web_cookies(cookies)
+    status, user = FacebookUserAuthenticator.authenticate_from_web_cookies(cookies, facebook_params['accessToken'])
 
     client, token = user.generate_devise_auth_tokens()
     user.save!
