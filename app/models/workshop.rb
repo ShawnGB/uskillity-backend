@@ -25,6 +25,7 @@ class Workshop < ApplicationRecord
 
   validates :category, presence: true
   validates :provider, presence: true
+  validates :level, presence: true
 
   has_many :images, as: :of
 
