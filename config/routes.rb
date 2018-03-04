@@ -21,4 +21,6 @@ Rails.application.routes.draw do
     resources :workshops, only: [:index], controller: 'user_workshops'
     resources :images, only: [:create], controller: 'user_images'
   end
+
+  post 'authenticate_with_facebook' => 'users#authenticate_with_facebook'
 end

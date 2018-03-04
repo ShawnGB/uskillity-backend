@@ -37,6 +37,8 @@ module BlueCarbuncle
       end
     end
 
+    config.fb_secret = (ENV["FACEBOOK_SECRET"] || '9bdd43d78fe14574a24d2b9ee9c86444')
+    config.fb_app_id = (ENV["FACEBOOK_APP_ID"] || '624849507671905')
 
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
   end
