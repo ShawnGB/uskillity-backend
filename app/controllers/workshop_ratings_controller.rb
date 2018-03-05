@@ -1,4 +1,4 @@
-class WorkshopRatingsController < ApplicationController
+class WorkshopRatingsController < ApiController
   before_action :set_rating, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 

@@ -1,4 +1,4 @@
-class WorkshopRegistrationsController < ApplicationController
+class WorkshopRegistrationsController < ApiController
   before_action :set_workshop_registration, only: [:show, :edit, :update, :destroy]
 
   # GET /workshop_registrations

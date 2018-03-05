@@ -1,4 +1,4 @@
-class UserWorkshopsController < ApplicationController
+class UserWorkshopsController < ApiController
 
   def index
     user = User.find_by(id: params[:user_id])

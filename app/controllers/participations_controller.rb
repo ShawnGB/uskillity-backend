@@ -1,4 +1,4 @@
-class ParticipationsController < ApplicationController
+class ParticipationsController < ApiController
   before_action :set_participation, only: [:show, :edit, :update, :destroy]
 
   # GET /participations

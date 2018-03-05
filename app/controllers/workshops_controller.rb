@@ -1,4 +1,4 @@
-class WorkshopsController < ApplicationController
+class WorkshopsController < ApiController
   before_action :set_workshop, only: [:update, :destroy]
   before_action :authenticate_user!, except: [:random, :index, :show]
 

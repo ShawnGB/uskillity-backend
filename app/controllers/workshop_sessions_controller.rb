@@ -1,4 +1,4 @@
-class WorkshopSessionsController < ApplicationController
+class WorkshopSessionsController < ApiController
   before_action :set_workshop_session, only: [:update, :destroy]
   before_action :authenticate_user!
 

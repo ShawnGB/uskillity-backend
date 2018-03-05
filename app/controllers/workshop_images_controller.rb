@@ -1,4 +1,4 @@
-class WorkshopImagesController < ApplicationController
+class WorkshopImagesController < ApiController
   before_action :authenticate_user!
 
   def create

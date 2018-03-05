@@ -1,4 +1,4 @@
-class PagesController < ApplicationController
+class PagesController < ApiController
   def index
     @workshops = Workshop.last(20).sample(6)
     @categories = Category.all
