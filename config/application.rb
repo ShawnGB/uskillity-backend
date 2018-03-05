@@ -28,7 +28,7 @@ module BlueCarbuncle
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'localhost:3000', 'localhost:3001', '127.0.0.1:3000', '127.0.0.1:3000', 'd3afqfzdd8lb1l.cloudfront.net', 'bluecarbuncle-staging.herokuapp.com', 'facebook.com'
+        origins '*'
         resource '*',
           :headers => :any,
           :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client', 'Access-Token', 'Expiry', 'Token-Type', 'Uid', 'Client'],
