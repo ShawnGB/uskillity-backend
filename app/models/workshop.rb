@@ -26,6 +26,22 @@ class Workshop < ApplicationRecord
   validates :category, presence: true
   validates :provider, presence: true
   validates :level, presence: true
+  validates :min_age, numericality: { greater_than_or_equal_to: 13 }, :allow_blank => true
+  validates :min_age, numericality: { less_than: 120 }, :allow_blank => true
+  validates :max_age, numericality: { greater_than: 13 }, :allow_blank => true
+  validates :max_age, numericality: { less_than_or_equal_to: 120 }, :allow_blank => true
+  validates :max_age, numericality: { less_than_or_equal_to: 120 }, :allow_blank => true
+  validates :maximum_workshop_registration_count, numericality: { greater_than: 0, message: "Participation count must be larger than 0"}
+  validates :fees, presence: true
+  validates :fees, numericality: { less_than_or_equal_to: 250, message: "Contact the admins for a larger fees/ticket"}, :allow_blank => true
+  validate :min_max_are_in_order
+
+  def min_max_are_in_order
+    return unless self[:min_age] && self[:max_age]
+    age_order_correct = self[:min_age] <= self[:max_age]
+    errors[:age_order] << ": min must be lower than max" unless age_order_correct
+    return age_order_correct
+  end
 
   has_many :images, as: :of
 
