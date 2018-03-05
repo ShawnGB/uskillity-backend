@@ -17,7 +17,18 @@ module BlueCarbuncle
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'localhost:3000', 'localhost:3001', '127.0.0.1:3000', '127.0.0.1:3000', /http:\/\/(.*?)\.cloudfront\.net/, /http:\/\/(.*?)\..amazonaws\.com/, /http:\/\/(.*?)\.uskillity\.de/
+        origins 'localhost:3000', 'localhost:3001', '127.0.0.1:3000',
+          '127.0.0.1:3000',
+          'http://uskillity-reactjs-staging.s3.eu-central-1.amazonaws.com',
+          'http://uskillity-reactjs-production.s3.eu-central-1.amazonaws.com',
+          'http://d1vpskb3suegzv.cloudfront.net',
+          'http://d1f5bgy9ys3olw.cloudfront.net',
+          'http://d3afqfzdd8lb1l.cloudfront.net', 'http://uskillity.de',
+          'https://uskillity-reactjs-staging.s3.eu-central-1.amazonaws.com',
+          'https://uskillity-reactjs-production.s3.eu-central-1.amazonaws.com',
+          'https://d1vpskb3suegzv.cloudfront.net',
+          'https://d1f5bgy9ys3olw.cloudfront.net',
+          'https://d3afqfzdd8lb1l.cloudfront.net', 'https://uskillity.de'
         resource '*',
           :headers => :any,
           :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client', 'Access-Token', 'Expiry', 'Token-Type', 'Uid', 'Client'],
