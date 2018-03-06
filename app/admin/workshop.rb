@@ -1,8 +1,8 @@
 ActiveAdmin.register Workshop do
 
-  permit_params :title_en, :title_de, :subtitle_en, :subtitle_de, :description_en, :description_de, :category_id, :provider_id, :main_image, :more_images, :minimum_workshop_registration_count, :maximum_workshop_registration_count, :action_word
+  permit_params :title_en, :title_de, :subtitle_en, :subtitle_de, :description_en, :description_de, :category_id, :level_id, :provider_id, :main_image, :more_images, :minimum_workshop_registration_count, :maximum_workshop_registration_count, :action_word, :is_approved, :fees
   translated_attributes = %w[title subtitle description]
-  regular_attributes = %w[category_id fees provider_id main_image more_images minimum_workshop_registration_count maximum_workshop_registration_count action_word]
+  regular_attributes = %w[category_id level_id is_approved fees provider_id main_image more_images minimum_workshop_registration_count maximum_workshop_registration_count action_word]
   divine_attributes = %w[id created_at updated_at]
   # ignored_attributes = %w[offered_on is_approved is_recurring recurrence_type price]
 
