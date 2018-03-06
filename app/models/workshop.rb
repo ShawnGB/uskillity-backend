@@ -8,7 +8,7 @@ class Workshop < ApplicationRecord
   belongs_to :level
   belongs_to :venue
 
-  has_many :workshop_sessions
+  has_many :workshop_sessions, dependent: :delete_all
   #has_many :venues, through: :workshop_sessions
   #has_many :tutors, through: :workshop_sessions
 
