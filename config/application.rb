@@ -28,7 +28,8 @@ module BlueCarbuncle
           'https://uskillity-reactjs-production.s3.eu-central-1.amazonaws.com',
           'https://d1vpskb3suegzv.cloudfront.net',
           'https://d1f5bgy9ys3olw.cloudfront.net',
-          'https://d3afqfzdd8lb1l.cloudfront.net', 'https://uskillity.de', 'https://uskillity.com'
+          'https://d3afqfzdd8lb1l.cloudfront.net', 'https://uskillity.de', 'https://uskillity.com',
+          'https://www.uskillity.de'
         resource '*',
           :headers => :any,
           :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client', 'Access-Token', 'Expiry', 'Token-Type', 'Uid', 'Client'],
