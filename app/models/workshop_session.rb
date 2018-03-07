@@ -8,7 +8,7 @@ class WorkshopSession < ApplicationRecord
   has_many :workshop_registrations, through: :participations
   has_many :participants, through: :workshop_registrations, source: :user
 
-  #translates :title, :subtitle, :description
+  translates :title, :subtitle, :description
 
   validates :starts_at, presence: true
   validates :ends_at, {
