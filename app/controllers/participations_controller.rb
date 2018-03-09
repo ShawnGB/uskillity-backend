@@ -31,6 +31,10 @@ class ParticipationsController < ApiController
       end
     }
 
+    ws = Workshop.includes(:provider).find(workshop_id())
+    UserMailer.participations_created(ws, current_user, requested_participation_count).deliver
+    UserMailer.you_are_participating(ws, @workshop_session, current_user, participations).deliver
+
     render json: participations, status: :created
   end
 

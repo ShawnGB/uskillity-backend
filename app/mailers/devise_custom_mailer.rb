@@ -21,10 +21,10 @@ class DeviseCustomMailer < Devise::Mailer
       confirmation_token: token
     }
     action_url = "#{confirmation_url()}?#{confirm_params.to_query()}"
-      PostmarkTemplateMailDelivery.deliver(from: 'welcome@uskillity.de',
-                                           to: record.email,
-                                           template_id: 5018001,
-                                           template_model: postmark_fields_for_record(record, {action_url: action_url} ))
+    PostmarkTemplateMailDelivery.deliver(from: 'welcome@uskillity.de',
+                                         to: record.email,
+                                         template_id: 5018001,
+                                         template_model: postmark_fields_for_record(record, {action_url: action_url} ))
   end
 
   def reset_password_instructions(record, token, opts={})
@@ -34,10 +34,10 @@ class DeviseCustomMailer < Devise::Mailer
       reset_password_token: token
     }
     action_url = "#{edit_password_url()}?#{reset_params.to_query()}"
-      PostmarkTemplateMailDelivery.deliver(from: 'welcome@uskillity.de',
-                                           to: record.email,
-                                           template_id: 1057902,
-                                           template_model: postmark_fields_for_record(record, {passwort_reset_url: action_url }))
+    PostmarkTemplateMailDelivery.deliver(from: 'welcome@uskillity.de',
+                                         to: record.email,
+                                         template_id: 1057902,
+                                         template_model: postmark_fields_for_record(record, {passwort_reset_url: action_url }))
   end
 
   def unlock_instructions(record, token, opts={})
