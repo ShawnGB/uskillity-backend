@@ -33,7 +33,8 @@ class UserMailer < ApplicationMailer
                                          template_id: 5124325,
                                          template_model: base_fields(participant, {
                                            ticket_count: count,
-                                           workshop_title: ws.title
+                                           workshop_title: ws.title,
+                                           participant_name:  participant.name || participant.first_name || participant.email,
                                          }))
   end
 end
