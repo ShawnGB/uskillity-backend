@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180304002932) do
+ActiveRecord::Schema.define(version: 20180309112230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,8 @@ ActiveRecord::Schema.define(version: 20180304002932) do
     t.float "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_participations_on_user_id"
     t.index ["workshop_registration_id"], name: "index_participations_on_workshop_registration_id"
     t.index ["workshop_session_id"], name: "index_participations_on_workshop_session_id"
   end
@@ -244,6 +246,7 @@ ActiveRecord::Schema.define(version: 20180304002932) do
 
   add_foreign_key "comments", "users", column: "commenter_id"
   add_foreign_key "images", "users"
+  add_foreign_key "participations", "users"
   add_foreign_key "participations", "workshop_registrations"
   add_foreign_key "participations", "workshop_sessions"
   add_foreign_key "ratings", "users", column: "creator_id"

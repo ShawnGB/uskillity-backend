@@ -9,11 +9,8 @@ class Workshop < ApplicationRecord
   belongs_to :venue
 
   has_many :workshop_sessions, dependent: :delete_all
-  #has_many :venues, through: :workshop_sessions
-  #has_many :tutors, through: :workshop_sessions
-
-  has_many :workshop_registrations
-  has_many :registered_users, through: :workshop_registrations, source: :user
+  has_many :participations, through: :workshop_sessions, dependent: :delete_all
+  has_many :participants, through: :participations, source: :user
 
   has_many :ratings, as: :rated
   has_many :comments, as: :commented_object

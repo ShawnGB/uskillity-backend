@@ -1,12 +1,7 @@
 class WorkshopSession < ApplicationRecord
-  belongs_to :level
-  belongs_to :tutor, class_name: 'User'
   belongs_to :workshop
-  belongs_to :venue
-
   has_many :participations
-  has_many :workshop_registrations, through: :participations
-  has_many :participants, through: :workshop_registrations, source: :user
+  has_many :participants, through: :participations, source: :user
 
   translates :title, :subtitle, :description
 

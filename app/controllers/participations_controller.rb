@@ -1,74 +1,63 @@
 class ParticipationsController < ApiController
-  before_action :set_participation, only: [:show, :edit, :update, :destroy]
-
-  # GET /participations
-  # GET /participations.json
-  def index
-    @participations = Participation.all
-  end
-
-  # GET /participations/1
-  # GET /participations/1.json
-  def show
-  end
-
-  # GET /participations/new
-  def new
-    @participation = Participation.new
-  end
-
-  # GET /participations/1/edit
-  def edit
-  end
+  before_action :set_workshop_session
+  before_action :authenticate_user!
 
   # POST /participations
   # POST /participations.json
   def create
-    @participation = Participation.new(participation_params)
+    if @workshop_session.nil?
+      return render json: {error: "Session not found"}, status: :not_found
+    end
 
-    respond_to do |format|
-      if @participation.save
-        format.html { redirect_to @participation, notice: 'Participation was successfully created.' }
-        format.json { render :show, status: :created, location: @participation }
+    allocatable =  (@workshop_session.workshop.maximum_workshop_registration_count || 999) - @workshop_session.participations.count
+
+    if allocatable < 0
+      return render json: {error: "Maximum registrations reached"}, status: :unprocessable_entity
+    end
+
+    if allocatable < requested_participation_count
+      return render json: {error: "Only #{allocatable} tickets can be reserved"}, status: :unprocessable_entity
+    end
+
+    participations = []
+
+    requested_participation_count.times {
+      p = Participation.new(participation_params)
+      if p.save!
+        participations.append(p)
       else
-        format.html { render :new }
-        format.json { render json: @participation.errors, status: :unprocessable_entity }
+        participations.map{ |pd| pd.delete }
+        return render json: participation.errors, status: :unprocessable_entity
       end
-    end
-  end
+    }
 
-  # PATCH/PUT /participations/1
-  # PATCH/PUT /participations/1.json
-  def update
-    respond_to do |format|
-      if @participation.update(participation_params)
-        format.html { redirect_to @participation, notice: 'Participation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @participation }
-      else
-        format.html { render :edit }
-        format.json { render json: @participation.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /participations/1
-  # DELETE /participations/1.json
-  def destroy
-    @participation.destroy
-    respond_to do |format|
-      format.html { redirect_to participations_url, notice: 'Participation was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    render json: participations, status: :created
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_participation
-      @participation = Participation.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_participation
+    @participation = Participation.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def participation_params
-      params.require(:participation).permit(:workshop_session_id, :workshop_registration_id, :score)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def participation_params
+    {}.merge(:user_id => current_user.id, workshop_session_id: workshop_session_id())
+  end
+
+  def set_workshop_session
+    @workshop_session = WorkshopSession.includes(:workshop).find_by(id: workshop_session_id())
+  end
+
+  def requested_participation_count
+    params[:requested_participation_count] || 1
+  end
+
+  def workshop_id()
+    params[:workshop_id]
+  end
+
+  def workshop_session_id()
+    params[:workshop_session_id]
+  end
 end

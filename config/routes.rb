@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
   resources :workshops do
-    resources :participations
     resources :workshop_registrations, except: :delete
     resources :bookings, except: :delete
     resources :ratings, except: [:new, :edit], controller: 'workshop_ratings'
     resources :images, only: [:create], controller: 'workshop_images'
     resources :workshop_sessions, only: [:create, :update, :destroy] do
       resources :comments, only: [:create]
+      resources :participations, only: [:create]
     end
     get 'random', on: :collection
   end
