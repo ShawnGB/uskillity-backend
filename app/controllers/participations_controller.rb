@@ -54,7 +54,7 @@ class ParticipationsController < ApiController
   end
 
   def requested_participation_count
-    params[:requested_participation_count] || 1
+    (params[:requested_participation_count] || 1).to_i
   end
 
   def workshop_id()
