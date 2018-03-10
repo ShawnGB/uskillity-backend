@@ -1,7 +1,7 @@
 ActiveAdmin.register WorkshopSession do
   permit_params :title_en, :title_de, :subtitle_en, :subtitle_de, :description_en, :description_de, :starts_at, :ends_at, :level_id, :main_image, :more_images, :tutor_id, :workshop_id, :venue_id, :minimum_participation_count, :maximum_participation_count
   translated_attributes = %w[title subtitle description]
-  regular_attributes = %w[starts_at ends_at level_id main_image more_images tutor_id venue_id minimum_participation_count maximum_participation_count]
+  regular_attributes = %w[starts_at ends_at level_id main_image more_images tutor_id venue_id minimum_participation_count maximum_participation_count workshop]
   divine_attributes = %w[id created_at updated_at]
 
   index do
