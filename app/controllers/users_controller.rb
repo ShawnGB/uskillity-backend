@@ -19,6 +19,19 @@ class UsersController < ApiController
     end
 
     if @user.update(user_params)
+      if @user.stripe_temporary_token.present?
+        token = @user.stripe_temporary_token
+        customer = Stripe::Customer.create(
+          email: @user.email,
+          source: token[:id]
+        )
+        @user.update_attribute(:stripe_customer_id, customer.id)
+        payment_method = {
+          brand: token[:brand],
+          last4: token[:last4]
+        }
+        @user.update_attribute(:payment_method, payment_method)
+      end
       render json: nil, status: :no_content
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -82,7 +95,13 @@ class UsersController < ApiController
   def user_params
     params.require(:user).permit(:name, :first_name, :locale, :gender,
                                  :nickname, :about, :edu_bg, :profession,
-                                 :location)
+                                 :location,
+                                 :stripe_customer_id,
+                                 :stripe_temporary_token => [
+                                   :brand,
+                                   :id,
+                                   :last4
+                                   ])
   end
 
   def facebook_params
