@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :first_name, :nickname, :rating, :image, :about, :edu_bg, :profession, :location
+  attributes :id, :name, :first_name, :nickname, :rating, :image, :about, :edu_bg, :profession, :location, :stripe_provider
   def image
     return object.fallback_image if object.images.blank?
     return object.images.sort_by{|image| image.id}.last.url.url
