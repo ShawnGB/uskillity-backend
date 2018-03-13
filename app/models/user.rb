@@ -41,6 +41,10 @@ class User < ApplicationRecord
     [first_name, name].reject(&:blank?).join(' ')
   end
 
+  def can_receive_payments?
+    stripe_uid? &&  stripe_provider? && stripe_access_code? && stripe_publishable_key?
+  end
+
   def generate_devise_auth_tokens
     # create client id and token
     client_id = SecureRandom.urlsafe_base64(nil, false)

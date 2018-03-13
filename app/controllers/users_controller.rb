@@ -1,5 +1,5 @@
 class UsersController < ApiController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :stripe_account_connect]
   before_action :authenticate_user!, except: [:show, :authenticate_with_facebook]
 
   def show
@@ -36,6 +36,19 @@ class UsersController < ApiController
 
     @user.destroy
     render json: nil, status: :no_content
+  end
+
+  def stripe_account_connect
+    if @user.nil?
+      return render json: nil, status: :not_found
+    end
+    if current_user.id != @user.id
+      return render json: {error: 'permission denied'}, status: :forbidden
+    end
+    @user.stripe_connection_token = SecureRandom.urlsafe_base64(nil, false)
+    @user.save
+    redirect_url = StripeConnector.authorization_url(@user)
+    return render json: {redirect_url: redirect_url}
   end
 
   def authenticate_with_facebook
@@ -79,5 +92,4 @@ class UsersController < ApiController
                                           :accessToken, :expiresIn,
                                           :signedRequest, :userID)
   end
-
 end
