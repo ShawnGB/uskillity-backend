@@ -7,6 +7,26 @@ class StripeConnector
       authz_url = "#{STRIPE_AUTHZ_URL}?response_type=code&client_id=#{client_id}&scope=read_write&state=#{state}"
     end
 
+    def create_stripe_customer(user, token)
+      customer = Stripe::Customer.create(
+        email: user.email,
+        source: token[:id]
+      )
+      user.update_attribute(:stripe_customer_id, customer.id)
+      payment_method = {
+        brand: token[:brand],
+        last4: token[:last4]
+      }
+      user.update_attribute(:payment_method, payment_method)
+    end
+
+    def remove_stripe_customer(user)
+      cu = Stripe::Customer.retrieve(user.stripe_customer_id)
+      cu.delete
+      user.update_attribute(:stripe_customer_id, nil)
+      user.update_attribute(:payment_method, nil)
+    end
+
     def connect_user_from_stripe(state, code)
       @client = Rack::OAuth2::Client.new(
         identifier: Rails.configuration.stripe[:secret_key],

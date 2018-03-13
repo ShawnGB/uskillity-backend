@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     end
     resources :workshops, only: [:index], controller: 'user_workshops'
     resources :images, only: [:create], controller: 'user_images'
-    resources :payment_methods, only: [:index], controller: 'user_payment_methods'
+    resources :payment_methods, only: [:index, :destroy], controller: 'user_payment_methods'
   end
 
   post 'authenticate_with_facebook' => 'users#authenticate_with_facebook'
