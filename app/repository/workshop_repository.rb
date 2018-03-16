@@ -22,8 +22,11 @@ class WorkshopRepository
     nil
   end
 
-  def self.workshops_by_user(user)
-    workshops.where(provider: user)
+  def self.workshops_by_user(user, current_user=nil)
+    if (current_user && current_user.id == user.id)
+      return workshops({}).where(provider: user)
+    end
+    return workshops.where(provider: user)
   end
 
   def self.workshops(conditions={is_approved: true, terms_accepted: true})
