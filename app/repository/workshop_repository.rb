@@ -9,16 +9,24 @@ class WorkshopRepository
     workshops.where(category: category)
   end
 
-  def self.workshop_with_id(id)
-    workshops.find_by(id: id)
+  def self.workshop_with_id(id, user=nil)
+    if user.nil? || user.id.nil?
+      return workshops.find_by(id: id)
+    end
+
+    workshop = workshops({}).find_by(id: id)
+    if workshop && ( workshop.is_viewable ||  (workshop.provider_id == user.id) )
+      return workshop
+    end
+
+    nil
   end
 
   def self.workshops_by_user(user)
     workshops.where(provider: user)
   end
 
-  def self.workshops
-    # TODO -- send only ready items.
-    Workshop.includes({provider: :images}, :images, {workshop_sessions: :participations}).where(is_approved: true).where(terms_accepted: true)
+  def self.workshops(conditions={is_approved: true, terms_accepted: true})
+    Workshop.includes({provider: :images}, :images, {workshop_sessions: :participations}).where(conditions)
   end
 end
