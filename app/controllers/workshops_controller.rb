@@ -15,7 +15,7 @@ class WorkshopsController < ApiController
   end
 
   def show
-    workshop = WorkshopRepository.workshop_with_id(params[:id])
+    workshop = WorkshopRepository.workshop_with_id(params[:id], current_user)
     if workshop.nil?
       return render json: nil, status: :not_found
     end

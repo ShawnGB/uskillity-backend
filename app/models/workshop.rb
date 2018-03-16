@@ -43,7 +43,7 @@ class Workshop < ApplicationRecord
   has_many :images, as: :of
 
   def is_viewable
-    is_approved # && workshop_session.count.nonzero?
+    is_approved && terms_accepted
   end
 
   def is_viable
