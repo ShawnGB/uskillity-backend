@@ -47,7 +47,7 @@ class WorkshopRatingsController < ApiController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rating_params
-      params.require(:rating).permit(:rating, :creator_id).merge(:rated_id => workshop_id(), :rated_type => 'Workshop')
+      params.require(:workshop_rating).permit(:rating, :creator_id).merge(:rated_id => workshop_id(), :rated_type => 'Workshop', :creator_id => current_user.id)
     end
 
     def workshop_id()
