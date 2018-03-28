@@ -5,7 +5,7 @@ class DeviseCustomMailer < Devise::Mailer
 
   def postmark_fields_for_record(record, extra={})
     {
-      name: record.name || record.first_name || record.email,
+      name: record.first_name || record.name || record.email,
       first_name: record.first_name || record.email,
       full_name: record.full_name || record.email,
       invite_sender_organization_name: 'Uskillity UG',
