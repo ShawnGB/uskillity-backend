@@ -23,6 +23,9 @@ class WorkshopSessionsController < ApiController
 
   def destroy
     if @workshop_session
+      if @workshop_session.participations.count > 0
+        return render json: {error: "Cannot delete: You have #{@workshop_session.participations.count} participants"}, status: :unprocessable_entity
+      end
       @workshop_session.destroy
       render json: nil, status: :no_content
     else
