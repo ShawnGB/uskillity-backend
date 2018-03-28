@@ -2,7 +2,7 @@ class UserMailer < ApplicationMailer
 
   def base_fields(record, extra={})
     {
-      name: record.name || record.first_name || record.email,
+      name: record.first_name || record.name || record.email,
       first_name: record.first_name || record.email,
       full_name: record.full_name || record.email,
       invite_sender_organization_name: 'Uskillity UG',
@@ -34,7 +34,7 @@ class UserMailer < ApplicationMailer
                                          template_model: base_fields(participant, {
                                            ticket_count: count,
                                            workshop_title: ws.title,
-                                           participant_name:  participant.name || participant.first_name || participant.email,
+                                           participant_name:  participant.first_name || participant.name || participant.email,
                                          }))
   end
 end
