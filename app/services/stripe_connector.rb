@@ -8,10 +8,16 @@ class StripeConnector
     end
 
     def create_stripe_customer(user, token)
-      customer = Stripe::Customer.create(
-        email: user.email,
-        source: token[:id]
-      )
+      if !user.stripe_customer_id.blank?
+        customer = Stripe::Customer.retrieve(user.stripe_customer_id)
+        customer.source = token[:id]
+        customer.save
+      else
+        customer = Stripe::Customer.create(
+          email: user.email,
+          source: token[:id]
+        )
+      end
       user.update_attribute(:stripe_customer_id, customer.id)
       payment_method = {
         brand: token[:brand],
@@ -21,6 +27,8 @@ class StripeConnector
     end
 
     def remove_stripe_customer(user)
+      #TODO => remove only payment_method field from user
+      # deleting the user from stripe can result in users not being chargeable
       cu = Stripe::Customer.retrieve(user.stripe_customer_id)
       cu.delete
       user.update_attribute(:stripe_customer_id, nil)
