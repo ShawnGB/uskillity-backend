@@ -22,6 +22,7 @@ class ParticipationsController < ApiController
     participations = []
 
     requested_participation_count.times {
+      # TODO check if transaction could be made
       p = Participation.new(participation_params)
       if p.save!
         participations.append(p)

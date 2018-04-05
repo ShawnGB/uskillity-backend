@@ -40,10 +40,16 @@ class Transaction < ApplicationRecord
   end
 
   def make_charge
-    # TODO checks...
-    # self.provider.stripe_uid cannot be blank
-    # self.participant.stripe_customer_id cannot be blank
-    # make_charge cannot be made when paid == true
+    if self.paid
+      raise StandardError.new("Payment has already been made")
+    end
+    if provider.stripe_uid.blank?
+      raise StandardError.new("Workshop Provider has not connected their stripe account. Cannot make payment.")
+    end
+    if participant.stripe_customer_id.blank?
+      raise StandardError.new("No payment method available. Please register a payment method.")
+    end
+
     charge = Stripe::Charge.create({
       # Total Amount user will be charged (in cents)
       amount: total_amount,
@@ -70,7 +76,8 @@ class Transaction < ApplicationRecord
   end
 
   rescue => e
-    errors.add(:stripe_charge_error, "Could not create the charge. Info from Stripe: #{e.message}")
+    #TODO also notify platform admins
+    errors.add(:stripe_charge_error, "Could not create the charge. #{e.message}")
   end
 
   def after_charge_succeeded(charge, fee)
