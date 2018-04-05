@@ -25,6 +25,7 @@ class ParticipationsController < ApiController
       # TODO check if transaction could be made
       p = Participation.new(participation_params)
       if p.save!
+        p.reload
         if p.payment_transaction.errors.any?
           return render json: p.payment_transaction.errors, status: :unprocessable_entity
         else
