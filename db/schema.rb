@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180313195132) do
+ActiveRecord::Schema.define(version: 20180405124447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,16 @@ ActiveRecord::Schema.define(version: 20180313195132) do
     t.integer "lang", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "participation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "total", precision: 8, scale: 2, default: "0.0", null: false
+    t.boolean "paid", default: false
+    t.string "stripe_charge"
+    t.index ["participation_id"], name: "index_transactions_on_participation_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -258,6 +268,7 @@ ActiveRecord::Schema.define(version: 20180313195132) do
   add_foreign_key "participations", "workshop_registrations"
   add_foreign_key "participations", "workshop_sessions"
   add_foreign_key "ratings", "users", column: "creator_id"
+  add_foreign_key "transactions", "participations"
   add_foreign_key "workshop_registrations", "bookings"
   add_foreign_key "workshop_registrations", "users"
   add_foreign_key "workshop_registrations", "workshops"
