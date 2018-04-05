@@ -14,7 +14,7 @@ class Transaction < ApplicationRecord
   end
 
   def workshop_price
-    workshop.price.blank? ? 0 : workshop.price
+    workshop.fees.blank? ? 0 : workshop.fees
   end
 
   # Total amount converted to cents
