@@ -31,8 +31,12 @@ class Transaction < ApplicationRecord
   end
 
   def fee
-    # for now always take 5% cut
-    total_amount * 0.10
+    # include the stripe fees (2.9% + 30cents) and a 10% cut for the platform
+    # the buyer pays the full amount
+    # recipient will receive full amount - stripe fees - platform cut
+    stripe_fees = total_amount * 0.029 + 30
+    cut_for_platform = total_amount * 0.10
+    return stripe_fees + cut_for_platform
   end
 
   def make_charge
