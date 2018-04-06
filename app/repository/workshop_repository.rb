@@ -31,6 +31,11 @@ class WorkshopRepository
   end
 
   def self.workshops(conditions={is_approved: true, terms_accepted: true}, session_conditions={starts_at: Time.now..10.years.from_now})
-    Workshop.includes({provider: :images}, :images, {workshop_sessions: :participations}).where(conditions).joins(:workshop_sessions).where(workshop_sessions: session_conditions)
+    allowed_workshops  = Workshop.includes({provider: :images}, :images, {workshop_sessions: :participations}).where(conditions)
+    if session_conditions.blank?
+      allowed_workshops
+    else
+      allowed_workshops.joins(:workshop_sessions).where(workshop_sessions: session_conditions)
+    end
   end
 end
