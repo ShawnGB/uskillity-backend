@@ -50,6 +50,7 @@ class UsersController < ApiController
     end
     @user.stripe_connection_token = SecureRandom.urlsafe_base64(nil, false)
     @user.save
+    @user.reload
     redirect_url = StripeConnector.authorization_url(@user)
     return render json: {redirect_url: redirect_url}
   end
