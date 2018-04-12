@@ -1,12 +1,11 @@
 class WorkshopRepository
-
   def self.random(count=6)
     imaged_ws_ids = Workshop.includes(:images).where.not(images: { of_id: nil }).pluck(:id)
     workshops.where(id: imaged_ws_ids).sample(count)
   end
 
   def self.categorised_workshops(category)
-    workshops.where(category: category)
+    workshops.where(category: category).uniq
   end
 
   def self.workshop_with_id(id, user=nil)
@@ -25,9 +24,9 @@ class WorkshopRepository
 
   def self.workshops_by_user(user, current_user=nil)
     if (current_user && current_user.id == user.id)
-      return workshops({}, {}).where(provider: user)
+      return workshops({}, {}).where(provider: user).uniq
     end
-    return workshops.where(provider: user)
+    return workshops.where(provider: user).uniq
   end
 
   def self.workshops(conditions={is_approved: true, terms_accepted: true}, session_conditions={starts_at: Time.now..10.years.from_now})
