@@ -18,9 +18,14 @@ Rails.application.routes.draw do
   end
   resources :levels, only: [:index, :show]
   resources :users, except: [:index, :new, :edit, :create] do
+    member do
+      get :stripe_account_connect
+    end
     resources :workshops, only: [:index], controller: 'user_workshops'
     resources :images, only: [:create], controller: 'user_images'
+    resources :payment_methods, only: [:index, :destroy], controller: 'user_payment_methods'
   end
 
   post 'authenticate_with_facebook' => 'users#authenticate_with_facebook'
+  get 'stripe_connect_callback' => 'stripe#connect_callback'
 end

@@ -32,12 +32,18 @@ class Workshop < ApplicationRecord
   validates :fees, presence: true
   validates :fees, numericality: { less_than_or_equal_to: 250, message: "Contact the admins for a larger fees/ticket"}, :allow_blank => true
   validate :min_max_are_in_order
+  validate :provider_has_a_stripe_account
 
   def min_max_are_in_order
     return unless self[:min_age] && self[:max_age]
     age_order_correct = self[:min_age] <= self[:max_age]
     errors[:age_order] << ": min must be lower than max" unless age_order_correct
     return age_order_correct
+  end
+
+  def provider_has_a_stripe_account
+    return if self.provider.can_receive_payments?
+    errors[:stripe] << "You need to have a Stripe business account connected to create workshops"
   end
 
   has_many :images, as: :of

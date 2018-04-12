@@ -24,6 +24,8 @@ class User < ApplicationRecord
 
   has_many :pictures, foreign_key: :user_id, class_name: 'Image'
 
+  attr_accessor :stripe_temporary_token
+
   def init
     # Set default image -- currently not in use
     self.image ||= "http://placehold.it/50x50"
@@ -39,6 +41,14 @@ class User < ApplicationRecord
 
   def full_name
     [first_name, name].reject(&:blank?).join(' ')
+  end
+
+  def can_receive_payments?
+    stripe_uid? &&  stripe_provider? && stripe_access_code? && stripe_publishable_key?
+  end
+
+  def can_make_payments?
+    stripe_customer_id?
   end
 
   def generate_devise_auth_tokens

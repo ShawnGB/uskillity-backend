@@ -22,9 +22,15 @@ class ParticipationsController < ApiController
     participations = []
 
     requested_participation_count.times {
+      # TODO check if transaction could be made
       p = Participation.new(participation_params)
       if p.save!
-        participations.append(p)
+        p.reload
+        if p.payment_transaction.errors.any?
+          return render json: p.payment_transaction.errors, status: :unprocessable_entity
+        else
+          participations.append(p)
+        end
       else
         participations.map{ |pd| pd.delete }
         return render json: participation.errors, status: :unprocessable_entity
