@@ -10,8 +10,7 @@ class WorkshopRepository
 
   def self.workshop_with_id(id, user=nil)
     if user.nil? || user.id.nil?
-      # Not too sure this is the correct way.
-      return workshops({}, {}).find_by(id: id)
+      return workshops.find_by(id: id)
     end
 
     workshop = workshops({}, {}).find_by(id: id)
