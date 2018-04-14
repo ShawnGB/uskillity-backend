@@ -24,7 +24,7 @@ class WorkshopsController < ApiController
 
   def create
     @workshop = Workshop.new()
-    update_workshop(@workshop, create_workshop_params)
+    WorkshopRepository.update_workshop(@workshop, create_workshop_params)
     @workshop.provider = current_user
 
     if @workshop.save
@@ -38,7 +38,7 @@ class WorkshopsController < ApiController
     if @workshop.nil?
       return render json: nil, status: :not_found
     end
-    update_workshop(@workshop, update_workshop_params)
+    WorkshopRepository.update_workshop(@workshop, update_workshop_params)
     if @workshop.save
       render json: nil, status: :no_content
     else
@@ -55,29 +55,6 @@ class WorkshopsController < ApiController
   end
 
   private
-
-  def update_workshop(w, values)
-    w.title_en                   = w.title_de                   = values[:title]                   unless values[:title].blank?
-    w.subtitle_en                = w.subtitle_de                = values[:subtitle]                unless values[:subtitle].blank?
-    w.description_en             = w.description_de             = values[:description]             unless values[:description].blank?
-    w.additional_requirements_en = w.additional_requirements_de = values[:additional_requirements] unless values[:additional_requirements].blank?
-
-    w.category_id  = values[:category_id].to_i unless values[:category_id].blank?
-    w.fees         = values[:fees].to_i        unless values[:fees].blank?
-    w.level_id     = values[:level_id].to_i    unless values[:level_id].blank?
-    w.min_age      = values[:min_age].to_i     unless values[:min_age].blank?
-    w.max_age      = values[:max_age].to_i     unless values[:max_age].blank?
-    w.full_address = values[:full_address]     unless values[:full_address].blank?
-
-    w.maximum_workshop_registration_count = values[:maximum_workshop_registration_count].to_i unless values[:maximum_workshop_registration_count].blank?
-
-    unless values[:terms_accepted].nil?
-      w.terms_accepted = values[:terms_accepted]
-      if w.terms_accepted and w.published_at.nil?
-        w.published_at = Time.zone.now
-      end
-    end
-  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_workshop
