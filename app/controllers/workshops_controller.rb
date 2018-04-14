@@ -10,7 +10,7 @@ class WorkshopsController < ApiController
     @category = Category.find_by_id(params[:category_id]) if params[:category_id]
     @workshops = @category ?
       WorkshopRepository.categorised_workshops(@category) :
-      WorkshopRepository.workshops
+      WorkshopRepository.workshops.uniq
     render json: @workshops, status: :ok
   end
 
