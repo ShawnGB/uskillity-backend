@@ -36,4 +36,27 @@ class WorkshopRepository
       allowed_workshops.joins(:workshop_sessions).where(workshop_sessions: session_conditions)
     end
   end
+
+  def self.update_workshop(w, values)
+    w.title_en                   = w.title_de                   = values[:title]                   unless values[:title].blank?
+    w.subtitle_en                = w.subtitle_de                = values[:subtitle]                unless values[:subtitle].blank?
+    w.description_en             = w.description_de             = values[:description]             unless values[:description].blank?
+    w.additional_requirements_en = w.additional_requirements_de = values[:additional_requirements] unless values[:additional_requirements].blank?
+
+    w.category_id  = values[:category_id].to_i unless values[:category_id].blank?
+    w.fees         = values[:fees].to_i        unless values[:fees].blank?
+    w.level_id     = values[:level_id].to_i    unless values[:level_id].blank?
+    w.min_age      = values[:min_age].to_i     unless values[:min_age].blank?
+    w.max_age      = values[:max_age].to_i     unless values[:max_age].blank?
+    w.full_address = values[:full_address]     unless values[:full_address].blank?
+
+    w.maximum_workshop_registration_count = values[:maximum_workshop_registration_count].to_i unless values[:maximum_workshop_registration_count].blank?
+
+    unless values[:terms_accepted].nil?
+      w.terms_accepted = values[:terms_accepted]
+      if w.terms_accepted and w.published_at.nil?
+        w.published_at = Time.zone.now
+      end
+    end
+  end
 end
