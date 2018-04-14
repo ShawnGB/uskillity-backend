@@ -37,6 +37,19 @@ class UserMailer < ApplicationMailer
                                            participant_name:  participant.first_name || participant.name || participant.email,
                                          }))
   end
+
+  def workshop_awaiting_approval(ws)
+    PostmarkTemplateMailDelivery.deliver(from: 'welcome@uskillity.de',
+                                         to: ws.provider.email,
+                                         template_id: 5716441,
+                                         template_model: base_fields(ws.provider, {
+                                           workshop_title: ws.title,
+                                           workshop_link: (ENV['CLIENTHOSTDOMAIN'] || "https://www.uskillity.de/#") + "/workshops/#{ws.id}"
+                                         }))
+  end
+
+
+
 end
 
 

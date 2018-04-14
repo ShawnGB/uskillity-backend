@@ -34,6 +34,8 @@ class Workshop < ApplicationRecord
   validate :min_max_are_in_order
   validate :provider_has_a_stripe_account
 
+  after_save :email_user_about_awaiting_approval
+
   def min_max_are_in_order
     return unless self[:min_age] && self[:max_age]
     age_order_correct = self[:min_age] <= self[:max_age]
@@ -59,5 +61,14 @@ class Workshop < ApplicationRecord
 
   def action_word
     self[:action_word] || self.category.action_word || self.title
+  end
+
+  def email_user_about_awaiting_approval
+    if self.changed?  &&                                    # must be changed
+        !self.published_at.nil? &&                          # published at is not nil
+        self.changed_attributes.key?("published_at")  &&    # but is one of the changed fields
+        self.changed_attributes["published_at"].nil?        # must have been nil earlier
+      UserMailer.workshop_awaiting_approval(self).deliver
+    end
   end
 end
