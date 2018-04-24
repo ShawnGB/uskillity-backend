@@ -16,7 +16,7 @@ class UserMailer < ApplicationMailer
                                          to: record.email,
                                          template_id: 5059603,
                                          template_model: base_fields(record, {
-                                           ticket_number: participations.map{ |p| p.id.to_s }.map(&:inspect).join(', '),
+                                           ticket_number: participations.map{ |p| "#{Time.now.year.to_s}/#{p.id.to_s}" }.map(&:inspect).join(', '),
                                            workshop_title: ws.title,
                                            date_of_purchuse: Time.now.to_date,
                                            workshop_date: session.starts_at.to_date,
