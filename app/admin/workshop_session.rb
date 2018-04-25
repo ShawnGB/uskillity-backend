@@ -26,6 +26,18 @@ ActiveAdmin.register WorkshopSession do
       regular_attributes.each do |entry|
         row entry.to_sym
       end
+
+      panel "Participations" do
+        table_for workshop_session.participations do
+          column "Participation" do |participation|
+            link_to participation.id.to_s, admin_participation_path(participation.id)
+          end
+          column "For" do |participation|
+            link_to participation.user.full_name, admin_user_path(participation.user.id)
+          end
+
+        end
+      end
     end
   end
 

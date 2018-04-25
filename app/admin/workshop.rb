@@ -30,6 +30,20 @@ ActiveAdmin.register Workshop do
         row entry.to_sym
       end
     end
+
+    panel "Sessions" do
+      table_for workshop.workshop_sessions do
+        column "Session" do |session|
+          link_to session.id.to_s, admin_workshop_session_path(session.id)
+        end
+        column "Starts At" do |session|
+            session.starts_at
+        end
+        column "Ends At" do |session|
+          session.ends_at
+        end
+      end
+    end
   end
 
   form do |f|
