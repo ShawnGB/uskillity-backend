@@ -1,5 +1,6 @@
 class Participation < ApplicationRecord
   belongs_to :workshop_session
+  has_one :workshop, through: :workshop_session
   belongs_to :user
   has_one :payment_transaction, class_name: "Transaction"
 

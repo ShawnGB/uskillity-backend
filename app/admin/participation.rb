@@ -4,6 +4,7 @@ ActiveAdmin.register Participation do
   index do
     selectable_column
     column :id
+    column :workshop
     column :user
     actions
   end
