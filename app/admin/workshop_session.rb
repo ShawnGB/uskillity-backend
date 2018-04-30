@@ -7,9 +7,9 @@ ActiveAdmin.register WorkshopSession do
   index do
     selectable_column
     column :id
-    column :workshop
     column :starts_at
     column :ends_at
+    column :workshop
     column :title_en
     column :title_de
     actions
