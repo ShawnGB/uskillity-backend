@@ -58,11 +58,14 @@ class UsersController < ApiController
   def authenticate_with_facebook
     status, user = FacebookUserAuthenticator.authenticate_from_web_cookies(cookies, facebook_params['accessToken'])
 
-    client, token = user.generate_devise_auth_tokens()
-    user.save!
-
     if user
+      if user.provider != 'facebook'
+        return render json: {errors: { full_messages: ['User already exists. Try to login with email']}}, status: :unprocessable_entity
+      end
+
+      client, token = user.generate_devise_auth_tokens()
       if user.valid?
+        user.save!
         response.headers['access-token'] = token
         response.headers['client'] = client
         response.headers['uid'] = user.uid

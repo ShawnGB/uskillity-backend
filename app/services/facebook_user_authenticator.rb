@@ -70,6 +70,11 @@ class FacebookUserAuthenticator
       fb_uid_received = data[:fb_uid]
       fb_uid_received = data[:id] if fb_uid_received.nil?
 
+      if data.has_key?(:email)
+        existing_user = User.find_by(email: data[:email], provider: 'email')
+        return existing_user unless existing_user.nil?
+      end
+
       # The uid recieved from the app is for the current app_scope.
       # Check whether the user is registered with this fb_uid
       # (in effect, whether the user is registered for the current app_scope).
@@ -95,6 +100,8 @@ class FacebookUserAuthenticator
     # validates fb_token
     # returns [status, user]
     def validate_and_update_token(user, fb_token)
+      return :unprocessable_entity, user if user.provider != 'facebook'
+
       # If given fb_token is the known fb_token, just return
       if user.oauth_token == fb_token
         Rails.logger.info 'FB-Login: matching fb_token'
