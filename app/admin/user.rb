@@ -1,5 +1,6 @@
 ActiveAdmin.register User do
-	actions :all, except: [:edit, :destroy, :create, :new]
+  permit_params :email, :password, :name, :firstname
+  actions :all, except: [:destroy]
 
 	index do
 		selectable_column
@@ -17,4 +18,15 @@ ActiveAdmin.register User do
 
 		actions
 	end
+
+  form do |f|
+    f.semantic_errors *f.object.errors.keys
+    f.inputs "User Details" do
+      f.input :name
+      f.input :first_name
+      f.input :email
+      f.input :password
+    end
+    f.actions
+  end
 end
