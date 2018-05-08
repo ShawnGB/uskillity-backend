@@ -9,8 +9,7 @@ class WorkshopSerializer < ActiveModel::Serializer
   end
 
   def images
-    past_images = (object.more_images || []).append(object.main_image).compact
-    all_images = (object.images.map{|image| image.url.url } + past_images).uniq
+    all_images = object.images.last(1).map{ |image| image.url.url }
     return all_images unless all_images.blank?
     return [ENV['AWS_ASSET_HOST_BASEURL'] +'/fallbacks/workshop.png']
   end
