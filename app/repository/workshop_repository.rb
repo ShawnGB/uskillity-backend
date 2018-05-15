@@ -5,6 +5,7 @@ class WorkshopRepository
   end
 
   def self.categorised_workshops(category)
+    return [] if category.blank?
     workshops.where(category: category).uniq
   end
 
@@ -29,7 +30,8 @@ class WorkshopRepository
   end
 
   def self.workshops(conditions={is_approved: true, terms_accepted: true}, session_conditions={starts_at: Time.now..10.years.from_now})
-    allowed_workshops  = Workshop.includes({provider: :images}, :images, {workshop_sessions: :participations}).where(conditions)
+    active_categoriy_ids = Category.active.map(&:id)
+    allowed_workshops  = Workshop.where(category_id: active_categoriy_ids).includes({provider: :images}, :images, {workshop_sessions: :participations}).where(conditions)
     if session_conditions.blank?
       allowed_workshops
     else

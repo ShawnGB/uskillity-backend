@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20180520183054) do
     t.datetime "updated_at", null: false
     t.string "image"
     t.hstore "action_word_translations"
+    t.boolean "active", default: true
   end
 
   create_table "comments", id: :serial, force: :cascade do |t|

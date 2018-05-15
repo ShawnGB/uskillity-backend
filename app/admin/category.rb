@@ -1,10 +1,10 @@
 ActiveAdmin.register Category, as: "CourseCategory" do
   actions :all, except: [:destroy, :create, :new]
-  permit_params :name_en, :name_de, :action_word_en, :action_word_en, :parent_id, :image
+  permit_params :name_en, :name_de, :action_word_en, :action_word_en, :parent_id, :image, :active
 
   translated_attributes = ['name', 'action_word']
   divine_attributes = ["id", "created_at", "updated_at"]
-  regular_attributes = ["parent_id", "image"]
+  regular_attributes = ["parent_id", "image", "active"]
 
   index do
     selectable_column
@@ -14,6 +14,7 @@ ActiveAdmin.register Category, as: "CourseCategory" do
     column :image
     column :action_word_de
     column :action_word_en
+    column :active
     actions
   end
 
