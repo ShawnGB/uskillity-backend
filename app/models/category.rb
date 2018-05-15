@@ -10,4 +10,5 @@ class Category < ApplicationRecord
   validates :name_en, length: { within: 2..64 }
   validates :name_de, length: { within: 2..64 }
 
+  scope :active, -> { where(active: true) }
 end

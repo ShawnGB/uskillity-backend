@@ -7,7 +7,7 @@ class WorkshopsController < ApiController
   end
 
   def index
-    @category = Category.find_by_id(params[:category_id]) if params[:category_id]
+    @category = Category.active.find_by_id(params[:category_id]) if params[:category_id]
     @workshops = @category ?
       WorkshopRepository.categorised_workshops(@category) :
       WorkshopRepository.workshops.uniq
