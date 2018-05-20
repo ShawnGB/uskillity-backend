@@ -28,4 +28,6 @@ Rails.application.routes.draw do
 
   post 'authenticate_with_facebook' => 'users#authenticate_with_facebook'
   get 'stripe_connect_callback' => 'stripe#connect_callback'
+  get 'stripe_giropay_callback' => 'stripe#giropay_callback'
+  post 'stripe_webhook' => 'stripe#event_webhook'
 end

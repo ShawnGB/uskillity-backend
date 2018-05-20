@@ -50,34 +50,59 @@ class Transaction < ApplicationRecord
     if provider.stripe_uid.blank?
       raise StandardError.new("Workshop Provider has not connected their stripe account. Cannot make payment.")
     end
-    if participant.stripe_customer_id.blank?
-      raise StandardError.new("No payment method available. Please register a payment method.")
-    end
 
-    charge = Stripe::Charge.create({
-      # Total Amount user will be charged (in cents)
-      amount: total_amount,
-      # Currency of charge
-      currency: 'EUR',
-      # the origin of the charge
-      # e.g. customers Stripe Customer ID
-      # expect format of "cus_0xxXxXXX0XXxX0"
-      customer: participant.stripe_customer_id,
-      # Description of charge
-      description: description,
-      # Final Destination of charge (host standalone account)
-      # Expect format of acct_00X0XXXXXxxX0xX
-      destination: self.provider.stripe_uid,
-      # Fee  (as % but converted to cent)
-      application_fee: fee.to_i
-      }
-    )
-  # if the charge is successful, we'll receive a response in the charge object
-  # We can then query that object via charge.paid
-  # if true we can update our attribute
-  if charge.paid?
-    after_charge_succeeded(charge, fee)
-  end
+    if self.order.payment_method == "creditcard"
+      raise StandardError.new("No creditcard connected. Please register a creditcard to use creditcard payments.") if participant.stripe_customer_id.blank?
+      charge = Stripe::Charge.create({
+        # Total Amount user will be charged (in cents)
+        amount: total_amount,
+        # Currency of charge
+        currency: 'EUR',
+        # the origin of the charge
+        # e.g. customers Stripe Customer ID
+        # expect format of "cus_0xxXxXXX0XXxX0"
+        customer: participant.stripe_customer_id,
+        # Description of charge
+        description: description,
+        # Final Destination of charge (host standalone account)
+        # Expect format of acct_00X0XXXXXxxX0xX
+        destination: self.provider.stripe_uid,
+        # Fee  (as % but converted to cent)
+        application_fee: fee.to_i
+        }
+      )
+      # if the charge is successful, we'll receive a response in the charge object
+      # We can then query that object via charge.paid
+      # if true we can update our attribute
+      if charge.paid?
+        after_charge_succeeded(charge, fee)
+      end
+
+    elsif self.order.payment_method == "giropay"
+      charge = Stripe::Charge.create({
+        # Total Amount user will be charged (in cents)
+        amount: total_amount,
+        # Currency of charge
+        currency: 'EUR',
+        # the origin of the charge
+        # e.g. customers Stripe Customer ID
+        # expect format of "cus_0xxXxXXX0XXxX0"
+        source: self.order.stripe_source,
+        # Description of charge
+        description: description,
+        # Final Destination of charge (host standalone account)
+        # Expect format of acct_00X0XXXXXxxX0xX
+        destination: self.provider.stripe_uid,
+        # Fee  (as % but converted to cent)
+        application_fee: fee.to_i
+        })
+        # if the charge is successful, we'll receive a response in the charge object
+        # We can then query that object via charge.paid
+        # if true we can update our attribute
+        if charge.paid?
+          after_charge_succeeded(charge, fee)
+        end
+    end
 
   rescue => e
     #TODO also notify platform admins

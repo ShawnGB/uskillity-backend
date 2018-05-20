@@ -11,6 +11,14 @@ class UserMailer < ApplicationMailer
     }.merge(extra)
   end
 
+  def giropay_payment_request(user, order, redirect_url)
+    @url = redirect_url
+    mail(from: 'welcome@uskillity.de',
+         to: user.email,
+         subject: 'testing giropay'
+       )
+  end
+
   def you_are_participating(ws, session, record, participations)
     PostmarkTemplateMailDelivery.deliver(from: 'welcome@uskillity.de',
                                          to: record.email,
@@ -51,5 +59,3 @@ class UserMailer < ApplicationMailer
 
 
 end
-
-

@@ -25,7 +25,7 @@ class ParticipationsController < ApiController
     participations = []
 
     requested_participation_count.times {
-      
+
       p = Participation.new(participation_params)
       # add participations to order object
       p.order = order
@@ -40,12 +40,6 @@ class ParticipationsController < ApiController
 
     # trigger payment on order
     order.trigger_payment_transaction
-
-
-    # TODO: send emails only after payments have been made
-    # ws = Workshop.includes(:provider).find(workshop_id())
-    # UserMailer.participations_created(ws, current_user, requested_participation_count).deliver
-    # UserMailer.you_are_participating(ws, @workshop_session, current_user, participations).deliver
 
     render json: participations, status: :created
   end
