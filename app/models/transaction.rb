@@ -1,8 +1,8 @@
 class Transaction < ApplicationRecord
-  belongs_to :participation
+  belongs_to :order
 
   def participant
-    self.participation.user
+    self.order.participations.first.user
   end
 
   def provider
@@ -10,7 +10,11 @@ class Transaction < ApplicationRecord
   end
 
   def workshop
-    self.participation.workshop_session.workshop
+    workshop_session.workshop
+  end
+
+  def workshop_session
+    self.order.participations.first.workshop_session
   end
 
   def workshop_price
@@ -19,15 +23,15 @@ class Transaction < ApplicationRecord
 
   # Total amount converted to cents
   def total_amount
-    (workshop_price * 100).to_i
+    self.order.participations.count * (workshop_price * 100).to_i
   end
 
   def description
-    "#{participant.email} just bought #{self.participation.workshop_session.workshop.title} for $#{total_amount/100}, from #{provider.email} for transaction ID: #{id}"
+    "#{participant.email} just bought #{workshop.title} for $#{total_amount/100}, from #{provider.email} for transaction ID: #{id}"
   end
 
   def item_bought
-    Participation.find_by_id(self.participation_id)
+    Participation.find_by_id(self.order.participations.first.id)
   end
 
   def fee
@@ -82,5 +86,9 @@ class Transaction < ApplicationRecord
 
   def after_charge_succeeded(charge, fee)
     update_attributes(paid: true, stripe_charge: charge.id, fee_charged: (fee.to_i/100), total: charge.amount/100)
+    ws = Workshop.includes(:provider).find(workshop.id)
+    # inform both the provider and the participant about the successful ticket purchase
+    UserMailer.participations_created(ws, participant, self.order.participations.count).deliver
+    UserMailer.you_are_participating(ws, workshop_session, participant, self.order.participations).deliver
   end
 end

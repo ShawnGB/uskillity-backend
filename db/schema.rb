@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180430075439) do
+ActiveRecord::Schema.define(version: 20180520171637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,12 @@ ActiveRecord::Schema.define(version: 20180430075439) do
     t.index ["value"], name: "index_levels_on_value", unique: true
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "payment_method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "participations", id: :serial, force: :cascade do |t|
     t.integer "workshop_session_id"
     t.integer "workshop_registration_id"
@@ -103,6 +109,7 @@ ActiveRecord::Schema.define(version: 20180430075439) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.boolean "is_cancelled"
+    t.bigint "order_id"
     t.index ["user_id"], name: "index_participations_on_user_id"
     t.index ["workshop_registration_id"], name: "index_participations_on_workshop_registration_id"
     t.index ["workshop_session_id"], name: "index_participations_on_workshop_session_id"
@@ -134,6 +141,7 @@ ActiveRecord::Schema.define(version: 20180430075439) do
     t.boolean "paid", default: false
     t.string "stripe_charge"
     t.decimal "fee_charged", precision: 8, scale: 2, default: "0.0"
+    t.bigint "order_id"
     t.index ["participation_id"], name: "index_transactions_on_participation_id"
   end
 
