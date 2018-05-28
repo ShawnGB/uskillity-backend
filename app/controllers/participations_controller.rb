@@ -21,20 +21,24 @@ class ParticipationsController < ApiController
 
     # create order object
     order = Order.create(payment_method: payment_method())
-    # create participations
-    participations = []
+    if !order.save!
+      return render json: order.errors, status: :unprocessable_entity
+    else
+      # create participations
+      participations = []
 
-    requested_participation_count.times {
+      requested_participation_count.times {
 
-      p = Participation.new(participation_params)
-      # add participations to order object
-      p.order = order
+        p = Participation.new(participation_params)
+        # add participations to order object
+        p.order = order
 
-      if p.save!
-        participations.append(p)
-      else
-        participations.map{ |pd| pd.delete }
-        return render json: participation.errors, status: :unprocessable_entity
+        if p.save!
+          participations.append(p)
+        else
+          participations.map{ |pd| pd.delete }
+          return render json: participation.errors, status: :unprocessable_entity
+        end
       end
     }
 

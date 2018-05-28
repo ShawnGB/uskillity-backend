@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   has_many :participations
   has_one :payment_transaction, class_name: "Transaction"
+  validates :payment_method, presence: true, inclusion: { in: %w(giropay creditcard), message: "%{value} is not a valid payment method" }
 
   def buyer
     self.participations.first.user
