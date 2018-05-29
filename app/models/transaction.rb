@@ -45,14 +45,17 @@ class Transaction < ApplicationRecord
 
   def make_charge
     if self.paid
+      Rails.logger.info "payment has been made already..."
       raise StandardError.new("Payment has already been made")
     end
 
     if provider.stripe_uid.blank?
+      Rails.logger.info "workshop provider has no stripe account, cannot send money to nowhere..."
       raise StandardError.new("Workshop Provider has not connected their stripe account. Cannot make payment.")
     end
 
     if self.order.payment_method == "creditcard" && participant.stripe_customer_id.blank?
+      Rails.logger.info "No creditcard connected. Please register a creditcard to use creditcard payments"
       raise StandardError.new("No creditcard connected. Please register a creditcard to use creditcard payments.")
     end
 
@@ -65,6 +68,7 @@ class Transaction < ApplicationRecord
       destination: self.provider.stripe_uid,
       application_fee: fee.to_i # Fee  (as % but converted to cent)
     }
+    Rails.logger.info "preparing charge: #{charge.to_s}"
 
     payer = if self.order.payment_method == "creditcard"
               {  customer: participant.stripe_customer_id }
@@ -72,22 +76,29 @@ class Transaction < ApplicationRecord
               { source: self.order.stripe_source }
             end
 
+    Rails.logger.info "preapring payer: #{payer.to_s}, making charge"
+
     charge = Stripe::Charge.create(charge.merge(payer))
     # if the charge is successful, we'll receive a response in the charge object
     # We can then query that object via charge.paid
     # if true we can update our attribute
+    Rails.logger.info "is charge paid? #{charge.paid?}"
     if charge.paid?
       after_charge_succeeded(charge, fee)
     end
 
   rescue => e
     #TODO also notify platform admins
+    Rails.logger.info "Could not create the charge. #{e.message}"
     errors.add(:stripe_charge_error, "Could not create the charge. #{e.message}")
   end
 
   def after_charge_succeeded(charge, fee)
+    Rails.logger.info "charge successful, now send emails..."
     update_attributes(paid: true, stripe_charge: charge.id, fee_charged: (fee.to_i/100), total: charge.amount/100)
+    Rails.logger.info "charge updated #{charge.to_s}"
     ws = Workshop.includes(:provider).find(workshop.id)
+    Rails.logger.info "found workshop with id #{ws.id}, now sending emails"
     # inform both the provider and the participant about the successful ticket purchase
     UserMailer.participations_created(ws, participant, self.order.participations.count).deliver
     UserMailer.you_are_participating(ws, workshop_session, participant, self.order.participations).deliver
