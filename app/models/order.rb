@@ -22,27 +22,31 @@ class Order < ApplicationRecord
     if self.payment_method == "creditcard"
       transaction.make_charge
     elsif self.payment_method == "giropay"
-      # create stripe source, send email to user
-      stripe_source = Stripe::Source.create(
-        :type => "giropay",
-        :currency => 'eur',
-        :amount => transaction.total_amount,
-        :owner => {
-          :name => self.buyer.full_name
-        },
-        :redirect => {
-          :return_url => ENV["SERVERHOSTDOMAIN"] + "/stripe_giropay_callback?order_id=" + self.id.to_s
-        }
-      )
-      self.stripe_source = stripe_source.id
-      self.save
-      #TODO rescue if stripe fails?
+      begin
+        # create stripe source, send email to user
+        stripe_source = Stripe::Source.create(
+          :type => "giropay",
+          :currency => 'eur',
+          :amount => transaction.total_amount,
+          :owner => {
+            :name => self.buyer.full_name
+          },
+          :redirect => {
+            :return_url => ENV["SERVERHOSTDOMAIN"] + "/stripe_giropay_callback?order_id=" + self.id.to_s
+          }
+        )
+        self.stripe_source = stripe_source.id
+        self.save!
 
-      #send an email to the user which contains the link he has to click
-      UserMailer.giropay_payment_request(buyer, self, stripe_source.redirect.url).deliver
+        #send an email to the user which contains the link he has to click
+        UserMailer.giropay_payment_request(buyer, self, stripe_source.redirect.url).deliver
 
+      rescue => e
+        #notify platform admins via sentry
+        Raven.capture_exception(e)
+      end
     else
-      # TODO: raise exception??
+      Raven.capture_message("Error: tried to trigger a payment transaction for an unknown payment method: #{self.payment_method}")
     end
 
   end

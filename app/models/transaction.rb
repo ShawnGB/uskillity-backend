@@ -45,18 +45,15 @@ class Transaction < ApplicationRecord
 
   def make_charge
     if self.paid
-      Rails.logger.info "payment has been made already..."
-      raise StandardError.new("Payment has already been made")
+      raise StandardError.new("Payment has already been made, transaction id: #{self.id}")
     end
 
     if provider.stripe_uid.blank?
-      Rails.logger.info "workshop provider has no stripe account, cannot send money to nowhere..."
-      raise StandardError.new("Workshop Provider has not connected their stripe account. Cannot make payment.")
+      raise StandardError.new("Workshop Provider #{provider.id_to_s} has not connected their stripe account. Cannot make payment, transaction id: #{self.id}")
     end
 
     if self.order.payment_method == "creditcard" && participant.stripe_customer_id.blank?
-      Rails.logger.info "No creditcard connected. Please register a creditcard to use creditcard payments"
-      raise StandardError.new("No creditcard connected. Please register a creditcard to use creditcard payments.")
+      raise StandardError.new("Order Id: #{self.order.id} - Participant Id: #{participant.id.to_s} - No creditcard connected. Please register a creditcard to use creditcard payments.")
     end
 
     charge = {
@@ -88,9 +85,11 @@ class Transaction < ApplicationRecord
     end
 
   rescue => e
-    #TODO also notify platform admins
+
     Rails.logger.info "Could not create the charge. #{e.message}"
     errors.add(:stripe_charge_error, "Could not create the charge. #{e.message}")
+    #notify platform admins via sentry
+    Raven.capture_exception(e)
   end
 
   def after_charge_succeeded(charge, fee)

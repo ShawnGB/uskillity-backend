@@ -51,6 +51,7 @@ class StripeConnector
       user = User.where(stripe_connection_token: state).first
       if user.blank?
         #TODO refactor for better error handling
+        Raven.capture_message("Error trying to connect a stripe account, could not find user for stripe_connection_token #{state}")
         return "error"
       end
 

@@ -42,5 +42,11 @@ module BlueCarbuncle
     config.fb_app_id = (ENV["FACEBOOK_APP_ID"] || '624849507671905')
 
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
+    Raven.configure do |config|
+      config.dsn = (ENV["SENTRY_DSN"] || 'https://0e56b446eb7944faaa5b414f172c58a4:30499855d7344b2a9f20c7a2c14976c0@sentry.io/1215685')
+      config.current_environment = (ENV["SENTRY_ENV"] || "develop")
+    end
+
   end
 end

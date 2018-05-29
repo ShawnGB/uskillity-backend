@@ -46,6 +46,7 @@ gem 'devise'
 gem 'devise_token_auth'
 gem 'stripe'
 gem 'rack-oauth2'
+gem 'sentry-raven'
 
 
 group :development, :test do
