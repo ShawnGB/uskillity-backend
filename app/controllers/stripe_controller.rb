@@ -26,8 +26,11 @@ class StripeController < ActionController::Base
   def event_webhook
     # if source becomes chargeable, find the order and trigger the transaction
     # for now, only act on source.chargeable events
+    Rails.logger.info "received event webhook..."
     if event_params[:type] == "source.chargeable"
+      Rails.logger.info "type is source.chargeable, fetching corresponding order..."
       order = Order.where(stripe_source: event_params[:data][:object][:id]).first
+      Rails.logger.info "Found order with id #{order.id.to_s}, making charge..."
       order.payment_transaction.make_charge
     end
   end
