@@ -18,7 +18,7 @@ class StripeController < ActionController::Base
   # we will be notified from stripe via a webhook, once the source becomes chargeable
   def giropay_callback
     @order = Order.find(params[:order_id])
-    @amount = @order.payment_transaction.total_amount / 100
+    @amount = @order.payment_transaction.total_amount / 100.0
     render :giropay_callback
   end
 
