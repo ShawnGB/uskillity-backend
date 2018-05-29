@@ -39,8 +39,8 @@ class ParticipationsController < ApiController
           participations.map{ |pd| pd.delete }
           return render json: participation.errors, status: :unprocessable_entity
         end
-      end
-    }
+      }
+    end
 
     # trigger payment on order
     order.trigger_payment_transaction
