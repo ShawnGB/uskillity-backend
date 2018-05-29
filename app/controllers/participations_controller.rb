@@ -19,27 +19,31 @@ class ParticipationsController < ApiController
       return render json: {error: "Only #{allocatable} tickets can be reserved"}, status: :unprocessable_entity
     end
 
-    participations = []
+    # create order object
+    order = Order.create(payment_method: payment_method())
+    if !order.save!
+      return render json: order.errors, status: :unprocessable_entity
+    else
+      # create participations
+      participations = []
 
-    requested_participation_count.times {
-      # TODO check if transaction could be made
-      p = Participation.new(participation_params)
-      if p.save!
-        p.reload
-        if p.payment_transaction.errors.any?
-          return render json: p.payment_transaction.errors, status: :unprocessable_entity
-        else
+      requested_participation_count.times {
+
+        p = Participation.new(participation_params)
+        # add participations to order object
+        p.order = order
+
+        if p.save!
           participations.append(p)
+        else
+          participations.map{ |pd| pd.delete }
+          return render json: participation.errors, status: :unprocessable_entity
         end
-      else
-        participations.map{ |pd| pd.delete }
-        return render json: participation.errors, status: :unprocessable_entity
       end
     }
 
-    ws = Workshop.includes(:provider).find(workshop_id())
-    UserMailer.participations_created(ws, current_user, requested_participation_count).deliver
-    UserMailer.you_are_participating(ws, @workshop_session, current_user, participations).deliver
+    # trigger payment on order
+    order.trigger_payment_transaction
 
     render json: participations, status: :created
   end
@@ -61,6 +65,10 @@ class ParticipationsController < ApiController
 
   def requested_participation_count
     (params[:requested_participation_count] || 1).to_i
+  end
+
+  def payment_method
+    params[:payment_method]
   end
 
   def workshop_id()
