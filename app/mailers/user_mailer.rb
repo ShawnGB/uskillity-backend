@@ -12,11 +12,16 @@ class UserMailer < ApplicationMailer
   end
 
   def giropay_payment_request(user, order, redirect_url)
-    @url = redirect_url
-    mail(from: 'welcome@uskillity.de',
-         to: user.email,
-         subject: 'testing giropay'
-       )
+    PostmarkTemplateMailDelivery.deliver(
+      from: 'welcome@uskillity.de',
+      to: user.email,
+      template_id: 6803162,
+      template_model: {
+        name: order.buyer.first_name || order.buyer.name || order.buyer.email, #name of person who ordered
+        payment_link: redirect_url,
+        workshop_title: order.workshop_name #title of workshop
+      }
+    )
   end
 
   def you_are_participating(ws, session, record, participations)
